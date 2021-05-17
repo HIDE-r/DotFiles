@@ -268,9 +268,12 @@ if dein#load_state(s:dein_path)
                 \'hook_post_update':":LeaderfInstallCExtension",
                 \})
     " ranger
-    "Plug 'francoiscabrol/ranger.vim'
-    "Plug 'rbgrouleff/bclose.vim'            
-
+    call dein#add('francoiscabrol/ranger.vim',{
+                \'type':'git',
+                \})
+    call dein#add('rbgrouleff/bclose.vim',{
+                \'type':'git',
+                \})
     " tmux
     call dein#add('christoomey/vim-tmux-navigator',{
                 \'type':'git',
@@ -771,9 +774,9 @@ let g:vim_markdown_conceal_code_blocks = 0
 " ===
 " === ranger
 " ===
-"let g:ranger_map_keys = 0
-"let g:NERDTreeHijackNetrw = 0
-"let g:ranger_replace_netrw = 1 "vim打开目录文件时，运行ranger
+let g:ranger_map_keys = 0
+let g:NERDTreeHijackNetrw = 0
+let g:ranger_replace_netrw = 1 "vim打开目录文件时，运行ranger
 
 " ===
 " === neosnippet.vim
