@@ -11,6 +11,11 @@ neovim_plug_install:
 
 neovim:neovim_dein_install
 
+dotbot:
+	@echo '=====Dotbot Start====='
+	git submodule update --init --recursive
+	@echo '=====Dotbot End====='
+
 all: neovim
 
-.PHONY:all
+.PHONY:all dotbot
