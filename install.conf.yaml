@@ -1,0 +1,19 @@
+- link:
+    ~/.gitconfig:
+      path: git/gitconfig
+    ~/.vimrc:
+      path: vim/vimrc
+    ~/.zshrc:
+      path: zsh/zshrc
+    ~/.config/alacritty:
+      path: alacritty
+    ~/.config/nvim:
+      path: nvim
+    ~/.config/compton.conf:
+      path: compton/compton.conf
+
+- clean:
+    ~/:
+      force: true
+    ~/.config:
+      force: true

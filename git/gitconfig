@@ -1,0 +1,14 @@
+[http]
+#	proxy = socks5://127.0.0.1:1080
+[https]
+#	proxy = socks5://127.0.0.1:1080
+[user]
+	email = LKangN@outlook.com
+	name = HideOnLie
+[alias]
+    st = status -s -b
+[color]
+	ui = auto
+[core]
+	quotepath = false
+	editor = nvim
