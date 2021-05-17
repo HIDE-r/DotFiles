@@ -6,6 +6,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 POWERLEVEL9K_INSTANT_PROMPT=off
 
+#proxy="socks5://127.0.0.1:1080";
+#export http_proxy=$proxy;
+#export https_proxy=$proxy;
+#export ftp_proxy=$proxy;
+#export ALL_PROXY=$proxy;
+#export no_proxy="localhost, 127.0.0.1, ::1";
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -79,7 +85,7 @@ alias vi='nvim'
 alias vim='nvim'
 
 # === remake
-EDITOR=/usr/bin/nvim
+EDITOR="nvim"
 export EDITOR
 
 export TERM=xterm-256color
