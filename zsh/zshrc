@@ -83,12 +83,18 @@ alias l='exa -lgha'
 alias lg='lazygit'
 alias vi='nvim'
 alias vim='nvim'
+alias cman='man -M /usr/share/man/zh_CN'
+alias cat='bat'
+alias grep='grep --color=auto --exclude "tags"'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 # === remake
 EDITOR="nvim"
 export EDITOR
 
 export TERM=xterm-256color
+export BROWSER=microsoft-edge-dev
 
 # === 按键绑定
 #Rebind HOME and END to do the decent thing:

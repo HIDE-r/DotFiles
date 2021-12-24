@@ -98,11 +98,12 @@ font:
     #- OperatorMonoLig
     #   - MesloLGS 
     #   - (Windows) Consolas
-    family: MesloLGS NF
-    #family: OperatorMonoLig
+    #family: MesloLGS NF
+    family: OperatorMono
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    #style: Regular
+    style: Book
 
   # Bold font face
   bold:
@@ -138,7 +139,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

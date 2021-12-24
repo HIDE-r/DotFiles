@@ -343,6 +343,7 @@ if has('nvim')
           \'lazy':1,
           \'on_event':['InsertEnter'],
           \'on_cmd':['CocList'],
+          \'rev':'release',
           \})
 
     "lazygit
