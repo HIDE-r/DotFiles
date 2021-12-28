@@ -1,3 +1,8 @@
+
+installed () {
+        command -v "$1" >/dev/null 2>&1
+}
+
 ### Proxy Setting
 #
 #proxy="socks5://127.0.0.1:1080";
@@ -66,9 +71,8 @@ zstyle ':completion:*' menu select
 
 ### alias
 #
-result=$(which exa)
-if [ -n "$result" ] ;then
-	alias ls=exa
+if installed exa; then
+	alias ls='exa'
 	alias la='exa -ga'
 	alias ll='exa -lgha'
 	alias l='exa -lgh'
@@ -79,8 +83,7 @@ else
 	alias l='ls -lh --color=auto'
 fi
 
-result=$(which nvim)
-if [ -n "$result" ] ;then
+if installed nvim; then
 	alias vi='nvim'
 	alias vim='nvim'
 	EDITOR="nvim"
@@ -90,8 +93,7 @@ else
 	export EDITOR
 fi
 
-result=$(which bat)
-if [ -n "$result" ] ;then
+if installed bat;then
 	alias cat='bat'
 fi
 
