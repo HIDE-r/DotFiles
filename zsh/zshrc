@@ -115,7 +115,7 @@ bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 
 
-# === fzf配置
+### fzf configuration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # ==== linuxbrew
@@ -131,9 +131,11 @@ export LD_LIBRARY_PATH=$LINUXBREWHOME/lib64:$LINUXBREWHOME/lib:$LD_LIBRARY_PATH
 
 
 ### Bashhub.com Installation
-if [ -f ~/.bashhub/bashhub.zsh ]; then
-    source ~/.bashhub/bashhub.zsh
-fi
+## Remote command history synchronization
+###
+#if [ -f ~/.bashhub/bashhub.zsh ]; then
+#    source ~/.bashhub/bashhub.zsh
+#fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
