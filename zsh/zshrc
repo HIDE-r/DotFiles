@@ -1,11 +1,5 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
-#POWERLEVEL9K_INSTANT_PROMPT=off
-
+### Proxy Setting
+#
 #proxy="socks5://127.0.0.1:1080";
 #export http_proxy=$proxy;
 #export https_proxy=$proxy;
@@ -17,7 +11,7 @@
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
+    command git clone https://hub.fastgit.org/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
@@ -34,14 +28,8 @@ zinit light-mode for \
     zdharma-continuum/z-a-patch-dl \
     zdharma-continuum/z-a-bin-gem-node
 
-### End of Zinit's installer chunk
-
 # powerlevel10k 主题
 # zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-# pure 主题
-#zinit ice pick"async.zsh" src"pure.zsh"
-#zinit light sindresorhus/pure
 
 # z 跳转
 zinit ice depth=1; zinit light rupa/z
@@ -74,14 +62,12 @@ autoload -Uz compinit
 compinit
 zstyle ':completion:*' menu select
 
-
 ### End of Zinit's installer chunk
 
-# === alias
-
+### alias
+#
 result=$(which exa)
-if [ -n "$result" ] ;
-then
+if [ -n "$result" ] ;then
 	alias ls=exa
 	alias la='exa -ga'
 	alias ll='exa -lgha'
@@ -94,28 +80,32 @@ else
 fi
 
 result=$(which nvim)
-if [ -n "$result" ] ;
-then
+if [ -n "$result" ] ;then
 	alias vi='nvim'
 	alias vim='nvim'
+	EDITOR="nvim"
+	export EDITOR
+else
+	EDITOR="vim"
+	export EDITOR
 fi
 
-alias lg='lazygit'
+result=$(which bat)
+if [ -n "$result" ] ;then
+	alias cat='bat'
+fi
+
 alias ip='ip -c'
 alias cman='man -M /usr/share/man/zh_CN'
-alias cat='bat'
 alias grep='grep --color=auto --exclude "tags"'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-# === remake
-EDITOR="nvim"
-export EDITOR
-
 export TERM=xterm-256color
 export BROWSER=microsoft-edge-dev
 
-# === 按键绑定
+### 按键绑定
+#
 #Rebind HOME and END to do the decent thing:
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
@@ -157,11 +147,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 ### Bashhub.com Installation
 ## Remote command history synchronization
 ###
-
+#
 #if [ -f ~/.bashhub/bashhub.zsh ]; then
 #    source ~/.bashhub/bashhub.zsh
 #fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(starship init zsh)"
