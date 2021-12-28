@@ -1,0 +1,47 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- link:
+    ~/.gitconfig:
+      path: git/gitconfig
+    ~/.vimrc:
+      path: vim/vimrc
+    ~/.zshrc:
+      path: zsh/zshrc
+    ~/.tmux.conf:
+      path: tmux/tmux.conf
+      canonicalize: true
+    ~/.tmux.conf.local:
+      path: tmux/tmux.conf.local
+    ~/.xprofile:
+      path: xorg/xprofile
+    ~/.config/alacritty:
+      path: alacritty
+    ~/.config/nvim:
+      path: nvim
+    ~/.config/compton.conf:
+      path: compton/compton.conf
+    ~/.config/dunst/dunstrc:
+      path: dunst/dunstrc
+    ~/.config/polybar/config:
+      path: polybar/config
+    ~/.config/rofi/config.rasi:
+      path: rofi/config.rasi
+    ~/.local/share/dwm/autostart.sh:
+      path: dwm/autostart.sh
+
+- clean:
+    ~/:
+      force: true
+    ~/.config:
+      force: true
+
+- create:
+    ~/.ssh:
+      mode: 0700
+
+# This section contains any raw shell commands that you’d like to run upon running this install script
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

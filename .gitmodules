@@ -2,3 +2,9 @@
 	path = .dotbot
 	url = https://hub.fastgit.org/anishathalye/dotbot
 	ignore = dirty
+[submodule ".tmux"]
+	path = .tmux
+	url = https://hub.fastgit.org/gpakosz/.tmux.git
+[submodule ".fzf"]
+	path = .fzf
+	url = https://hub.fastgit.org/junegunn/fzf.git

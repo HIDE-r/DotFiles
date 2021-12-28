@@ -135,6 +135,11 @@ bindkey '^N' history-substring-search-down
 
 
 ### fzf configuration
+## Options to fzf command
+export FZF_COMPLETION_TRIGGER='~~'
+export FZF_COMPLETION_OPTS='+c -x'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # ==== linuxbrew
@@ -152,6 +157,7 @@ bindkey '^N' history-substring-search-down
 ### Bashhub.com Installation
 ## Remote command history synchronization
 ###
+
 #if [ -f ~/.bashhub/bashhub.zsh ]; then
 #    source ~/.bashhub/bashhub.zsh
 #fi
