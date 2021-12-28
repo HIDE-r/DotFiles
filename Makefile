@@ -13,13 +13,10 @@ neovim:neovim_dein_install
 
 dotbot:
 	@echo '=====Dotbot Start====='
-	git submodule update --init --recursive
 	@echo '=====Dotbot End====='
 
-dotbot_install:
-	@echo '=====Dotbot Install Start====='
-	git submodule add https://github.com/anishathalye/dotbot .dotbot
-	@echo '=====Dotbot Install End====='
+git_init_submodule:
+	git submodule update --init --recursive
 
 git_update_submodule:
 	git submodule update --remote
@@ -28,7 +25,7 @@ all: neovim
 
 help:
 	@echo 'Command:'
-	@echo '        dotbot_install				install dotbot '
 	@echo '        git_update_submodule			git submodule update --remote'
+	@echo '        git_init_submodule			git submodule update --init --recursive'
 
 .PHONY:all dotbot
