@@ -51,6 +51,8 @@ prepare: create_tmp
 	@echo '=====Prepare Completely====='
 	touch ${STAMP_DIR}/stamp_prepare_completed
 
+update: git_update_submodule fzf_upgrade
+
 help:
 	@echo 'Command:'
 	@echo '        git_update_submodule			git submodule update --remote'
