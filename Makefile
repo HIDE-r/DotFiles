@@ -23,6 +23,9 @@ neovim_dein_install:
 neovim_plug_install:
 	$(NVIM)  -V1 -es -i NONE -N --noplugin -c "try | call dein#update() | call dein#recache_runtimepath() | finally | echomsg '' | qall! | endtry"
 
+neovim_plug_update:
+	$(nvim)  -V1 -es -i NONE -N --noplugin -u ~/.vimrc -c "try | call dein#clear_state() | call dein#update() | finally | qall! | endtry"
+
 neovim: neovim_dein_install
 
 dotbot: prepare
