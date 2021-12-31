@@ -36,11 +36,11 @@ git_update_submodule:
 fzf: fzf_install
 
 fzf_install: 
-	cd ~/Dotfiles/.fzf && ./install
+	cd ~/DotFiles/.fzf && ./install
 
 fzf_upgrade:
 	@echo '=====Upgrading fzf Start====='
-	cd ~/Dotfiles/.fzf && git pull && ./install
+	cd ~/DotFiles/.fzf && git pull && ./install
 	@echo '=====Upgrading fzf End====='
 
 create_tmp:
