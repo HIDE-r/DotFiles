@@ -43,5 +43,5 @@
       mode: 0700
 
 # This section contains any raw shell commands that you’d like to run upon running this install script
-- shell:
-  - [git submodule update --init --recursive, Installing submodules]
+#- shell:
+#  - [git submodule update --init --recursive, Installing submodules]
