@@ -672,7 +672,7 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+"set cmdheight=2
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -825,6 +825,7 @@ let g:asyncrun_open = 6 "告诉 asyncrun 运行时自动打开高度为 6 的 qu
 " ===
 " === tmux
 " ===
+let g:airline#extensions#tmuxline#enabled = 0
 " 让tmux的颜色跟随vim-airline一起变化
 " https://github.com/edkolev/tmuxline.vim/issues/24
 
