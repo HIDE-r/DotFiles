@@ -1,6 +1,8 @@
 [submodule ".dotbot"]
 	path = .dotbot
 	url = https://hub.fastgit.org/anishathalye/dotbot
+	branch=master
+	update=rebase
 	ignore = dirty
 [submodule ".tmux"]
 	path = .tmux
