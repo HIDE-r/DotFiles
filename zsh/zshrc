@@ -1,84 +1,141 @@
-
 installed () {
-        command -v "$1" >/dev/null 2>&1
+  command -v "$1" >/dev/null 2>&1
 }
+
+running () {
+  pgrep "$1" > /dev/null 2>&1
+}
+
+ZINIT_HOME="${HOME}/DotFiles/.zinit/"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# load - with reporting/investigating.
+# light - without reporting/investigating.
+ZINIT_LOAD_METHOD="load"
+
+if [ ${ZINIT_LOAD_METHOD} = "light" ]; then
+	ZINIT_LIGHT_MODE="light-mode"
+else
+	ZINIT_LIGHT_MODE=""
+fi
 
 ### Proxy Setting
 #
-#proxy="socks5://127.0.0.1:1080";
-#export http_proxy=$proxy;
-#export https_proxy=$proxy;
-#export ftp_proxy=$proxy;
-#export ALL_PROXY=$proxy;
-#export no_proxy="localhost, 127.0.0.1, ::1";
-
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://hub.fastgit.org/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+if running brook; then
+  proxy="socks5://127.0.0.1:1080";
+  export http_proxy=$proxy;
+  export https_proxy=$proxy;
+  export ftp_proxy=$proxy;
+  export ALL_PROXY=$proxy;
+  export no_proxy="localhost, 127.0.0.1, ::1";
 fi
-
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/z-a-rust \
-    zdharma-continuum/z-a-as-monitor \
-    zdharma-continuum/z-a-patch-dl \
-    zdharma-continuum/z-a-bin-gem-node
+#zinit light-mode for \
+#    zdharma-continuum/z-a-rust \
+#    zdharma-continuum/z-a-as-monitor \
+#    zdharma-continuum/z-a-patch-dl \
+#    zdharma-continuum/z-a-bin-gem-node
 
-# powerlevel10k 主题
-# zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit snippet OMZ::lib/history.zsh
+zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh 
+#zinit snippet OMZ::lib/completion.zsh
+#zinit snippet OMZ::lib/key-bindings.zsh
+#zinit snippet OMZ::lib/theme-and-appearance.zsh
 
-# z 跳转
-#zinit ice depth=1; zinit light rupa/z
-zinit ice depth=1; zinit light skywind3000/z.lua
-z_customized () {
-	if [ $# -eq 0 ]; then
-		_zlua -I .
-	else
-		_zlua -I $@
-	fi
-}
-alias z='z_customized'
+zinit wait"1" lucid ${ZINIT_LIGHT_MODE} for \
+	OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh \
+	OMZ::plugins/sudo/sudo.plugin.zsh \
+	OMZ::plugins/extract/extract.plugin.zsh
 
 # 语法高亮
-zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait lucid
+zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-syntax-highlighting
 
 # 自动建议
-zinit ice lucid wait="0" atload='_zsh_autosuggest_start'
-zinit light zsh-users/zsh-autosuggestions
+zinit ice wait lucid atload'_zsh_autosuggest_start'
+zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-autosuggestions
 
 # 补全
-zinit light zsh-users/zsh-completions
+zinit ice wait lucid blockf
+zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-completions
 
-# 加载 OMZ 框架及部分插件
-#zinit snippet OMZ::lib/completion.zsh
-zinit snippet OMZ::lib/history.zsh
-zinit snippet OMZ::lib/key-bindings.zsh
-zinit snippet OMZ::lib/theme-and-appearance.zsh
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
-zinit snippet OMZ::plugins/history-substring-search/history-substring-search.zsh
-zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
+# exa
+if ! installed exa; then
+zinit ice as"program" from"gh-r" pick="bin/exa"
+zinit ${ZINIT_LOAD_METHOD} ogham/exa
+fi
 
-#zinit ice svn
-zinit snippet OMZ::plugins/extract/extract.plugin.zsh
+# bat
+if ! installed bat; then
+zinit ice as"program" from"gh-r" pick="*/bat"
+zinit ${ZINIT_LOAD_METHOD} sharkdp/bat
+fi
+
+# fd
+if ! installed fd; then
+zinit ice as"program" from"gh-r" pick="*/fd"
+zinit ${ZINIT_LOAD_METHOD} sharkdp/fd
+fi
+
+# ripgrep
+if ! installed rg; then
+zinit ice as"program" from"gh-r" pick="*/rg"
+zinit ${ZINIT_LOAD_METHOD} BurntSushi/ripgrep
+fi
+
+### fzf configuration
+## Options to fzf command
+export FZF_COMPLETION_TRIGGER='~~'
+export FZF_COMPLETION_OPTS='--border --info=inline'
+export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude ".git" ."
+
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
+    export|unset) fzf "$@" --preview "eval 'echo \$'{}" ;;
+    ssh)          fzf "$@" --preview 'dig {}' ;;
+    *)            fzf "$@" ;;
+  esac
+}
+
+
+zinit ice lucid as"program" pick="bin/(fzf|fzf-tmux)" \
+	multisrc="shell/{completion,key-bindings}.zsh"
+	atclone="cp shell/completion.zsh _fzf_completion; \
+		make install;" \
+	atpull="%atclone"
+zinit ${ZINIT_LOAD_METHOD} junegunn/fzf
 
 # cd 的补全目录
 autoload -Uz compinit
 compinit
-zstyle ':completion:*' menu select
 
+#zstyle ':completion:*' menu select
+
+# z 跳转
+export _ZO_FZF_OPTS='--exit-0 --height=40% --inline-info --no-sort --reverse --select-1 --preview="exa -la {2..}"'
+zinit ice as"program" from"gh-r" \
+	atclone"./zoxide init zsh > init.zsh" \
+	atpull"%atclone" src"init.zsh"
+zinit ${ZINIT_LOAD_METHOD} ajeetdsouza/zoxide
 
 # fzf-tab 替换tab功能
-zinit light Aloxaf/fzf-tab
+zinit ice wait lucid
+zinit ${ZINIT_LOAD_METHOD} Aloxaf/fzf-tab
+
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
@@ -88,12 +145,14 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # preview directory's content with exa when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # switch group using `,` and `.`
-zstyle ':fzf-tab:*' switch-group F1 F2
+zstyle ':fzf-tab:*' switch-group ',' '.'
 
-### End of Zinit's installer chunk
 
-### alias
-#
+
+###
+#### Alias
+### 
+
 if installed exa; then
 	alias ls='exa'
 	alias la='exa -ga'
@@ -131,51 +190,36 @@ export TERM=xterm-256color
 export BROWSER=microsoft-edge-dev
 
 ### 按键绑定
-#
-#Rebind HOME and END to do the decent thing:
-bindkey '\e[1~' beginning-of-line
-bindkey '\e[4~' end-of-line
-case $TERM in (xterm*)
-bindkey '\eOH' beginning-of-line
-bindkey '\eOF' end-of-line
-esac
-#And DEL too, as well as PGDN and insert:
-bindkey '\e[3~' delete-char
-bindkey '\e[6~' end-of-history
-bindkey '\e[2~' redisplay
-#Now bind pgup to paste the last word of the last command,
-bindkey '\e[5~' insert-last-word
-#Rebind substring search
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down
+typeset -g -A key
 
+key[Home]="${terminfo[khome]}"
+key[End]="${terminfo[kend]}"
+key[Insert]="${terminfo[kich1]}"
+key[Delete]="${terminfo[kdch1]}"
 
-### fzf configuration
-## Options to fzf command
-export FZF_COMPLETION_TRIGGER='~~'
-export FZF_COMPLETION_OPTS='+c -x'
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"       beginning-of-line
+[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"        end-of-line
+[[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"     overwrite-mode
+[[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"     delete-char
 
-# ==== linuxbrew
-# Until LinuxBrew is fixed, the following is required.
-# See: https://github.com/Homebrew/linuxbrew/issues/47
-# export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig:$PKG_CONFIG_PATH
-## Setup linux brew
-# export LINUXBREWHOME=/home/linuxbrew/.linuxbrew
-# export PATH=$LINUXBREWHOME/bin:$PATH
-# export MANPATH=$LINUXBREWHOME/man:$MANPATH
-# export PKG_CONFIG_PATH=$LINUXBREWHOME/lib64/pkgconfig:$LINUXBREWHOME/lib/pkgconfig:$PKG_CONFIG_PATH
-# export LD_LIBRARY_PATH=$LINUXBREWHOME/lib64:$LINUXBREWHOME/lib:$LD_LIBRARY_PATH
-
-
+:<< Bashhub
 ### Bashhub.com Installation
 ## Remote command history synchronization
 ###
-#
-#if [ -f ~/.bashhub/bashhub.zsh ]; then
-#    source ~/.bashhub/bashhub.zsh
-#fi
 
-eval "$(starship init zsh)"
+if [ -f ~/.bashhub/bashhub.zsh ]; then
+    source ~/.bashhub/bashhub.zsh
+fi
+Bashhub
+
+:<< powerlevel10k
+# powerlevel10k 主题
+zinit ice depth"1"
+zinit light romkatv/powerlevel10k
+powerlevel10k
+
+## starship
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
