@@ -6,6 +6,9 @@ running () {
   pgrep "$1" > /dev/null 2>&1
 }
 
+GITHUB=gitclone.com/github.com
+RAW_GITHUB=raw.staticdn.net
+
 ZINIT_HOME="${HOME}/DotFiles/.zinit/"
 source "${ZINIT_HOME}/zinit.zsh"
 
@@ -38,16 +41,16 @@ fi
 #    zdharma-continuum/z-a-patch-dl \
 #    zdharma-continuum/z-a-bin-gem-node
 
-zinit snippet OMZ::lib/history.zsh
-zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh 
+zinit snippet https://${RAW_GITHUB}/ohmyzsh/ohmyzsh/master/lib/history.zsh
+zinit snippet https://${RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/vi-mode/vi-mode.plugin.zsh 
 #zinit snippet OMZ::lib/completion.zsh
 #zinit snippet OMZ::lib/key-bindings.zsh
 #zinit snippet OMZ::lib/theme-and-appearance.zsh
 
 zinit wait"1" lucid ${ZINIT_LIGHT_MODE} for \
-	OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh \
-	OMZ::plugins/sudo/sudo.plugin.zsh \
-	OMZ::plugins/extract/extract.plugin.zsh
+	https://${RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh \
+	https://${RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh \
+	https://${RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
 
 # 语法高亮
 zinit ice wait lucid
@@ -111,12 +114,10 @@ _fzf_comprun() {
   esac
 }
 
-
 zinit ice lucid as"program" pick="bin/(fzf|fzf-tmux)" \
+	atclone="make install;" \
+	atpull="%atclone" \
 	multisrc="shell/{completion,key-bindings}.zsh"
-	atclone="cp shell/completion.zsh _fzf_completion; \
-		make install;" \
-	atpull="%atclone"
 zinit ${ZINIT_LOAD_METHOD} junegunn/fzf
 
 # cd 的补全目录
