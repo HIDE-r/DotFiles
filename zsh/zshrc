@@ -6,8 +6,8 @@ running () {
   pgrep "$1" > /dev/null 2>&1
 }
 
-GITHUB=gitclone.com/github.com
-RAW_GITHUB=raw.staticdn.net
+ZINIT_GITHUB=gitclone.com/github.com
+ZINIT_RAW_GITHUB=raw.staticdn.net
 
 ZINIT_HOME="${HOME}/DotFiles/.zinit/"
 source "${ZINIT_HOME}/zinit.zsh"
@@ -41,16 +41,16 @@ fi
 #    zdharma-continuum/z-a-patch-dl \
 #    zdharma-continuum/z-a-bin-gem-node
 
-zinit snippet https://${RAW_GITHUB}/ohmyzsh/ohmyzsh/master/lib/history.zsh
-zinit snippet https://${RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/vi-mode/vi-mode.plugin.zsh 
+zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/lib/history.zsh
+zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/vi-mode/vi-mode.plugin.zsh 
 #zinit snippet OMZ::lib/completion.zsh
 #zinit snippet OMZ::lib/key-bindings.zsh
 #zinit snippet OMZ::lib/theme-and-appearance.zsh
 
 zinit wait"1" lucid ${ZINIT_LIGHT_MODE} for \
-	https://${RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh \
-	https://${RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh \
-	https://${RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
+	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh \
+	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh \
+	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
 
 # 语法高亮
 zinit ice wait lucid
@@ -86,6 +86,15 @@ fi
 if ! installed rg; then
 zinit ice as"program" from"gh-r" pick="*/rg"
 zinit ${ZINIT_LOAD_METHOD} BurntSushi/ripgrep
+fi
+
+# navi
+if ! installed navi; then
+zinit ice as"program" from"gh-r" pick="navi" \
+	atclone="./navi widget zsh > widget.zsh" \
+	atpull="%atclone" \
+	src="widget.zsh"
+zinit ${ZINIT_LOAD_METHOD} denisidoro/navi
 fi
 
 ### fzf configuration
@@ -170,11 +179,9 @@ if installed nvim; then
 	alias vi='nvim'
 	alias vim='nvim'
 	alias vimdiff='nvim -d'
-	EDITOR="nvim"
-	export EDITOR
+	export EDITOR="nvim"
 else
-	EDITOR="vim"
-	export EDITOR
+	export EDITOR="vim"
 fi
 
 if installed bat;then
@@ -223,4 +230,4 @@ powerlevel10k
 zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+zinit ${ZINIT_LOAD_METHOD} starship/starship
