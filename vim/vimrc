@@ -103,7 +103,7 @@ vnoremap <silent> <leader> :WhichKeyVisual '<Space>'<CR>
 nnoremap <LEADER><CR> :nohlsearch<CR>
 
 " 解决ctags默认跳转第一个项，也可用:ts
-nnoremap <c-]> g<c-]>   
+"nnoremap <c-]> g<c-]>   
 
 "开启/关闭NERDTree快捷键
 nnoremap <F2> :NERDTreeToggle <CR>                    
@@ -980,7 +980,9 @@ endif
 "EOF
 
 if has("cscope")
+   set cscopetag
    set csprg=/usr/bin/cscope
+   " cscope database are searched first, if not matches, searched from tag file
    set csto=0
    set cst
    set nocsverb
