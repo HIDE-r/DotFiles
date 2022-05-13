@@ -1,12 +1,10 @@
 [submodule ".dotbot"]
 	path = .dotbot
-	url = https://github.com.cnpmjs.org/anishathalye/dotbot
-	branch=master
-	update=rebase
+	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
 [submodule ".tmux"]
 	path = .tmux
-	url = https://github.com.cnpmjs.org/gpakosz/.tmux.git
+	url = https://github.com/gpakosz/.tmux.git
 [submodule ".zinit"]
 	path = .zinit
-	url = https://github.com.cnpmjs.org/zdharma-continuum/zinit.git
+	url = https://github.com/zdharma-continuum/zinit.git
