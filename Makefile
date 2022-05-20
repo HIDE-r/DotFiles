@@ -42,11 +42,15 @@ neovim: neovim_dein_install
 
 dotbot: prepare
 
+#: init all submodule from parent repo
 git_init_submodule:
 	git submodule update --init --recursive
 
+#: update all submodule from remote
 git_update_submodule:
+	@ $(ECHO) '\n$(_Y)=====Update all submodule from remote Start=====$(_N)\n'
 	git submodule update --remote
+	@ $(ECHO) '\n$(_Y)=====Update all submodule from remote End=====$(_N)\n'
 
 fzf: fzf_install
 
@@ -71,7 +75,6 @@ prepare: create_tmp
 dotbot_upgrade:
 	@ $(ECHO) '\n$(_Y)=====Upgrading dotbot Start=====$(_N)\n'
 	@ git submodule update --remote dotbot && $(ECHO) 'update dotbot submodule success...'
-	@ diff --color -u .dotbot/tools/git-submodule/install dotbot || $(ECHO) '$(_R)Remote branch has changed the script!!!$(_N)'
 	@ $(ECHO) '\n$(_Y)=====Upgrading dotbot End=====$(_N)\n'
 
 upgrade: dotbot_upgrade fzf_upgrade

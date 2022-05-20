@@ -126,6 +126,13 @@ nnoremap <leader>t :FloatermNew<CR>
 
 " ranger
 nnoremap <leader>g :FloatermNew ranger<CR>
+
+" DoxygenToolkit
+nnoremap <leader>dd :Dox<CR>
+nnoremap <leader>dl :DoxLic<CR>
+nnoremap <leader>da :DoxAuthor<CR>
+nnoremap <leader>db :DoxBlock<CR>
+nnoremap <leader>du :DoxUndoc<CR>
 "}}}
 
 
@@ -230,6 +237,10 @@ if dein#load_state(s:dein_path)
                 \'lzay': 1,
                 \'on_map':{'nx':['<leader>cc','<leader>cs','<leader>cu','<leader>ca', '<leader>cm', '<leader>cA', '<leader>c$']},
                 \})
+    call dein#add('babaybus/DoxygenToolkit.vim',{
+                \'type':'git',
+                \})
+
     " 书签
     call dein#add('MattesGroeger/vim-bookmarks',{
                 \'type':'git',
@@ -405,6 +416,7 @@ let g:which_key_map.f = {
       \'h' : 'help',
       \'c' : 'cmdhistory',
       \'r' : 'recall',
+      \'q' : 'quickfix',
       \}
 let g:which_key_map.r = {
       \'name' : 'Reload',
@@ -448,6 +460,14 @@ let g:which_key_map.o = {
       \'t' : 'translate',
       \}
 
+let g:which_key_map.d = {
+      \'name' : 'DoxygenToolkit',
+      \'d' : 'Dox',
+      \'l' : 'Dox Licence',
+      \'a' : 'Dox Author',
+      \'b' : 'Dox Block',
+      \'u' : 'Dox Undoc',
+      \}
 
 
 " ===
@@ -958,6 +978,7 @@ noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 noremap <leader>fh :<C-U><C-R>=printf("Leaderf help %s", "")<CR><CR>
 noremap <leader>fc :<C-U><C-R>=printf("Leaderf cmdHistory%s", "")<CR><CR>
 noremap <leader>fr :Leaderf --recall<CR>
+noremap <leader>fq :LeaderfQuickFix<CR>
 
 "}}}
 

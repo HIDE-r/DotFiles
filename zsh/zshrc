@@ -188,6 +188,10 @@ if installed bat;then
 	alias cat='bat'
 fi
 
+if installed rg;then
+    alias rg='rg -g '!tags' -g '!cscope.out''
+fi
+
 alias ip='ip -c'
 alias cman='man -M /usr/share/man/zh_CN'
 alias grep='grep --color=auto --exclude "tags"'
@@ -196,6 +200,7 @@ alias fgrep='fgrep --color=auto'
 
 export TERM=xterm-256color
 export BROWSER=microsoft-edge-dev
+export XCURSOR_PATH=~/.local/share/icons:${XCURSOR_PATH}
 
 ### 按键绑定
 typeset -g -A key
