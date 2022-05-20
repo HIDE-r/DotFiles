@@ -1,6 +1,5 @@
-[submodule ".dotbot"]
+[submodule ".dotbotdd"]
 	path = .dotbot
-	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
 [submodule ".tmux"]
 	path = .tmux
