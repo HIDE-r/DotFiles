@@ -93,13 +93,11 @@ zinit ${ZINIT_LOAD_METHOD} BurntSushi/ripgrep
 fi
 
 # navi
-if ! installed navi; then
 zinit ice as"program" from"gh-r" pick="navi" \
 	atclone="./navi widget zsh > widget.zsh" \
 	atpull="%atclone" \
 	src="widget.zsh"
 zinit ${ZINIT_LOAD_METHOD} denisidoro/navi
-fi
 
 ### fzf configuration
 ## Options to fzf command
