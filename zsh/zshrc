@@ -24,14 +24,18 @@ fi
 
 ### Proxy Setting
 #
-if running brook; then
-  proxy="socks5://127.0.0.1:1080";
-  export http_proxy=$proxy;
-  export https_proxy=$proxy;
-  export ftp_proxy=$proxy;
-  export ALL_PROXY=$proxy;
-  export no_proxy="localhost, 127.0.0.1, ::1";
-fi
+hostip="172.31.80.1"
+alias setss='export https_proxy="http://${hostip}:7890";export http_proxy="http://${hostip}:7890";export all_proxy="socks5://${hostip}:7890";'
+alias unsetss='unset all_proxy'
+
+#if running brook; then
+#  proxy="socks5://127.0.0.1:1080";
+#  export http_proxy=$proxy;
+#  export https_proxy=$proxy;
+#  export ftp_proxy=$proxy;
+#  export ALL_PROXY=$proxy;
+#  export no_proxy="localhost, 127.0.0.1, ::1";
+#fi
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -192,6 +196,10 @@ if installed rg;then
     alias rg='rg -g '!tags' -g '!cscope.out''
 fi
 
+if installed viddy;then
+	alias watch='viddy'
+fi
+
 alias ip='ip -c'
 alias cman='man -M /usr/share/man/zh_CN'
 alias grep='grep --color=auto --exclude "tags"'
@@ -201,6 +209,8 @@ alias fgrep='fgrep --color=auto'
 export TERM=xterm-256color
 export BROWSER=microsoft-edge-dev
 export XCURSOR_PATH=~/.local/share/icons:${XCURSOR_PATH}
+
+PATH=${PATH}:/home/collin/Work/Scripts
 
 ### 按键绑定
 typeset -g -A key

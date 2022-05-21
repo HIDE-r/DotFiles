@@ -31,6 +31,8 @@
       path: rofi/config.rasi
     ~/.local/share/dwm/autostart.sh:
       path: dwm/autostart.sh
+    ~/.local/share/navi/cheats/HideOnLie__Cheatsheet-navi:
+      path: navi/cheatsheet
 
 - clean:
     ~/:
