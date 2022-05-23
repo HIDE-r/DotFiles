@@ -24,18 +24,15 @@ fi
 
 ### Proxy Setting
 #
-hostip="172.31.80.1"
-alias setss='export https_proxy="http://${hostip}:7890";export http_proxy="http://${hostip}:7890";export all_proxy="socks5://${hostip}:7890";'
+proxy="172.31.80.1"
+if running brook; then
+  proxy="127.0.0.1:1080";
+fi
+if running clash-linux; then
+    proxy="127.0.0.1:7890"
+fi
+alias setss='export https_proxy="http://${proxy}";export http_proxy="http://${proxy}";export all_proxy="socks5://${proxy}";'
 alias unsetss='unset all_proxy'
-
-#if running brook; then
-#  proxy="socks5://127.0.0.1:1080";
-#  export http_proxy=$proxy;
-#  export https_proxy=$proxy;
-#  export ftp_proxy=$proxy;
-#  export ALL_PROXY=$proxy;
-#  export no_proxy="localhost, 127.0.0.1, ::1";
-#fi
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
