@@ -50,8 +50,8 @@ zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/vi-mode
 
 zinit wait"1" lucid ${ZINIT_LIGHT_MODE} for \
 	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh \
-	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh \
 	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh
+	#https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh \
 
 # 语法高亮
 zinit ice wait lucid

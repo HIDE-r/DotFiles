@@ -10,4 +10,6 @@
 	url = https://github.com/zdharma-continuum/zinit.git
 [submodule "navi/cheatsheet"]
 	path = navi/cheatsheet
-	url = https://github.com/HideOnLie/Cheatsheet-navi
+	url = git@github.com:HideOnLie/Cheatsheet-navi.git
+	branch = main
+	update=rebase
