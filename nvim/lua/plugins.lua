@@ -65,13 +65,12 @@ return require('packer').startup({function(use)
 	}
 
 	-- Colorscheme
-	use {
-		'kristijanhusak/vim-hybrid-material',
-		disable = true,
-		config = function()
-			require("conf.colorscheme.hybrid_material")
-		end
-	}
+	-- use {
+	-- 	'kristijanhusak/vim-hybrid-material',
+	-- 	config = function()
+	-- 		require("conf.colorscheme.hybrid_material")
+	-- 	end
+	-- }
 	use {
 		'glepnir/zephyr-nvim',
 		config = function()
@@ -117,17 +116,16 @@ return require('packer').startup({function(use)
 	}
 
 	-- Indent line
-	use {
-		"lukas-reineke/indent-blankline.nvim",
-		disable = true,
-	}
+	-- use {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- }
 
 	-- Git
 	use {
 		'lewis6991/gitsigns.nvim',
 		event = {'BufRead','BufNewFile'},
 		config = function()
-			require('gitsigns').setup()
+			require('conf.gitsigns')
 		end
 	}
 
@@ -138,9 +136,18 @@ return require('packer').startup({function(use)
 			require('Comment').setup()
 		end
 	}
+	-- use {
+	-- 	'babaybus/DoxygenToolkit.vim',
+	-- 	cmd = {'Dox', 'DoxLic', 'DoxAuthor'},
+	-- }
+
+	-- Annotation
 	use {
-		'babaybus/DoxygenToolkit.vim',
-		cmd = {'Dox', 'DoxLic', 'DoxAuthor'},
+		'danymat/neogen',
+		config = function()
+			require('neogen').setup {}
+		end,
+		requires = "nvim-treesitter/nvim-treesitter",
 	}
 
 	-- Symbol list
@@ -174,10 +181,10 @@ return require('packer').startup({function(use)
 	}
 
 	-- Startup time
-	use {
-		'dstein64/vim-startuptime',
-		disable = true,
-	}
+	-- use {
+	-- 	'dstein64/vim-startuptime',
+	-- 	disable = true,
+	-- }
 
 	-- LSP
 	use {
