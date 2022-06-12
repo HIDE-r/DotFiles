@@ -100,7 +100,7 @@ gls.left[11] = {
   }
 }
 
-gls.mid[1] = {
+gls.left[12] = {
   ShowLspClient = {
     provider = 'GetLspClient',
     condition = function ()

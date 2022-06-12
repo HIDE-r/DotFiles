@@ -1,3 +1,5 @@
+require("which-key").setup {
+}
 local wk = require("which-key")
 
 wk.register({
@@ -31,6 +33,7 @@ wk.register({
 		name = "packer",
 		l = { "<cmd>PackerStatus<cr>"		, "status"},
 		s = { "<cmd>PackerSync<cr>"		, "sync"},
+		c = { "<cmd>PackerCompile<cr>"		, "compile"},
 	},
 	h = {
 		name = "gitsigns",
@@ -48,6 +51,15 @@ wk.register({
 			b = "blame",
 			d = "delete"
 		}
+	},
+	f = {
+		name = "telescope",
+		f = { "<cmd>Telescope find_files<cr>"		, "files"},
+		g = { "<cmd>Telescope live_grep<cr>"		, "live grep"},
+		b = { "<cmd>Telescope buffers<cr>"		, "buffers"},
+		h = { "<cmd>Telescope help_tags<cr>"		, "help"},
+		c = { "<cmd>Telescope commands<cr>"		, "commands"},
+		t = { "<cmd>Telescope tagstack<cr>"		, "tagstack"},
 	},
 	v = { "<cmd>Vista!!<cr>", "vista"},
 }, { prefix = "<leader>" })
@@ -81,6 +93,14 @@ wk.register({
 }, {
 	prefix = "g",
 	mode = "n"
+})
+
+wk.register({
+	u = "lowercase",
+	U = "uppercase",
+}, {
+	prefix = "g",
+	mode = "v"
 })
 
 wk.register({

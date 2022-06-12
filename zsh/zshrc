@@ -24,7 +24,7 @@ fi
 
 ### Proxy Setting
 #
-proxy="172.31.80.1"
+proxy="192.168.192.1:7890"
 if running brook; then
   proxy="127.0.0.1:1080";
 fi

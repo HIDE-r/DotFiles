@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
-      "c", "vim","cpp", "lua","comment", "yaml"
+      "vim", "c","cpp", "lua","comment", "yaml"
   },
   highlight = {
       enable = true,

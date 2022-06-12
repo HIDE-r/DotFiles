@@ -22,8 +22,6 @@ return require('packer').startup({function(use)
 	use {
 		"folke/which-key.nvim",
 		config = function()
-			require("which-key").setup {
-			}
 			require("conf.which-key")
 		end
 	}
@@ -93,6 +91,10 @@ return require('packer').startup({function(use)
 		config = function()
 			require("conf.treesitter")
 		end
+	}
+
+	use {
+		'luochen1990/rainbow'
 	}
 
 	-- Bufferline
@@ -194,22 +196,17 @@ return require('packer').startup({function(use)
 			{'williamboman/nvim-lsp-installer'},
 		},
 		config = function()
-			require("nvim-lsp-installer").setup {
-				automatic_installation = true,
-			}
-			local lspconfig = require("lspconfig")
-			lspconfig.sumneko_lua.setup {}
-			lspconfig.clangd.setup {}
+			require'conf.lspconfig'
 		end
 	}
 
 	-- use {
 	-- 	'glepnir/lspsaga.nvim',
-	-- 	-- cmd = 'Lspsaga',
-	-- 	-- config = function()
-	-- 	-- 	local saga = require 'lspsaga'
-	-- 	-- 	saga.init_lsp_saga()
-	-- 	-- end
+	-- 	cmd = 'Lspsaga',
+	-- 	config = function()
+	-- 		local saga = require 'lspsaga'
+	-- 		saga.init_lsp_saga()
+	-- 	end
 	-- }
 
 	use {
