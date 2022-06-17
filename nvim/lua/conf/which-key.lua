@@ -53,13 +53,41 @@ wk.register({
 		}
 	},
 	f = {
-		name = "telescope",
-		f = { "<cmd>Telescope find_files<cr>"		, "files"},
-		g = { "<cmd>Telescope live_grep<cr>"		, "live grep"},
-		b = { "<cmd>Telescope buffers<cr>"		, "buffers"},
+		name = "leaderf/telescope",
+		f = { "<cmd>LeaderfFile<cr>"		, "files"},
+		t = {
+			name = "tag",
+			t = { "<cmd>LeaderfTag<cr>"		, "tag" },
+			s = { "<cmd>Telescope tagstack<cr>"	, "tagstack"},
+			r = { "(gtags)references"},
+			d = { "(gtags)define"},
+			o = { "(gtags)recall"},
+			n = { "(gtags)next"},
+			p = { "(gtags)prev"},
+			u = { "<cmd>Leaderf gtags --update<cr>"		, "(gtags)update DB" },
+		},
+		y = { "<cmd>LeaderfFunction<cr>"	, "function"},
+		l = { "<cmd>LeaderfLine<cr>"		, "line"},
+		q = { "<cmd>LeaderfQuickFix<cr>"	, "quickfix"},
+		b = { "<cmd>LeaderfBuffer<cr>"		, "buffer"},
+		w = { "<cmd>LeaderfWindow<cr>"		, "window"},
+		m = { "<cmd>LeaderfMru<cr>"		, "mru"},
+		o = { "<cmd>Leaderf --recall<cr>"	, "recall"},
+		g = {
+			name = "rg",
+		 	l= { "<cmd>Telescope live_grep<cr>"		, "live grep"},
+		 	b= { "buffer grep word"},
+		 	w= { "global grep word"},
+		 	o= { "recall"},
+		},
 		h = { "<cmd>Telescope help_tags<cr>"		, "help"},
 		c = { "<cmd>Telescope commands<cr>"		, "commands"},
-		t = { "<cmd>Telescope tagstack<cr>"		, "tagstack"},
+		r = { "<cmd>LeaderfHistoryCmd<cr>"		, "commands history"},
+		v = { "<cmd>Leaderf floaterm<cr>"		, "floaterm"},
+	},
+	l = {
+		name = "lspsaga",
+		f = { "<cmd>Lspsaga lsp_finder<cr>"		, "lsp_finder"},
 	},
 	v = { "<cmd>Vista!!<cr>", "vista"},
 }, { prefix = "<leader>" })
@@ -75,6 +103,21 @@ wk.register({
 		j = {"<Plug>MarkSearchAnyNext"		, "any next"},
 		k = {"<Plug>MarkSearchAnyPrev"		, "any prev"},
 	},
+	f = {
+		name = "leaderf/telescope",
+		g = {
+			name = "rg",
+			g= { "grep select"},
+			b= { "buffer grep word"},
+			w= { "global grep word"},
+			o= { "recall"},
+		},
+	},
+	h = {
+		name = "gitsigns",
+		s = "stage hunk",
+		r = "reset hunk",
+	}
 },
 {
 	prefix = "<leader>",

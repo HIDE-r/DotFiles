@@ -63,12 +63,23 @@ return require('packer').startup({function(use)
 	}
 
 	-- Colorscheme
+
 	-- use {
 	-- 	'kristijanhusak/vim-hybrid-material',
 	-- 	config = function()
 	-- 		require("conf.colorscheme.hybrid_material")
 	-- 	end
 	-- }
+
+	-- use({
+	-- 	"catppuccin/nvim",
+	-- 	as = "catppuccin",
+	-- 	config = function ()
+	-- 		vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+	-- 		vim.cmd[[colorscheme catppuccin]]
+	-- 	end
+	-- })
+
 	use {
 		'glepnir/zephyr-nvim',
 		config = function()
@@ -182,6 +193,12 @@ return require('packer').startup({function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
+	-- Leader f
+	use {
+		'Yggdroot/LeaderF',
+		run = ':LeaderfInstallCExtension',
+	}
+
 	-- Startup time
 	-- use {
 	-- 	'dstein64/vim-startuptime',
@@ -200,14 +217,14 @@ return require('packer').startup({function(use)
 		end
 	}
 
-	-- use {
-	-- 	'glepnir/lspsaga.nvim',
-	-- 	cmd = 'Lspsaga',
-	-- 	config = function()
-	-- 		local saga = require 'lspsaga'
-	-- 		saga.init_lsp_saga()
-	-- 	end
-	-- }
+	use {
+		'glepnir/lspsaga.nvim',
+		cmd = 'Lspsaga',
+		config = function()
+			local saga = require 'lspsaga'
+			saga.init_lsp_saga()
+		end
+	}
 
 	use {
 		'L3MON4D3/LuaSnip'
@@ -231,6 +248,25 @@ return require('packer').startup({function(use)
 		end
 	}
 
+	-- Remote server clipboard
+	use {
+		'wincent/vim-clipper',
+		disable = true,
+	}
+
+	-- Floaterm
+	use 'voldikss/vim-floaterm'
+	use 'voldikss/LeaderF-floaterm'
+
+	-- Notify
+	use {
+		'rcarriga/nvim-notify',
+		config = function ()
+			-- local notify = require("notify")
+			-- notify.setup()
+			vim.notify = require("notify")
+		end
+	}
 
 end,
 config = {
