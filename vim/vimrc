@@ -84,7 +84,7 @@ endif
 "set list listchars=extends:❯,precedes:❮,tab:▸\ ,trail:˽
 
 " 显示不可见字符格式，set list打开，set nolist关闭
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set listchars=eol:$,tab:>-,trail:-,extends:>,precedes:<,nbsp:+
 "}}}
 
 "========================Mappings========================{{{
@@ -140,7 +140,7 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 let s:dein_path = '~/.vim/dein'
 "let g:dein#types#git#default_hub_site='hub.fastgit.org'
-let g:dein#types#git#default_hub_site='github.com.cnpmjs.org'
+"let g:dein#types#git#default_hub_site='github.com.cnpmjs.org'
 let g:dein#types#git#clone_depth=1
 let g:dein#install_progress_type="echo"
 
@@ -153,15 +153,14 @@ if dein#load_state(s:dein_path)
                 \})
 
   " Install third-party plugins:
-  
-    call dein#add('wsdjeg/dein-ui.vim',{
-                \'type':'git',
-                \})    
     call dein#add('glepnir/dashboard-nvim',{
                 \'type':'git',
                 \})    
     " hybrid配色方案
     call dein#add('kristijanhusak/vim-hybrid-material',{
+                \'type':'git',
+                \})     
+    call dein#add('catppuccin/nvim',{
                 \'type':'git',
                 \})     
     " which-key
@@ -181,11 +180,17 @@ if dein#load_state(s:dein_path)
                 \'on_map':{'n':['%']}, 
                 \})                   
     " 语法高亮
-    call dein#add('sheerun/vim-polyglot',{
+    call dein#add('nvim-treesitter/nvim-treesitter',{ 
                 \'type':'git',
-                \})
+                \})                   
+    "call dein#add('sheerun/vim-polyglot',{
+    "            \'type':'git',
+    "            \})
     " 彩虹括号
-    call dein#add('luochen1990/rainbow',{
+    "call dein#add('luochen1990/rainbow',{
+    "            \'type':'git',
+    "            \})
+    call dein#add('p00f/nvim-ts-rainbow',{
                 \'type':'git',
                 \})
     " vim中查看git状态
@@ -479,6 +484,10 @@ let g:enable_bold_font = 1                      "函数与语言控件等加粗
 "let g:hybrid_transparent_background = 1         "透明背景
 " 变量的设定都得需要在colorscheme之前才能生效
 colorscheme hybrid_reverse
+
+"let g:catppuccin_flavour = "mocha"
+"colorscheme catppuccin
+
 
 " ===
 " === airline, 状态栏
@@ -987,18 +996,22 @@ if has("nvim")
 set termguicolors
 lua require'bufferline'.setup{}
 endif
-"lua <<EOF
-"  require'nvim-treesitter.configs'.setup {
-"    ensure_installed = {
-"        "c",
-"    },
-"    rainbow = {
-"        enable = true,
-"        extended_mode = true,
-"    },
-"  }
-"
-"EOF
+lua <<EOF
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = {
+        "c", "vim","cpp","comment",
+    },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
+    rainbow = {
+        enable = true,
+        extended_mode = true,
+        max_file_lines = nil,
+    },
+  }
+EOF
 
 if has("cscope")
    set cscopetag

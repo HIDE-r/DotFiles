@@ -97,6 +97,12 @@ let g:floaterm_keymap_toggle = '<F12>'
    set cst
    set nocsverb
    " add any database in current directory
+   if filereadable("GTAGS")
+      cs add GTAGS
+   " else add database pointed to by environment
+   elseif $CSCOPE_DB != ""
+      cs add $CSCOPE_DB
+   endif
    set csverb
 " elseif has("cscope")
 "    set cscopetag

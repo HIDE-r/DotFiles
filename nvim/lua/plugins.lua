@@ -5,11 +5,11 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
 
-require('packer').init({
-    git = {
-        default_url_format = 'git@github.com:%s'
-    }
-})
+-- require('packer').init({
+--     git = {
+--         default_url_format = 'git@github.com:%s'
+--     }
+-- })
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
