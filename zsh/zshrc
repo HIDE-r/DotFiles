@@ -6,6 +6,20 @@ running () {
   pgrep "$1" > /dev/null 2>&1
 }
 
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+# no beep
+unsetopt beep
+
+# vim key
+bindkey -v
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/collin/.zshrc'
+# End of lines added by compinstall
+
 ZINIT_GITHUB=gitclone.com/github.com
 ZINIT_RAW_GITHUB=raw.staticdn.net
 
@@ -25,13 +39,20 @@ fi
 ### Proxy Setting
 #
 proxy="192.168.192.1:7890"
+sock_proxy="$proxy"
 if running brook; then
   proxy="127.0.0.1:1080";
+  sock_proxy="$proxy"
 fi
 if running clash-linux; then
     proxy="127.0.0.1:7890"
+    sock_proxy="$proxy"
 fi
-alias setss='export https_proxy="http://${proxy}";export http_proxy="http://${proxy}";export all_proxy="socks5://${proxy}";'
+if running clash; then
+    proxy="127.0.0.1:7890"
+    sock_proxy="127.0.0.1:7891"
+fi
+alias setss='export https_proxy="http://${proxy}";export http_proxy="http://${proxy}";export all_proxy="socks5://${sock_proxy}";'
 alias unsetss='unset all_proxy'
 
 # Load a few important annexes, without Turbo
@@ -42,8 +63,8 @@ alias unsetss='unset all_proxy'
 #    zdharma-continuum/z-a-patch-dl \
 #    zdharma-continuum/z-a-bin-gem-node
 
-zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/lib/history.zsh
-zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/vi-mode/vi-mode.plugin.zsh 
+#zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/lib/history.zsh
+#zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/vi-mode/vi-mode.plugin.zsh 
 #zinit snippet OMZ::lib/completion.zsh
 #zinit snippet OMZ::lib/key-bindings.zsh
 #zinit snippet OMZ::lib/theme-and-appearance.zsh
