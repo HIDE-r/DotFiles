@@ -21,6 +21,8 @@
       path: alacritty
     ~/.config/nvim:
       path: nvim
+    ~/.config/awesome:
+      path: awesome
     ~/.config/compton.conf:
       path: compton/compton.conf
     ~/.config/dunst/dunstrc:
