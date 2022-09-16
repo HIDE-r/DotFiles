@@ -12,9 +12,6 @@
       path: zsh/zshrc
     ~/.tmux.conf:
       path: tmux/tmux.conf
-      canonicalize: true
-    ~/.tmux.conf.local:
-      path: tmux/tmux.conf.local
     ~/.xprofile:
       path: xorg/xprofile
     ~/.config/alacritty:
@@ -23,18 +20,16 @@
       path: nvim
     ~/.config/awesome:
       path: awesome
-    ~/.config/compton.conf:
-      path: compton/compton.conf
     ~/.config/dunst/dunstrc:
       path: dunst/dunstrc
     ~/.config/polybar/config:
       path: polybar/config
     ~/.config/rofi/config.rasi:
       path: rofi/config.rasi
-    ~/.local/share/dwm/autostart.sh:
-      path: dwm/autostart.sh
     ~/.local/share/navi/cheats/HideOnLie__Cheatsheet-navi:
       path: navi/cheatsheet
+    # ~/.local/share/dwm/autostart.sh:
+    #   path: dwm/autostart.sh
 
 - clean:
     ~/:

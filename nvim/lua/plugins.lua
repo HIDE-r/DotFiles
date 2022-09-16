@@ -80,6 +80,13 @@ return require('packer').startup({function(use)
 	-- 	end
 	-- })
 
+	-- use {
+	-- 	"rebelot/kanagawa.nvim",
+	-- 	config = function ()
+	-- 		vim.cmd("colorscheme kanagawa")
+	-- 	end
+	-- }
+
 	use {
 		'glepnir/zephyr-nvim',
 		config = function()
@@ -200,10 +207,9 @@ return require('packer').startup({function(use)
 	}
 
 	-- Startup time
-	-- use {
-	-- 	'dstein64/vim-startuptime',
-	-- 	disable = true,
-	-- }
+	use {
+		'dstein64/vim-startuptime',
+	}
 
 	-- LSP
 	use {
