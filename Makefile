@@ -26,21 +26,7 @@ ECHO ?= echo -e
 TMP_DIR:=${TOPDIR}/tmp
 STAMP_DIR:=${TOPDIR}/tmp/stamp
 
-all: dotbot fzf neovim
-
-neovim_dein_install:
-	wget https://$(RAW_GITHUB_REPLACE)/Shougo/dein.vim/master/bin/installer.sh
-	sh ./installer.sh ~/.vim/dein
-	rm ./installer.sh
-neovim_plug_install:
-	$(NVIM)  -V1 -es -i NONE -N --noplugin -c "try | call dein#update() | call dein#recache_runtimepath() | finally | echomsg '' | qall! | endtry"
-
-neovim_plug_update:
-	$(NVIM)  -V1 -es -i NONE -N --noplugin -u ~/.vimrc -c "try | call dein#clear_state() | call dein#update() | finally | qall! | endtry"
-
-neovim: neovim_dein_install
-
-dotbot: prepare
+all: help
 
 #: init all submodule from parent repo
 git_init_submodule:
@@ -52,17 +38,6 @@ git_update_submodule:
 	git submodule update --remote
 	@ $(ECHO) '\n$(_Y)=====Update all submodule from remote End=====$(_N)\n'
 
-fzf: fzf_install
-
-fzf_install: 
-	cd ~/DotFiles/.fzf && ./install
-
-# TODO
-fzf_upgrade:
-	@ echo '=====Upgrading fzf Start====='
-	cd ~/DotFiles/.fzf && git pull && ./install
-	@ echo '=====Upgrading fzf End====='
-
 create_tmp:
 	${MKDIR} ${TMP_DIR}
 	${MKDIR} ${STAMP_DIR}
@@ -70,14 +45,6 @@ create_tmp:
 prepare: create_tmp
 	@ echo '=====Prepare Completely====='
 	touch ${STAMP_DIR}/stamp_prepare_completed
-
-#: Upgrade dotbot submodule
-dotbot_upgrade:
-	@ $(ECHO) '\n$(_Y)=====Upgrading dotbot Start=====$(_N)\n'
-	@ git submodule update --remote dotbot && $(ECHO) 'update dotbot submodule success...'
-	@ $(ECHO) '\n$(_Y)=====Upgrading dotbot End=====$(_N)\n'
-
-upgrade: dotbot_upgrade fzf_upgrade
 
 help:
 	@ remake --tasks
