@@ -81,10 +81,10 @@ nnoremap <leader>ftn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 nnoremap <leader>ftp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 
-let g:floaterm_keymap_new    = '<F7>'
-let g:floaterm_keymap_prev   = '<F8>'
-let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<F12>'
+let g:floaterm_keymap_new    = '<F8>'
+let g:floaterm_keymap_prev   = '<F9>'
+let g:floaterm_keymap_next   = '<F10>'
+let g:floaterm_keymap_toggle = '<F11>'
 
 " lua require("conf.lspsaga")
 "nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>

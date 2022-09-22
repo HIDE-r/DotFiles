@@ -36,16 +36,15 @@ return require('packer').startup({function(use)
 	}
 
 	-- Enhanced repeat(.)
-	use {
-		'tpope/vim-repeat',
-		keys = '.',
-	}
+	-- use {
+	-- 	'tpope/vim-repeat',
+	-- 	keys = '.',
+	-- }
 
 	-- Enhanced f/t/F/T
-	use {
-		'hrsh7th/vim-eft',
-		disable = true,
-	}
+	-- use {
+	-- 	'hrsh7th/vim-eft',
+	-- }
 
 	-- Last place
 	use {
@@ -95,11 +94,19 @@ return require('packer').startup({function(use)
 	}
 
 	-- Dashboard
+	-- use {
+	-- 	"glepnir/dashboard-nvim",
+	-- 	config = function()
+	-- 		require("conf.dashboard")
+	-- 	end
+	-- }
+
 	use {
-		"glepnir/dashboard-nvim",
-		config = function()
-			require("conf.dashboard")
-		end
+	    'goolord/alpha-nvim',
+	    requires = { 'kyazdani42/nvim-web-devicons' },
+	    config = function ()
+		require'alpha'.setup(require'alpha.themes.startify'.config)
+	    end
 	}
 
 	-- Rainbow bracket
@@ -111,9 +118,9 @@ return require('packer').startup({function(use)
 		end
 	}
 
-	use {
-		'luochen1990/rainbow'
-	}
+	-- use {
+	-- 	'luochen1990/rainbow'
+	-- }
 
 	-- Bufferline
 	use {
@@ -126,12 +133,21 @@ return require('packer').startup({function(use)
 	}
 
 	-- Galaxyline
+	-- use {
+	-- 	'glepnir/galaxyline.nvim',
+	-- 	branch = 'main',
+	-- 	requires = {'kyazdani42/nvim-web-devicons'},
+	-- 	config = function()
+	-- 		require'conf.statusline'
+	-- 	end
+	-- }
+
+	-- Lualine
 	use {
-		'glepnir/galaxyline.nvim',
-		branch = 'main',
-		requires = {'kyazdani42/nvim-web-devicons'},
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
 		config = function()
-			require'conf.statusline'
+			require('conf.lualine')
 		end
 	}
 
@@ -213,14 +229,9 @@ return require('packer').startup({function(use)
 
 	-- LSP
 	use {
+	    	"williamboman/mason.nvim",
+	    	"williamboman/mason-lspconfig.nvim",
 		'neovim/nvim-lspconfig',
-		after = "nvim-lsp-installer",
-		requires = {
-			{'williamboman/nvim-lsp-installer'},
-		},
-		config = function()
-			require'conf.lspconfig'
-		end
 	}
 
 	use {
@@ -250,6 +261,8 @@ return require('packer').startup({function(use)
 		},
 		after = {'lspkind.nvim', "cmp-nvim-lsp"},
 		config = function()
+			require("mason").setup()
+			require("mason-lspconfig").setup()
 			require("conf.nvim-cmp")
 		end
 	}
@@ -273,6 +286,14 @@ return require('packer').startup({function(use)
 			vim.notify = require("notify")
 		end
 	}
+
+	-- Tmux
+	use({
+	    "aserowy/tmux.nvim",
+	    config = function()
+			require("conf.tmux")
+	    end
+	})
 
 end,
 config = {

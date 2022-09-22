@@ -44,12 +44,12 @@ wk.register({
 		u = "undo stage hunk",
 		p = "preview",
 		b = "blame",
-		D = "diff",
-		d = "diff",
+		D = "diff with commit",
+		d = "diff with stage",
 		t = {
 			name = "toggle",
-			b = "blame",
-			d = "delete"
+			b = "show line blame",
+			d = "show delete content"
 		}
 	},
 	f = {
@@ -157,5 +157,22 @@ wk.register({
 	c = "prev git hunk"
 }, {
 	prefix = "[",
+	mode = "n"
+})
+
+wk.register({
+	["<F8>"] = "[floaterm] new",
+	["<F9>"] = "[floaterm] prev",
+	["<F10>"] = "[floaterm] next",
+	["<F11>"] = "[floaterm] toggle",
+	["<C-H>"] = "[tmux] move left",
+	["<C-J>"] = "[tmux] move down",
+	["<C-K>"] = "[tmux] move up",
+	["<C-L>"] = "[tmux] move right",
+	["<M-h>"] = "[tmux] resize left",
+	["<M-j>"] = "[tmux] resize down",
+	["<M-k>"] = "[tmux] resize up",
+	["<M-l>"] = "[tmux] resize right",
+}, {
 	mode = "n"
 })
