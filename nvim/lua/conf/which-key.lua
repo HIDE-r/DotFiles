@@ -86,8 +86,34 @@ wk.register({
 		v = { "<cmd>Leaderf floaterm<cr>"		, "floaterm"},
 	},
 	l = {
-		name = "lspsaga",
-		f = { "<cmd>Lspsaga lsp_finder<cr>"		, "lsp_finder"},
+		name = "lsp",
+		d = {
+			name = "diagnostic",
+		 	d= { "open diagnostic"},
+		 	n= { "next diagnostic"},
+		 	p= { "prev diagnostic"},
+		 	l= { "list"},
+		},
+		w = {
+			name = "workspace",
+		 	a= { "add workspace"},
+		 	r= { "remove workspace"},
+		 	l= { "list workspace"},
+		},
+		g = {
+			name = "goto",
+		 	D= { "declaration"},
+		 	d= { "definition"},
+		 	i= { "implementation"},
+			r= { "references"},
+			t= { "type definition"},
+		},
+		k= { "hover"},
+		K= { "signature help"},
+		f= { "format"},
+		r= { "rename"},
+		a= { "code action"},
+		-- f = { "<cmd>Lspsaga lsp_finder<cr>"		, "lsp_finder"},
 	},
 	v = { "<cmd>Vista!!<cr>", "vista"},
 }, { prefix = "<leader>" })
@@ -147,14 +173,16 @@ wk.register({
 })
 
 wk.register({
-	c = "next git hunk"
+	c = "next git hunk",
+	d = "next diagnostic"
 }, {
 	prefix = "]",
 	mode = "n"
 })
 
 wk.register({
-	c = "prev git hunk"
+	c = "prev git hunk",
+	d = "prev diagnostic"
 }, {
 	prefix = "[",
 	mode = "n"

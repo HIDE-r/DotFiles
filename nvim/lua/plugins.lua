@@ -264,6 +264,7 @@ return require('packer').startup({function(use)
 			require("mason").setup()
 			require("mason-lspconfig").setup()
 			require("conf.nvim-cmp")
+			require("conf.lspconfig")
 		end
 	}
 
