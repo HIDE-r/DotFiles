@@ -1,5 +1,19 @@
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+
+vim.diagnostic.disable()
+local diagnostics_active = false
+vim.keymap.set('n', '<leader>ldt', function()
+  diagnostics_active = not diagnostics_active
+  if diagnostics_active then
+	vim.diagnostic.enable()
+  else
+	vim.diagnostic.disable()
+	-- vim.diagnostic.disable()
+  end
+end)
+
+
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<leader>ldd', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -7,6 +21,8 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>ldp', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', '<leader>ldn', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>ldl', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<leader>lds', vim.diagnostic.show, opts)
+vim.keymap.set('n', '<leader>ldh', vim.diagnostic.hide, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -42,6 +58,7 @@ local lsp_flags = {
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require('lspconfig')['clangd'].setup {
+	autostart = false,
 	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
@@ -49,8 +66,10 @@ require('lspconfig')['clangd'].setup {
 }
 
 require('lspconfig')['sumneko_lua'].setup {
+	autostart = false,
 	capabilities = capabilities,
-	on_attach = on_attach, flags = lsp_flags,
+	on_attach = on_attach, 
+	flags = lsp_flags,
   	settings = {
 		Lua = {
 			runtime = {
@@ -58,6 +77,7 @@ require('lspconfig')['sumneko_lua'].setup {
 				version = 'LuaJIT',
 			},
 			diagnostics = {
+				-- enable = false,
 				-- Get the language server to recognize the `vim` global
 				globals = {'vim'},
 			},
@@ -74,12 +94,14 @@ require('lspconfig')['sumneko_lua'].setup {
 }
 
 require('lspconfig')['vimls'].setup {
+	autostart = false,
   	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,
 }
 
 require('lspconfig')['bashls'].setup {
+	autostart = false,
   	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = lsp_flags,

@@ -93,6 +93,9 @@ wk.register({
 		 	n= { "next diagnostic"},
 		 	p= { "prev diagnostic"},
 		 	l= { "list"},
+		 	t= { "toggle diagnostic"},
+		 	s= { "show diagnostic"},
+		 	h= { "hide diagnostic"},
 		},
 		w = {
 			name = "workspace",

@@ -243,9 +243,6 @@ return require('packer').startup({function(use)
 		end
 	}
 
-	use {
-		'L3MON4D3/LuaSnip'
-	}
 
 	use {
 		'hrsh7th/nvim-cmp',
@@ -255,6 +252,8 @@ return require('packer').startup({function(use)
 			{'hrsh7th/cmp-path' , after = 'nvim-cmp'},
 			{'hrsh7th/cmp-buffer', after = 'nvim-cmp'},
 			{'hrsh7th/cmp-cmdline', after = 'nvim-cmp'},
+			{'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp'},
+			{'L3MON4D3/LuaSnip'},
 			{'saadparwaiz1/cmp_luasnip', after = "LuaSnip" },
 			{'onsails/lspkind.nvim'},
 			--{'saadparwaiz1/cmp_luasnip', after = "LuaSnip" },
