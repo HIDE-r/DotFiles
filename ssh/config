@@ -1,0 +1,22 @@
+Host *
+	TCPKeepAlive yes
+	ServerAliveInterval 60
+
+Host arcadyan_jumper
+	Hostname 	120.236.209.249
+	Port 		23222
+	User 		sw1
+	IdentityFile 	~/.ssh/id_arcadyan
+
+Host remote_206
+	Hostname 	10.118.81.206
+	Port 		22
+	User 		hide_liao
+	IdentityFile 	~/.ssh/id_arcadyan
+	ProxyCommand 	ssh -q -W %h:%p arcadyan_jumper
+
+Host tencent
+	Hostname 	106.52.194.228
+	Port 		22
+	User 		ubuntu
+	IdentityFile 	~/.ssh/id_tencent_cloudserver
