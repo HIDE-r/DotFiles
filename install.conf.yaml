@@ -28,6 +28,8 @@
       path: rofi/config.rasi
     ~/.local/share/navi/cheats/HideOnLie__Cheatsheet-navi:
       path: navi/cheatsheet
+    ~/.ssh/config:
+      path: ssh/config
     # ~/.local/share/dwm/autostart.sh:
     #   path: dwm/autostart.sh
 
