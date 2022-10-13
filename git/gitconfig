@@ -12,3 +12,5 @@
 [core]
 	quotepath = false
 	editor = nvim
+[init]
+	defaultBranch = main

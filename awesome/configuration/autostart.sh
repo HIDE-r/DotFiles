@@ -28,3 +28,5 @@ if ! check optimus-manager-qt; then
 	run prime-offload
 	run optimus-manager-qt
 fi
+
+check_and_run /usr/lib/polkit-kde-authentication-agent-1
