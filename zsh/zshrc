@@ -45,7 +45,7 @@ fi
 ### Proxy Setting
 #
 proxy="192.168.192.1:7890"
-sock_proxy="192.168.192.1:7891"
+sock_proxy="192.168.192.1:7890"
 if running brook; then
   proxy="127.0.0.1:1080";
   sock_proxy="$proxy"
@@ -56,7 +56,7 @@ if running clash; then
 fi
 if running clash-linux; then
     proxy="127.0.0.1:7890"
-    sock_proxy="127.0.0.1:7891"
+    sock_proxy="127.0.0.1:7890"
 fi
 alias setss='export https_proxy="http://${proxy}";export http_proxy="http://${proxy}";export all_proxy="socks5://${sock_proxy}";'
 alias unsetss='unset all_proxy'
