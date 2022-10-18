@@ -2,6 +2,10 @@ Host *
 	TCPKeepAlive yes
 	ServerAliveInterval 60
 
+	HostKeyAlgorithms +ssh-rsa
+	StrictHostKeyChecking no
+    	UserKnownHostsFile /dev/null
+
 Host arcadyan_jumper
 	Hostname 	120.236.209.249
 	Port 		23222
@@ -20,3 +24,23 @@ Host tencent
 	Port 		22
 	User 		ubuntu
 	IdentityFile 	~/.ssh/id_tencent_cloudserver
+
+HOST 206
+        HostName 10.118.81.206
+        User hide_liao
+        port 22
+        IdentityFile ~/.ssh/id_rsa
+        RemoteForward 8377 localhost:8377
+
+HOST 198
+        HostName 10.118.81.198
+        User hide_liao
+        port 22
+        IdentityFile ~/.ssh/id_rsa
+        RemoteForward 8377 localhost:8377
+
+HOST 190
+        HostName 10.118.81.190
+        User hide_liao
+        port 22
+        IdentityFile ~/.ssh/id_rsa
