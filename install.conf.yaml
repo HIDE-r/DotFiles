@@ -30,6 +30,12 @@
       path: navi/cheatsheet
     ~/.ssh/config:
       path: ssh/config
+    ~/.local/share/fcitx5/rime/clover.dict.yaml:
+      path: rime/clover.dict.yaml
+    ~/.local/share/fcitx5/rime/clover.key_bindings.yaml:
+      path: rime/clover.key_bindings.yaml
+    ~/.local/share/fcitx5/rime/default.custom.yaml:
+      path: rime/default.custom.yaml
     # ~/.local/share/dwm/autostart.sh:
     #   path: dwm/autostart.sh
 
