@@ -75,23 +75,24 @@ return require('packer').startup({function(use)
 	-- 	as = "catppuccin",
 	-- 	config = function ()
 	-- 		vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-	-- 		vim.cmd[[colorscheme catppuccin]]
+	-- 		require("catppuccin").setup()
+	-- 		vim.api.nvim_command "colorscheme catppuccin"
 	-- 	end
 	-- })
 
-	-- use {
-	-- 	"rebelot/kanagawa.nvim",
-	-- 	config = function ()
-	-- 		vim.cmd("colorscheme kanagawa")
-	-- 	end
-	-- }
-
 	use {
-		'glepnir/zephyr-nvim',
-		config = function()
-			require("conf.colorscheme.zephyr")
+		"rebelot/kanagawa.nvim",
+		config = function ()
+			vim.cmd("colorscheme kanagawa")
 		end
 	}
+
+	-- use {
+	-- 	'glepnir/zephyr-nvim',
+	-- 	config = function()
+	-- 		require("conf.colorscheme.zephyr")
+	-- 	end
+	-- }
 
 	-- Dashboard
 	-- use {
@@ -305,6 +306,19 @@ return require('packer').startup({function(use)
 			vim.notify = require("notify")
 		end
 	}
+
+	use({
+		"folke/noice.nvim",
+		event = "VimEnter",
+		config = function()
+			require("noice").setup()
+	  	end,
+	  	requires = {
+	    	-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+	    		"MunifTanjim/nui.nvim",
+	    		"rcarriga/nvim-notify",
+	    	}
+	})
 
 	-- Tmux
 	use({
