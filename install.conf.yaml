@@ -36,6 +36,8 @@
       path: rime/clover.key_bindings.yaml
     ~/.local/share/fcitx5/rime/default.custom.yaml:
       path: rime/default.custom.yaml
+    ~/.local/share/fcitx5/rime/clover.custom.yaml:
+      path: rime/clover.custom.yaml
     # ~/.local/share/dwm/autostart.sh:
     #   path: dwm/autostart.sh
 

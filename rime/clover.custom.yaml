@@ -1,0 +1,20 @@
+patch:
+  switches:
+    - name: zh_simp_s2t
+      reset: 0
+      states: [ 简, 繁 ]
+    - name: emoji_suggestion
+      reset: 1
+      states: [ "🈚️️\uFE0E", "🈶️️\uFE0F" ]
+    - name: symbol_support
+      reset: 1
+      states: [ "无符", "符" ]
+    - name: ascii_punct
+      reset: 1
+      states: [ 。，, ．， ]
+    - name: full_shape
+      reset: 0
+      states: [ 半, 全 ]
+    - name: ascii_mode
+      reset: 0
+      states: [ 中, 英 ]
