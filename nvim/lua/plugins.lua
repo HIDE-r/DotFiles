@@ -298,14 +298,14 @@ return require('packer').startup({function(use)
 	use 'voldikss/LeaderF-floaterm'
 
 	-- Notify
-	use {
-		'rcarriga/nvim-notify',
-		config = function ()
-			-- local notify = require("notify")
-			-- notify.setup()
-			vim.notify = require("notify")
-		end
-	}
+	-- use {
+	-- 	'rcarriga/nvim-notify',
+	-- 	config = function ()
+	-- 		-- local notify = require("notify")
+	-- 		-- notify.setup()
+	-- 		vim.notify = require("notify")
+	-- 	end
+	-- }
 
 	use({
 		"folke/noice.nvim",
