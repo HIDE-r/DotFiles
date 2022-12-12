@@ -52,33 +52,33 @@ let g:rainbow_conf = {
 \	}
 \}
 
-"let g:Lf_ShortcutF = 0
-"let g:Lf_ShortcutB = 0
-"let g:Lf_HideHelp = 1
-"" popup mode
-"let g:Lf_WindowPosition = 'popup'
-"let g:Lf_PreviewInPopup = 1
-"let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
-"
-"let g:Lf_RootMarkers = ['.project', '.git', '.hg', '.svn']
-"
-"nnoremap <leader>fgb :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
-"xnoremap <leader>fgb :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
-"nnoremap <leader>fgw :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
-"xnoremap <leader>fgw :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
-""" search visually selected text literally
-"xnoremap <leader>fgg :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
-"nnoremap <leader>fgo :<C-U>Leaderf! rg --recall<CR>
-"xnoremap <leader>fgo :<C-U>Leaderf! rg --recall<CR>
-"
-"" should use `Leaderf gtags --update` first
-"let g:Lf_GtagsAutoGenerate = 0
-"let g:Lf_Gtagslabel = 'native-pygments'
-"nnoremap <leader>ftr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
-"nnoremap <leader>ftd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
-"nnoremap <leader>fto :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-"nnoremap <leader>ftn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-"nnoremap <leader>ftp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+let g:Lf_ShortcutF = 0
+let g:Lf_ShortcutB = 0
+let g:Lf_HideHelp = 1
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+
+let g:Lf_RootMarkers = ['.project', '.git', '.hg', '.svn']
+
+nnoremap <leader>fgb :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+xnoremap <leader>fgb :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+nnoremap <leader>fgw :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+xnoremap <leader>fgw :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+"" search visually selected text literally
+xnoremap <leader>fgg :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+nnoremap <leader>fgo :<C-U>Leaderf! rg --recall<CR>
+xnoremap <leader>fgo :<C-U>Leaderf! rg --recall<CR>
+
+" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_Gtagslabel = 'native-pygments'
+nnoremap <leader>ftr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+nnoremap <leader>ftd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+nnoremap <leader>fto :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+nnoremap <leader>ftn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+nnoremap <leader>ftp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 
 let g:floaterm_keymap_new    = '<F8>'
