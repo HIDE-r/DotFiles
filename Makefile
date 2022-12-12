@@ -21,32 +21,41 @@ RAW_GITHUB_REPLACE=raw.staticdn.net
 NVIM ?= nvim
 MKDIR ?= mkdir
 ECHO ?= echo -e
+MAKE ?= make
 
 # Directory Path
 TMP_DIR:=${TOPDIR}/tmp
 STAMP_DIR:=${TOPDIR}/tmp/stamp
 
-all: help
+default: help
+
+#: daily update
+daily_update:
+	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Daily update Start=====$(_N)\n'
+	@ $(MAKE) git_update_submodule
+	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Daily update End=====$(_N)\n'
 
 #: init all submodule from parent repo
 git_init_submodule:
+	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Reset all submodule Start=====$(_N)\n'
 	git submodule update --init --recursive
+	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Reset all submodule End=====$(_N)\n'
 
 #: update all submodule from remote
 git_update_submodule:
-	@ $(ECHO) '\n$(_Y)=====Update all submodule from remote Start=====$(_N)\n'
+	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Update all submodule from remote Start=====$(_N)\n'
 	git submodule update --remote
-	@ $(ECHO) '\n$(_Y)=====Update all submodule from remote End=====$(_N)\n'
+	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Update all submodule from remote End=====$(_N)\n'
 
 create_tmp:
 	${MKDIR} ${TMP_DIR}
 	${MKDIR} ${STAMP_DIR}
 
 prepare: create_tmp
-	@ echo '=====Prepare Completely====='
+	@ $(ECHO) '=====Prepare Completely====='
 	touch ${STAMP_DIR}/stamp_prepare_completed
 
 help:
 	@ remake --tasks
 
-.PHONY:all dotbot
+.PHONY:all 
