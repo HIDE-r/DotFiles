@@ -4,7 +4,7 @@ configuration{
     font: "Monaco 15";
     show-icons: true;
     icon-theme: "Oranchelo";
-    terminal: "alacritty";
+    terminal: "wezterm start";
     drun-display-format: "{icon}{name}";
     display-drun: "  ";
     location: 0;

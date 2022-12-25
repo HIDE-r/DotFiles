@@ -30,3 +30,4 @@ if ! check optimus-manager-qt; then
 fi
 
 check_and_run /usr/lib/polkit-kde-authentication-agent-1
+check_and_run copyq

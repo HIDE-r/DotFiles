@@ -207,6 +207,9 @@ zinit ${ZINIT_LOAD_METHOD} ajeetdsouza/zoxide
 zinit ice wait lucid
 zinit ${ZINIT_LOAD_METHOD} Aloxaf/fzf-tab
 
+# history 同步
+zinit ${ZINIT_LOAD_METHOD} ellie/atuin
+
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
