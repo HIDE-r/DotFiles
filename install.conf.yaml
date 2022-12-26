@@ -30,6 +30,8 @@
       path: rofi/config.rasi
     ~/.config/gitui/theme.ron:
       path: gitui/theme.ron
+    ~/.config/wezterm/wezterm.lua:
+      path: wezterm/wezterm.lua
     ~/.local/share/navi/cheats/HideOnLie__Cheatsheet-navi:
       path: navi/cheatsheet
     ~/.ssh/config:
