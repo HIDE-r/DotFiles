@@ -24,10 +24,10 @@ check_and_run fcitx5
 # optimus-manager optimus-manager
 # https://github.com/Askannz/optimus-manager/wiki/FAQ,-common-issues,-troubleshooting
 
-if ! check optimus-manager-qt; then
-	run prime-offload
-	run optimus-manager-qt
-fi
+#if ! check optimus-manager-qt; then
+#	run prime-offload
+#	run optimus-manager-qt
+#fi
 
 check_and_run /usr/lib/polkit-kde-authentication-agent-1
 check_and_run copyq

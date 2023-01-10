@@ -6,13 +6,13 @@ running () {
   pgrep "$1" > /dev/null 2>&1
 }
 
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+#HISTFILE=~/.histfile
+#HISTSIZE=10000
+#SAVEHIST=10000
 
 #setopt inc_append_history
-
-setopt share_history
+#setopt hist_ignore_dups
+#setopt share_history
 #setopt incappendhistory
 
 # no beep
@@ -69,7 +69,8 @@ alias unsetss='unset all_proxy'
 #    zdharma-continuum/z-a-patch-dl \
 #    zdharma-continuum/z-a-bin-gem-node
 
-#zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/lib/history.zsh
+# Note: 新的shell中需要先回车一下同步最新的history
+zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/lib/history.zsh
 zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/vi-mode/vi-mode.plugin.zsh 
 #zinit snippet OMZ::lib/completion.zsh
 #zinit snippet OMZ::lib/key-bindings.zsh
@@ -208,7 +209,10 @@ zinit ice wait lucid
 zinit ${ZINIT_LOAD_METHOD} Aloxaf/fzf-tab
 
 # history 同步
+export ATUIN_NOBIND="true"
 zinit ${ZINIT_LOAD_METHOD} ellie/atuin
+bindkey '^[[A' _atuin_search_widget
+bindkey '^[OA' _atuin_search_widget
 
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
