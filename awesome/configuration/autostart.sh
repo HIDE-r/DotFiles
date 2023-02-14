@@ -17,6 +17,9 @@ check () {
   pgrep "$1" > /dev/null 2>&1
 }
 
+#check_and_run variety
+
+snixembed --fork
 
 # IME (input method)
 check_and_run fcitx5
@@ -31,3 +34,7 @@ check_and_run fcitx5
 
 check_and_run /usr/lib/polkit-kde-authentication-agent-1
 check_and_run copyq
+
+check_and_run volctl
+check_and_run cbatticon
+iwgtk -i & > /dev/null 2>&1
