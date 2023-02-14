@@ -1,11 +1,12 @@
 local wezterm = require 'wezterm'
 
 return {
-	xcursor_theme="Vimix-Beryl",
+	xcursor_theme="Vimix-cursors",
 	color_scheme = "kanagawabones",
 
 	font = wezterm.font_with_fallback {
-		{ family="Comic Code", weight="Medium", style=Regular, italic=false }
+		{ family="Comic Code", weight="Medium", style=Regular, italic=false },
+		-- { family="Siji", style=Regular, italic=false },
 	},
 
 	-- disable ligatures font 
@@ -13,4 +14,5 @@ return {
 
 	enable_tab_bar = false,
 	enable_scroll_bar = false,
+	enable_wayland = true,
 }

@@ -1,13 +1,34 @@
-require("which-key").setup {
-}
 local wk = require("which-key")
+
+-- https://github.com/folke/which-key.nvim#%EF%B8%8F-configuration
+wk.setup {
+}
+
+
+-- <leader>
 
 wk.register({
 	r = {
 		name = "reload/resume",
-		c = { "<cmd>source $MYVIMRC<cr>"	, "vimrc" },
-		h = { "<cmd>nohlsearch<cr>"		, "nohlsearch" },
+		s = { "<cmd>set hlsearch!<cr>"		, "highlight search" },
 		l = { "<cmd>set list!<cr>"		, "list mode" },
+		n = { "<cmd>set number!<cr>"		, "line number" },
+	},
+	m = {
+		name = "mark",
+		m = {"<Plug>MarkSet"			, "mark"},
+		r = {"<Plug>MarkRegex"			, "mark by regex"},
+		c = {"<cmd>MarkClear<cr>"		, "clear"},
+	},
+	p = {
+		name = "lazy",
+		l = { "<cmd>Lazy show<cr>"		, "status"},
+		s = { "<cmd>Lazy sync<cr>"		, "sync"},
+		p = { "<cmd>Lazy profile<cr>"		, "profile"},
+	},
+	d = {
+		name = "neogen",
+		d = { "<cmd>Neogen<cr>"		, "annotation"},
 	},
 	-- d = {
 	-- 	name = "doxygen",
@@ -15,25 +36,20 @@ wk.register({
 	-- 	l = { "<cmd>DoxLic<cr>"		, "license"},
 	-- 	a = { "<cmd>DoxAuthor<cr>"	, "author"},
 	-- },
-	d = {
-		name = "neogen",
-		d = { "<cmd>Neogen<cr>"		, "annotation"},
-	},
+	v = { "<cmd>Vista!!<cr>", "vista"},
+	z = { "<cmd>ZenMode<cr>", "zen mode"},
+}, { 
+	prefix = "<leader>",
+	mode = {"n", "v"}
+})
+
+wk.register({
 	m = {
 		name = "mark",
-		m = {"<Plug>MarkSet"			, "mark"},
-		r = {"<Plug>MarkRegex"			, "mark by regex"},
-		c = {"<cmd>MarkClear<cr>"		, "clear"},
 		n = {"<Plug>MarkSearchCurrentNext"	, "current next"},
 		p = {"<Plug>MarkSearchCurrentPrev"	, "current prev"},
 		j = {"<Plug>MarkSearchAnyNext"		, "any next"},
 		k = {"<Plug>MarkSearchAnyPrev"		, "any prev"},
-	},
-	p = {
-		name = "packer",
-		l = { "<cmd>PackerStatus<cr>"		, "status"},
-		s = { "<cmd>PackerSync<cr>"		, "sync"},
-		c = { "<cmd>PackerCompile<cr>"		, "compile"},
 	},
 	h = {
 		name = "gitsigns",
@@ -54,7 +70,7 @@ wk.register({
 	},
 	f = {
 		name = "leaderf/telescope",
-		f = { "<cmd>LeaderfFile<cr>"		, "files"},
+		f = { "<cmd>Telescope find_files<cr>"		, "files"},
 		t = {
 			name = "tag",
 			t = { "<cmd>LeaderfTag<cr>"		, "tag" },
@@ -69,7 +85,7 @@ wk.register({
 		y = { "<cmd>LeaderfFunction<cr>"	, "function"},
 		l = { "<cmd>LeaderfLine<cr>"		, "line"},
 		q = { "<cmd>LeaderfQuickFix<cr>"	, "quickfix"},
-		b = { "<cmd>LeaderfBuffer<cr>"		, "buffer"},
+		b = { "<cmd>Telescope buffers<cr>"	, "buffer"},
 		w = { "<cmd>LeaderfWindow<cr>"		, "window"},
 		m = { "<cmd>LeaderfMru<cr>"		, "mru"},
 		o = { "<cmd>Leaderf --recall<cr>"	, "recall"},
@@ -82,8 +98,10 @@ wk.register({
 		},
 		h = { "<cmd>Telescope help_tags<cr>"		, "help"},
 		c = { "<cmd>Telescope commands<cr>"		, "commands"},
-		r = { "<cmd>LeaderfHistoryCmd<cr>"		, "commands history"},
+		r = { "<cmd>Telescope command_history<cr>"	, "commands history"},
 		v = { "<cmd>Leaderf floaterm<cr>"		, "floaterm"},
+		d = { "<cmd>TodoTelescope<cr>"			, "todo"},
+		["'"] = { "<cmd>Telescope marks<cr>"		, "mark"}
 	},
 	l = {
 		name = "lsp",
@@ -116,22 +134,33 @@ wk.register({
 		f= { "format"},
 		r= { "rename"},
 		a= { "code action"},
-		-- f = { "<cmd>Lspsaga lsp_finder<cr>"		, "lsp_finder"},
+		s= { "<cmd>LspStart<cr>", "start"},
 	},
-	v = { "<cmd>Vista!!<cr>", "vista"},
-}, { prefix = "<leader>" })
+	g = {
+		name = "lspsaga",
+		h = { "<cmd>Lspsaga lsp_finder<cr>"		, "symbol's definition"},
+		d = { "<cmd>Lspsaga peek_definition<cr>"	, "definition"},
+		t = { "<cmd>Lspsaga peek_type_definition<cr>"	, "type definition"},
+	},
+	b = {
+		name = "bookmark",
+		m = {"<Plug>BookmarkToggle" 			, "[bookmark] toggle"},
+		i = {"<Plug>BookmarkAnnotate" 			, "[bookmark] annotate"},
+		a = {"<cmd>Telescope vim_bookmarks all<cr>" 	, "[bookmark] show all mark"},
+		n = {"<Plug>BookmarkNext" 			, "[bookmark] next mark"},
+		p = {"<Plug>BookmarkPrev" 			, "[bookmark] prev mark"},
+		c = {"<Plug>BookmarkClear" 			, "[bookmark] clear current buffer mark"},
+		x = {"<Plug>BookmarkClearAll" 			, "[bookmark] clear all buffer mark"},
+		j = {"<Plug>BookmarkMoveDown" 			, "[bookmark] move down"},
+		k = {"<Plug>BookmarkMoveUp" 			, "[bookmark] move up"},
+		g = {"<Plug>BookmarkMoveToLine" 		, "[bookmark] move to line"},
+	},
+}, { 
+	prefix = "<leader>",
+	mode = "n",
+})
 
 wk.register({
-	m = {
-		name = "mark",
-		m = {"<Plug>MarkSet"			, "mark"},
-		r = {"<Plug>MarkRegex"			, "mark by regex"},
-		c = {"<cmd>MarkClear<cr>"		, "clear"},
-		n = {"<Plug>MarkSearchCurrentNext"	, "current next"},
-		p = {"<Plug>MarkSearchCurrentPrev"	, "current prev"},
-		j = {"<Plug>MarkSearchAnyNext"		, "any next"},
-		k = {"<Plug>MarkSearchAnyPrev"		, "any prev"},
-	},
 	f = {
 		name = "leaderf/telescope",
 		g = {
@@ -155,12 +184,12 @@ wk.register({
 
 wk.register({
 	c = {
-		name = "comment line",
-		c = {"current line"},
+		name = "(Comment)comment line",
+		c = {"(Comment)current line"},
 	},
 	b = {
-		name = "comment block",
-		c = {"current line"},
+		name = "(Comment)comment block",
+		c = {"(Comment)(current line"},
 	},
 }, {
 	prefix = "g",
@@ -170,6 +199,9 @@ wk.register({
 wk.register({
 	u = "lowercase",
 	U = "uppercase",
+	c = "[Comment] select line",
+	b = "[Comment] select ",
+	["%"] = "[matchup] select to boundary"
 }, {
 	prefix = "g",
 	mode = "v"
@@ -204,6 +236,8 @@ wk.register({
 	["<M-j>"] = "[tmux] resize down",
 	["<M-k>"] = "[tmux] resize up",
 	["<M-l>"] = "[tmux] resize right",
+	["<2-LeftMouse>"] = "[matchup] visual select area",
 }, {
 	mode = "n"
 })
+

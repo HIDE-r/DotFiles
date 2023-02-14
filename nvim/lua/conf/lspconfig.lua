@@ -65,7 +65,7 @@ require('lspconfig')['clangd'].setup {
 	semanticHighlighting=true,
 }
 
-require('lspconfig')['sumneko_lua'].setup {
+require('lspconfig')['lua_ls'].setup {
 	autostart = false,
 	capabilities = capabilities,
 	on_attach = on_attach, 
