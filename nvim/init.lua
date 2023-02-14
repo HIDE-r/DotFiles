@@ -47,12 +47,14 @@ require("lazy").setup({
 			require("conf.which-key")
 		end
 	},
+
 	{
 		"rebelot/kanagawa.nvim",
 		config = function()
 			vim.cmd([[colorscheme kanagawa]])
 		end
 	},
+
 	{
 		'nvim-lualine/lualine.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons'},
@@ -60,6 +62,7 @@ require("lazy").setup({
 			require('conf.lualine')
 		end
 	},
+
 	{
 		'akinsho/bufferline.nvim', 
 		version = "v3.*", 
@@ -68,6 +71,7 @@ require("lazy").setup({
 			require("bufferline").setup{}
 		end
 	},
+
 	{
 		'lewis6991/gitsigns.nvim',
 		-- event = {'BufRead','BufNewFile'},
@@ -75,6 +79,12 @@ require("lazy").setup({
 			require('conf.gitsigns')
 		end
 	},
+
+	{
+		'sindrets/diffview.nvim',
+		dependencies = 'nvim-lua/plenary.nvim',
+	},
+
 	{
 		'goolord/alpha-nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -87,7 +97,8 @@ require("lazy").setup({
 	{
 		'andymass/vim-matchup',
 		init = function()
-			vim.g.matchup_matchparen_offscreen = { method = "" }
+			vim.g.matchup_matchparen_enabled = 0
+			vim.g.matchup_matchparen_offscreen = {}
 		end
 	},
 
