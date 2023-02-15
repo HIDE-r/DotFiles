@@ -55,7 +55,14 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Tell the server the capability of foldingRange,
+-- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+local lsp_capabilities=vim.lsp.protocol.make_client_capabilities()
+lsp_capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+local capabilities = require('cmp_nvim_lsp').default_capabilities(lsp_capabilities)
 
 require('lspconfig')['clangd'].setup {
 	autostart = false,

@@ -25,3 +25,29 @@ end
 
 load_core()
 
+vim.o.timeoutlen=500
+vim.o.showcmd=true
+
+vim.o.splitright=true
+vim.o.number=false
+
+-- search
+vim.o.hlsearch=true 	-- 高亮搜索
+vim.o.incsearch=true 	-- 实时匹配
+vim.o.ignorecase=true 	-- 忽略大小写
+vim.o.smartcase=true
+
+vim.o.nohlsearch=true
+
+-- 标志栏
+vim.o.signcolumn='yes'
+
+-- true color
+vim.o.termguicolors=true
+
+-- 显示不可见字符格式，set list打开，set nolist关闭
+vim.o.listchars="eol:$,tab:>-,trail:-,extends:>,precedes:<,nbsp:+"
+
+-- leader key
+vim.g.mapleader=" "
+vim.g.maplocalleadhr=','

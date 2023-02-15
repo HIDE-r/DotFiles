@@ -6,7 +6,7 @@
 	email = LKangN@outlook.com
 	name = HideOnLie
 [alias]
-    st = status -s -b
+	st = status -s -b
 [color]
 	ui = auto
 [core]
