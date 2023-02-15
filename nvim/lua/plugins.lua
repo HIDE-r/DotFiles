@@ -1,262 +1,313 @@
- -- Install packer
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- require('packer').init({
---     git = {
---         default_url_format = 'git@github.com:%s'
---     }
--- })
-
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup({function(use)
-	-- Packer can manage itself
-	use 'wbthomason/packer.nvim'
-
-	-- Which-key
-	use {
+require("lazy").setup({
+	{
 		"folke/which-key.nvim",
 		config = function()
 			require("conf.which-key")
 		end
-	}
+	},
 
-	-- Enhanced matchup(%)
-	use {
-		'andymass/vim-matchup',
-		keys = '%',
-		config = function()
-			require("conf.matchup")
-		end
-	}
-
-	-- Enhanced repeat(.)
-	-- use {
-	-- 	'tpope/vim-repeat',
-	-- 	keys = '.',
-	-- }
-
-	-- Enhanced f/t/F/T
-	-- use {
-	-- 	'hrsh7th/vim-eft',
-	-- }
-
-	-- Last place
-	use {
-		'ethanholz/nvim-lastplace',
-		config = function()
-			require'nvim-lastplace'.setup{}
-		end
-	}
-
-	-- Treesitter
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		event = 'BufRead',
-		run = ':TSUpdate',
-	}
-
-	-- Colorscheme
-
-	-- use {
-	-- 	'kristijanhusak/vim-hybrid-material',
-	-- 	config = function()
-	-- 		require("conf.colorscheme.hybrid_material")
-	-- 	end
-	-- }
-
-	-- use({
-	-- 	"catppuccin/nvim",
-	-- 	as = "catppuccin",
-	-- 	config = function ()
-	-- 		vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-	-- 		require("catppuccin").setup()
-	-- 		vim.api.nvim_command "colorscheme catppuccin"
-	-- 	end
-	-- })
-
-	use {
+	{
 		"rebelot/kanagawa.nvim",
-		config = function ()
-			vim.cmd("colorscheme kanagawa")
-		end
-	}
-
-	-- use {
-	-- 	'glepnir/zephyr-nvim',
-	-- 	config = function()
-	-- 		require("conf.colorscheme.zephyr")
-	-- 	end
-	-- }
-
-	-- Dashboard
-	-- use {
-	-- 	"glepnir/dashboard-nvim",
-	-- 	config = function()
-	-- 		require("conf.dashboard")
-	-- 	end
-	-- }
-
-	use {
-	    'goolord/alpha-nvim',
-	    requires = { 'kyazdani42/nvim-web-devicons' },
-	    config = function ()
-		require'alpha'.setup(require'alpha.themes.startify'.config)
-	    end
-	}
-
-	-- Rainbow bracket
-	use {
-		'p00f/nvim-ts-rainbow',
-		after = {'nvim-treesitter'},
+		lazy = false,
+		priority=1000,
 		config = function()
-			require("conf.treesitter")
+			vim.cmd([[colorscheme kanagawa]])
 		end
-	}
+	},
 
-	-- use {
-	-- 	'luochen1990/rainbow'
-	-- }
-
-	-- Bufferline
-	-- use {
-	-- 	'akinsho/bufferline.nvim',
-	-- 	tag = "v2.*",
-	-- 	requires = 'kyazdani42/nvim-web-devicons',
-	-- 	config = function()
-	-- 		require'bufferline'.setup{}
-	-- 	end
-	-- }
-
-	-- Galaxyline
-	-- use {
-	-- 	'glepnir/galaxyline.nvim',
-	-- 	branch = 'main',
-	-- 	requires = {'kyazdani42/nvim-web-devicons'},
-	-- 	config = function()
-	-- 		require'conf.statusline'
-	-- 	end
-	-- }
-
-	-- Lualine
-	use {
+	{
 		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+		dependencies = { 'nvim-tree/nvim-web-devicons'},
 		config = function()
 			require('conf.lualine')
 		end
-	}
+	},
 
-	-- Indent line
-	-- use {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- }
+	{
+		'akinsho/bufferline.nvim', 
+		version = "v3.*", 
+		dependencies = 'nvim-tree/nvim-web-devicons',
+		config = function()
+			require("bufferline").setup{}
+		end
+	},
 
-	-- Git
-	use {
+	{
 		'lewis6991/gitsigns.nvim',
 		event = {'BufRead','BufNewFile'},
 		config = function()
 			require('conf.gitsigns')
 		end
-	}
+	},
 
-	-- Comment
-	use {
+	{
+		'sindrets/diffview.nvim',
+		enabled = false,
+		dependencies = 'nvim-lua/plenary.nvim',
+	},
+
+	{
+		'goolord/alpha-nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+		config = function ()
+		require'alpha'.setup(require'alpha.themes.startify'.config)
+		end
+	},
+
+	--- matchup
+	{
+		'andymass/vim-matchup',
+		event = {'BufRead','BufNewFile'},
+		init = function()
+			vim.g.matchup_matchparen_enabled = 0
+			vim.g.matchup_matchparen_offscreen = {}
+		end
+	},
+
+	--- mark
+	{
+		'inkarkat/vim-mark',
+		event = "VeryLazy",
+		dependencies = {
+			{
+				'inkarkat/vim-ingo-library',
+				branch = 'stable',
+			}
+		},
+		branch = 'stable',
+		init = function()
+			require'conf.mark'
+		end
+	},
+
+	-- Telescope
+	{
+		'nvim-telescope/telescope.nvim',
+
+		event = "VeryLazy",
+		branch = '0.1.x',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			{
+				'nvim-telescope/telescope-fzf-native.nvim', 
+				build = 'make',
+			},
+			'tom-anders/telescope-vim-bookmarks.nvim',
+		},
+		config = function()
+			require('telescope').load_extension('vim_bookmarks')
+		end
+	},
+
+	--- symbol list
+	{
+		'liuchengxu/vista.vim',
+		cmd = 'Vista',
+	},
+
+	--- tmux
+	{
+		"aserowy/tmux.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("conf.tmux")
+		end
+	},
+
+	{
+		"dstein64/vim-startuptime",
+		enabled = false,
+		cmd = "StartupTime",
+	},
+
+	--- lastplace
+	{
+		'ethanholz/nvim-lastplace',
+		config = function()
+			require'nvim-lastplace'.setup{}
+		end
+	},
+
+	--- Comment
+	{
 		'numToStr/Comment.nvim',
+		keys = { 
+			{"gcc","gbc", mode="n"},
+			{"gc","gb", mode="v"},
+		},
 		config = function()
 			require('Comment').setup()
 		end
-	}
-	-- use {
-	-- 	'babaybus/DoxygenToolkit.vim',
-	-- 	cmd = {'Dox', 'DoxLic', 'DoxAuthor'},
-	-- }
+	},
 
-	-- Annotation
-	use {
+	--- Annotation
+	{
 		'danymat/neogen',
+		cmd = "Neogen",
+		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = function()
 			require('neogen').setup {}
 		end,
-		requires = "nvim-treesitter/nvim-treesitter",
-	}
+	},
 
-	-- Symbol list
-	use {
-		'liuchengxu/vista.vim',
-		cmd = 'Vista',
-	}
-
-	-- Mark
-	use {
-		'inkarkat/vim-mark',
-		requires = {
-			{
-				'inkarkat/vim-ingo-library',
-				-- opt = true,
-				branch = 'stable',
-				after = {'vim-mark'}
-			}
-		},
-		-- keys = '<leader>m',
-		branch = 'stable',
-		setup = function()
-			require'conf.mark'
+	--- comment label
+	{
+		"folke/todo-comments.nvim",
+		dependencies = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup {
+			signs = false,
+		}
 		end
-	}
+	},
 
-	-- Telescope
-	use {
-		'nvim-telescope/telescope.nvim',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
+	--- zen mode
+	{
+		"folke/zen-mode.nvim",
+		cmd = "ZenMode",
+		config = function()
+			require("zen-mode").setup {}
+		end
+	},
 
-	-- Leader f
-	use {
-		'Yggdroot/LeaderF',
-		run = ':LeaderfInstallCExtension',
-	}
+	{
+		'kevinhwang91/nvim-ufo',
+		dependencies = {
+			'kevinhwang91/promise-async',
+			'neovim/nvim-lspconfig',
+			'nvim-treesitter/nvim-treesitter'
+		},
+		config = function()
+			require("conf.ufo")
+		end
+	},
 
-	-- Startup time
-	use {
-		'dstein64/vim-startuptime',
-	}
+	--- Remote server clipboard
+	{
+		'wincent/vim-clipper',
+		enabled = false,
+	},
+
+	--- noice
+	{
+		"folke/noice.nvim",
+	  	dependencies = {
+	    		"MunifTanjim/nui.nvim",
+	    		"rcarriga/nvim-notify",
+	    	},
+		config = function()
+			require("noice").setup({
+				lsp = {
+					signature = {
+						enabled = false,
+					}
+				}
+			})
+	  	end
+	},
+
+	{
+		'MattesGroeger/vim-bookmarks',
+		init = function()
+			vim.g.bookmark_no_default_key_mappings = 1
+		end,
+	},
+
+
+	--- float term
+	{
+		'voldikss/vim-floaterm',
+		-- 'voldikss/LeaderF-floaterm',
+		keys = {
+			"<F8>", "<F11>",
+		},
+		init = function()
+			vim.g.floaterm_keymap_new = '<F8>'
+			vim.g.floaterm_keymap_prev = '<F9>'
+			vim.g.floaterm_keymap_next = '<F10>'
+			vim.g.floaterm_keymap_toggle = '<F11>'
+		end
+	},
+
+	--- color
+	{
+		"norcalli/nvim-colorizer.lua",
+		enabled = false,
+		init = function()
+			require'colorizer'.setup()
+		end
+	},
+
+	-- Treesitter
+	{
+		'nvim-treesitter/nvim-treesitter',
+		build = ':TSUpdate',
+		config = function()
+			require("conf.treesitter")
+		end
+	},
+
+	{
+		'nvim-treesitter/nvim-treesitter-context',
+		dependencies = 'nvim-treesitter/nvim-treesitter',
+	},
 
 	-- LSP
-	use {
-	    	"williamboman/mason.nvim",
-	    	"williamboman/mason-lspconfig.nvim",
-		'neovim/nvim-lspconfig',
-	}
-
-	use {
-		'glepnir/lspsaga.nvim',
-		cmd = 'Lspsaga',
+	{
+		"williamboman/mason-lspconfig.nvim", 
+		dependencies = "williamboman/mason.nvim",
 		config = function()
-			local saga = require 'lspsaga'
-			saga.init_lsp_saga()
+			require("mason").setup()
+			require("mason-lspconfig").setup()
 		end
-	}
+	},
 
-	use {
+	{
+		'neovim/nvim-lspconfig',
+		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+		},
+	},
+
+	{
 		"ray-x/lsp_signature.nvim",
 		config = function()
 			require("conf.signature")
 		end
-	}
+	},
+
+	{
+		"glepnir/lspsaga.nvim",
+		event = "BufRead",
+		config = function()
+			require("lspsaga").setup({})
+		end,
+		dependencies = {
+			{"nvim-tree/nvim-web-devicons"},
+			--Please make sure you install markdown and markdown_inline parser
+			{"nvim-treesitter/nvim-treesitter"}
+		}
+	},
 
 	-- Snippet Engine
-	use {
+	{
 
 		'L3MON4D3/LuaSnip',
-		-- event = "BufReadPre",
-		requires = {
+		lazy = 1,
+		dependencies = {
 			"rafamadriz/friendly-snippets",
 			-- "honza/vim-snippets",
 		},
@@ -264,76 +315,23 @@ return require('packer').startup({function(use)
 			require("luasnip.loaders.from_vscode").lazy_load()
 			-- require("luasnip.loaders.from_snipmate").lazy_load()
 		end
-	}
+	},
 
-	use {
+	{
 		'hrsh7th/nvim-cmp',
-		-- event = 'InsertEnter',
-		requires = {
-			{'hrsh7th/cmp-nvim-lsp', after = 'nvim-lspconfig'},
-			{'hrsh7th/cmp-path' , after = 'nvim-cmp'},
-			{'hrsh7th/cmp-buffer', after = 'nvim-cmp'},
-			{'hrsh7th/cmp-cmdline', after = 'nvim-cmp'},
-			-- {'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp'},
-			{'saadparwaiz1/cmp_luasnip', after = "LuaSnip" },
+		event = "VeryLazy",
+		dependencies = {
+			{'hrsh7th/cmp-nvim-lsp', dependencies = 'nvim-lspconfig'},
+			{'hrsh7th/cmp-path' },
+			{'hrsh7th/cmp-buffer'},
+			{'hrsh7th/cmp-cmdline'},
 			{'onsails/lspkind.nvim'},
+			-- {'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp'},
+			{'saadparwaiz1/cmp_luasnip', dependencies = "LuaSnip" },
 		},
-		after = {'lspkind.nvim', "cmp-nvim-lsp", "lsp_signature.nvim"},
 		config = function()
-			require("mason").setup()
-			require("mason-lspconfig").setup()
 			require("conf.nvim-cmp")
 			require("conf.lspconfig")
 		end
-	}
-
-	-- Remote server clipboard
-	use {
-		'wincent/vim-clipper',
-		disable = true,
-	}
-
-	-- Floaterm
-	use 'voldikss/vim-floaterm'
-	use 'voldikss/LeaderF-floaterm'
-
-	-- Notify
-	-- use {
-	-- 	'rcarriga/nvim-notify',
-	-- 	config = function ()
-	-- 		-- local notify = require("notify")
-	-- 		-- notify.setup()
-	-- 		vim.notify = require("notify")
-	-- 	end
-	-- }
-
-	use({
-		"folke/noice.nvim",
-		event = "VimEnter",
-		config = function()
-			require("noice").setup()
-	  	end,
-	  	requires = {
-	    	-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-	    		"MunifTanjim/nui.nvim",
-	    		"rcarriga/nvim-notify",
-	    	}
-	})
-
-	-- Tmux
-	use({
-	    "aserowy/tmux.nvim",
-	    config = function()
-			require("conf.tmux")
-	    end
-	})
-
-end,
-config = {
-  display = {
-    open_fn = require('packer.util').float,
-  }
-}
+	},
 })
-
-
