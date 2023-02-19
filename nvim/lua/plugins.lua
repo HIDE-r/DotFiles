@@ -221,6 +221,7 @@ require("lazy").setup({
 
 	{
 		'MattesGroeger/vim-bookmarks',
+		event = 'VeryLazy',
 		init = function()
 			vim.g.bookmark_no_default_key_mappings = 1
 		end,
@@ -249,6 +250,29 @@ require("lazy").setup({
 		init = function()
 			require'colorizer'.setup()
 		end
+	},
+
+	{
+		'toppair/peek.nvim',
+		build = 'deno task --quiet build:fast',
+		ft = 'markdown',
+		config = function()
+			vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+			vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+			require('peek').setup()
+		end
+	},
+
+	{
+	  'nvim-tree/nvim-tree.lua',
+	  cmd = "NvimTreeToggle",
+	  dependencies = {
+	    'nvim-tree/nvim-web-devicons', -- optional, for file icons
+	  },
+	  version = 'nightly', -- optional, updated every week. (see issue #1193)
+	  config = function()
+		  require("nvim-tree").setup()
+	  end,
 	},
 
 	-- Treesitter
