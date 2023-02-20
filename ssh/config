@@ -2,6 +2,9 @@ Host *
 	TCPKeepAlive yes
 	ServerAliveInterval 60
 
+	# Forward Clipper connection to remote host
+	RemoteForward 8377 localhost:8377
+
 	HostKeyAlgorithms +ssh-rsa
 	StrictHostKeyChecking no
     	UserKnownHostsFile /dev/null
@@ -11,6 +14,13 @@ Host arcadyan_jumper
 	Port 		23222
 	User 		sw1
 	IdentityFile 	~/.ssh/id_arcadyan
+
+Host remote_198
+	Hostname 	10.118.81.198
+	Port 		22
+	User 		hide_liao
+	IdentityFile 	~/.ssh/id_arcadyan
+	ProxyCommand 	ssh -q -W %h:%p arcadyan_jumper
 
 Host remote_206
 	Hostname 	10.118.81.206
@@ -30,14 +40,12 @@ HOST 206
         User hide_liao
         port 22
         IdentityFile ~/.ssh/id_rsa
-        RemoteForward 8377 localhost:8377
 
 HOST 198
         HostName 10.118.81.198
         User hide_liao
         port 22
         IdentityFile ~/.ssh/id_rsa
-        RemoteForward 8377 localhost:8377
 
 HOST 190
         HostName 10.118.81.190

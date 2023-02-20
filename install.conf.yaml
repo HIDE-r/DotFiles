@@ -32,6 +32,8 @@
       path: gitui/theme.ron
     ~/.config/wezterm/wezterm.lua:
       path: wezterm/wezterm.lua
+    ~/.config/lf:
+      path: lf
     ~/.local/share/navi/cheats/HideOnLie__Cheatsheet-navi:
       path: navi/cheatsheet
     ~/.ssh/config:
