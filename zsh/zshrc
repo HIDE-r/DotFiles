@@ -146,7 +146,7 @@ bindkey -s '^o' 'lfcd\n'
 #	atclone="./navi widget zsh > widget.zsh" \
 #	atpull="%atclone" \
 #	src="widget.zsh"
-zinit ice as"program" from"gh-r" pick="navi" 
+zinit ice as"program" from"gh-r" bpick="*x86_64*linux*" pick="navi" 
 zinit ${ZINIT_LOAD_METHOD} denisidoro/navi
 
 _navi_call() {
@@ -295,6 +295,9 @@ alias cman='man -M /usr/share/man/zh_CN'
 alias grep='grep --color=auto --exclude "tags"'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+
+# Pipe anything into `clip` to forward it to Clipper
+alias clip="nc localhost 8377"
 
 export TERM=xterm-256color
 export BROWSER=microsoft-edge-stable

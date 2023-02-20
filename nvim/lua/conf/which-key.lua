@@ -160,6 +160,7 @@ wk.register({
 		t = {"<cmd>NvimTreeToggle<cr>" 	, "[nvim-tree] toggle"},
 		f = {"<cmd>NvimTreeFindFile<cr>", "[nvim-tree] find file"},
 	},
+	y = {"<cmd>Clip<cr>", "sync clipboard"},
 }, { 
 	prefix = "<leader>",
 	mode = "n",

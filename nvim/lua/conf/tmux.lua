@@ -7,6 +7,7 @@ tmux.setup({
 	-- enables copy sync and overwrites all register actions to
 	-- sync registers *, +, unnamed, and 0 till 9 from tmux in advance
 	enable = true,
+	redirect_to_clipboard = true,
     },
     navigation = {
 	-- enables default keybindings (C-hjkl) for normal mode

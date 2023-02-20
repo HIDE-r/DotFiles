@@ -195,10 +195,28 @@ require("lazy").setup({
 		end
 	},
 
+	-- quickfix window
+	{
+		'kevinhwang91/nvim-bqf',
+		ft = 'qf',
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter',
+			{
+				'junegunn/fzf', 
+				build = function()
+					vim.fn['fzf#install']()
+				end
+			},
+		},
+	},
+
 	--- Remote server clipboard
 	{
 		'wincent/vim-clipper',
-		enabled = false,
+		cmd="Clip",
+		init = function()
+			vim.g.ClipperMap=0
+		end
 	},
 
 	--- noice
