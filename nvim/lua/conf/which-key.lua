@@ -13,6 +13,7 @@ wk.register({
 		s = { "<cmd>set hlsearch!<cr>"		, "highlight search" },
 		l = { "<cmd>set list!<cr>"		, "list mode" },
 		n = { "<cmd>set number!<cr>"		, "line number" },
+		c = { "<cmd>ColorizerToggle<cr>"	, "color" },
 	},
 	m = {
 		name = "mark",
