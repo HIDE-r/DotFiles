@@ -60,11 +60,12 @@ require("lazy").setup({
 	},
 
 	{
-		'goolord/alpha-nvim',
-		dependencies = { 'nvim-tree/nvim-web-devicons' },
-		config = function ()
-		require'alpha'.setup(require'alpha.themes.startify'.config)
-		end
+		'glepnir/dashboard-nvim',
+		event = 'VimEnter',
+		config = function()
+			require("conf.dashboard")
+		end,
+		dependencies = { {'nvim-tree/nvim-web-devicons'}}
 	},
 
 	--- matchup
@@ -89,7 +90,9 @@ require("lazy").setup({
 		},
 		branch = 'stable',
 		init = function()
-			require'conf.mark'
+			vim.g.mw_no_mappings = 1
+			vim.g.mwDefaultHighlightingPalette = 'extended'
+			vim.g.mwDefaultHighlightingNum = 10
 		end
 	},
 
@@ -166,6 +169,7 @@ require("lazy").setup({
 	--- comment label
 	{
 		"folke/todo-comments.nvim",
+		event = 'VeryLazy',
 		dependencies = "nvim-lua/plenary.nvim",
 		config = function()
 			require("todo-comments").setup {
@@ -264,20 +268,9 @@ require("lazy").setup({
 	--- color
 	{
 		"norcalli/nvim-colorizer.lua",
-		enabled = false,
-		init = function()
-			require'colorizer'.setup()
-		end
-	},
-
-	{
-		'toppair/peek.nvim',
-		build = 'deno task --quiet build:fast',
-		ft = 'markdown',
+		cmd = "ColorizerToggle",
 		config = function()
-			vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
-			vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
-			require('peek').setup()
+			require'colorizer'.setup()
 		end
 	},
 
