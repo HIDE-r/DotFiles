@@ -6,8 +6,6 @@
 - link:
     ~/.gitconfig:
       path: git/gitconfig
-    ~/.vimrc:
-      path: vim/vimrc
     ~/.zshrc:
       path: zsh/zshrc
     ~/.tmux.conf:
