@@ -44,6 +44,8 @@
       path: rime/default.custom.yaml
     ~/.local/share/fcitx5/rime/clover.custom.yaml:
       path: rime/clover.custom.yaml
+    ~/.czrc:
+      path: ./commitizen/czrc
     # ~/.local/share/dwm/autostart.sh:
     #   path: dwm/autostart.sh
 
