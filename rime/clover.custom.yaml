@@ -1,4 +1,25 @@
+# /usr/share/rime-data/default.yaml
 patch:
+  key_binder:
+    bindings:
+      __patch:
+        - key_bindings:/emacs_editing
+        - key_bindings:/move_by_word_with_tab # tab 在单词间切换
+        - key_bindings:/paging_with_minus_equal # 减号等号翻页
+        - key_bindings:/paging_with_comma_period # 逗号句号翻页
+        # - key_bindings:/numbered_mode_switch # Ctrl+Shift+数字 切换开关
+        # - clover.key_bindings:/numbered_mode_switch   # Ctrl+Shift+数字 切换开关
+        # - clover.key_bindings:/windows_compatible_mode_switch   # Windows 兼容
+        - clover.key_bindings:/kp_enter_is_return # 小键盘回车设为普通回车
+        - clover.key_bindings:/esc_is_change_mode
+  ascii_composer:
+    switch_key:
+      Shift_L: noop # 左 Shift 切换直接上屏字母
+      Shift_R: commit_code   # 右 Shift 切换直接上屏字母
+      Control_L: noop
+      Control_R: noop
+      Caps_Lock: noop
+      Eisu_toggle: clear
   switches:
     - name: zh_simp_s2t
       reset: 0
@@ -16,5 +37,5 @@ patch:
       reset: 0
       states: [ 半, 全 ]
     - name: ascii_mode
-      reset: 0
+      reset: 1
       states: [ 中, 英 ]
