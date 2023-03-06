@@ -156,9 +156,9 @@ wk.register({
 		k = {"<Plug>BookmarkMoveUp" 			, "[bookmark] move up"},
 		g = {"<Plug>BookmarkMoveToLine" 		, "[bookmark] move to line"},
 	},
-	t = {
+	e = {
 		name = "File Explorer",
-		t = {"<cmd>NvimTreeToggle<cr>" 	, "[nvim-tree] toggle"},
+		e = {"<cmd>NvimTreeToggle<cr>" 	, "[nvim-tree] toggle"},
 		f = {"<cmd>NvimTreeFindFile<cr>", "[nvim-tree] find file"},
 	},
 	y = {"<cmd>Clip<cr>", "sync clipboard"},

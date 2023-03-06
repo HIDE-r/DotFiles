@@ -40,9 +40,7 @@ require("lazy").setup({
 		'akinsho/bufferline.nvim', 
 		version = "v3.*", 
 		dependencies = 'nvim-tree/nvim-web-devicons',
-		config = function()
-			require("bufferline").setup{}
-		end
+		config = true, 
 	},
 
 	{
@@ -100,7 +98,7 @@ require("lazy").setup({
 	{
 		'nvim-telescope/telescope.nvim',
 
-		event = "VeryLazy",
+		cmd = "Telescope",
 		branch = '0.1.x',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
@@ -139,9 +137,7 @@ require("lazy").setup({
 	--- lastplace
 	{
 		'ethanholz/nvim-lastplace',
-		config = function()
-			require'nvim-lastplace'.setup{}
-		end
+		config = true, 
 	},
 
 	--- Comment
@@ -151,9 +147,7 @@ require("lazy").setup({
 			{"gcc","gbc", mode="n"},
 			{"gc","gb", mode="v"},
 		},
-		config = function()
-			require('Comment').setup()
-		end
+		config = true,
 	},
 
 	--- Annotation
@@ -161,9 +155,7 @@ require("lazy").setup({
 		'danymat/neogen',
 		cmd = "Neogen",
 		dependencies = "nvim-treesitter/nvim-treesitter",
-		config = function()
-			require('neogen').setup {}
-		end,
+		config = true,
 	},
 
 	--- comment label
@@ -171,20 +163,16 @@ require("lazy").setup({
 		"folke/todo-comments.nvim",
 		event = 'VeryLazy',
 		dependencies = "nvim-lua/plenary.nvim",
-		config = function()
-			require("todo-comments").setup {
+		opts = {
 			signs = false,
-		}
-		end
+		},
 	},
 
 	--- zen mode
 	{
 		"folke/zen-mode.nvim",
 		cmd = "ZenMode",
-		config = function()
-			require("zen-mode").setup {}
-		end
+		config = true, 
 	},
 
 	{
@@ -249,29 +237,42 @@ require("lazy").setup({
 		end,
 	},
 
-
-	--- float term
 	{
-		'voldikss/vim-floaterm',
-		-- 'voldikss/LeaderF-floaterm',
-		keys = {
-			"<F8>", "<F11>",
+		'akinsho/toggleterm.nvim',
+		cmd = "ToggleTerm",
+		keys = { 
+			'<C-\\>',
 		},
+		version = "*",
 		init = function()
-			vim.g.floaterm_keymap_new = '<F8>'
-			vim.g.floaterm_keymap_prev = '<F9>'
-			vim.g.floaterm_keymap_next = '<F10>'
-			vim.g.floaterm_keymap_toggle = '<F11>'
-		end
+			function _G.set_terminal_keymaps()
+			  local opts = {buffer = 0}
+			  -- vim.keymap.set('t', '<C-[>', [[<C-\><C-n>]], opts)
+			  vim.keymap.set('t', '<C-q>', [[<C-\><C-n>]], opts)
+			  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+			  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+			  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+			  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+			  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+			end
+
+			-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+			vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+		end,
+		opts = {
+			open_mapping = [[<C-\>]],
+			insert_mappings = true,
+			winbar = {
+				enabled = true,
+			},
+		}
 	},
 
 	--- color
 	{
 		"norcalli/nvim-colorizer.lua",
 		cmd = "ColorizerToggle",
-		config = function()
-			require'colorizer'.setup()
-		end
+		config = true, 
 	},
 
 	{
@@ -281,9 +282,7 @@ require("lazy").setup({
 	    'nvim-tree/nvim-web-devicons', -- optional, for file icons
 	  },
 	  version = 'nightly', -- optional, updated every week. (see issue #1193)
-	  config = function()
-		  require("nvim-tree").setup()
-	  end,
+	  config = true, 
 	},
 
 	-- Treesitter
