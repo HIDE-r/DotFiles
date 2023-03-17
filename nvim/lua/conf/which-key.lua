@@ -131,7 +131,7 @@ wk.register({
 			t= { "type definition"},
 		},
 		k= { "hover"},
-		K= { "signature help"},
+		h= { "signature help"},
 		f= { "format"},
 		r= { "rename"},
 		a= { "code action"},

@@ -26,8 +26,8 @@
       path: polybar/config
     ~/.config/rofi/config.rasi:
       path: rofi/config.rasi
-    ~/.config/gitui/theme.ron:
-      path: gitui/theme.ron
+    ~/.config/gitui:
+      path: gitui
     ~/.config/wezterm/wezterm.lua:
       path: wezterm/wezterm.lua
     ~/.config/lf:

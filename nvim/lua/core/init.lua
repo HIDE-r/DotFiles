@@ -51,3 +51,7 @@ vim.o.listchars="eol:$,tab:>-,trail:-,extends:>,precedes:<,nbsp:+"
 -- leader key
 vim.g.mapleader=" "
 vim.g.maplocalleadhr=','
+
+-- help disable-mouse
+vim.cmd([[aunmenu PopUp.How-to\ disable\ mouse]])
+vim.cmd([[aunmenu PopUp.-1-]])
