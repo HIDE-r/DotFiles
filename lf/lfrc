@@ -1,3 +1,4 @@
+# zoxide
 cmd z %{{
     result="$(zoxide query --exclude "${PWD}" -- "$@")"
     lf -remote "send ${id} cd '${result}'"
@@ -7,8 +8,24 @@ cmd zi ${{
     result="$(zoxide query -i -- "$@")"
     lf -remote "send ${id} cd '${result}'"
 }}
+map zi :zi
 
+# trash
 cmd trash %trash-put $fx
+
+# fzf
+cmd fzf_jump_dir ${{
+    # res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    res="$(fd --type d --hidden --follow --exclude '.git' . | fzf --reverse --header='Jump to location' )"
+    if [ -d "$res" ] ; then
+        cmd="cd"
+    elif [ -f "$res" ] ; then
+        cmd="select"
+    else
+        exit 0
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
 
 cmd fzf_jump ${{
     res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
@@ -21,8 +38,11 @@ cmd fzf_jump ${{
     fi
     lf -remote "send $id $cmd \"$res\""
 }}
-map <c-f> :fzf_jump
 
+map <c-t> :fzf_jump
+map <a-c> :fzf_jump_dir
+
+# ripgrep
 cmd fzf_search ${{
     res="$( \
         RG_PREFIX="rg --column --line-number --no-heading --color=always \
@@ -37,6 +57,13 @@ cmd fzf_search ${{
 map gs :fzf_search
 
 set icons
+
+cmd open ${{
+    case $(file --mime-type -Lb $f) in
+        text/*) vi $fx;;
+        *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
+    esac
+}}
 
 set previewer ctpv
 set cleaner ctpvclear

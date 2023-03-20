@@ -301,6 +301,7 @@ alias fgrep='fgrep --color=auto'
 # Pipe anything into `clip` to forward it to Clipper
 alias clip="nc localhost 8377"
 
+export TERMINAL="wezterm start --cwd . -- "
 export TERM=xterm-256color
 export BROWSER=microsoft-edge-stable
 export XCURSOR_PATH=~/.local/share/icons:${XCURSOR_PATH}

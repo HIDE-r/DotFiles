@@ -1,19 +1,38 @@
 local wezterm = require 'wezterm'
 
-return {
-	xcursor_theme="Vimix-cursors",
-	color_scheme = "kanagawabones",
+-- This table will hold the configuration.
+local config = {}
 
-	font = wezterm.font_with_fallback {
-		{ family="Comic Code", weight="Medium", style=Regular, italic=false },
-		-- { family="Operator Mono SSm", weight="Book", style=Book, italic=false },
-	},
-	font_size = 12.0,
+-- In newer versions of wezterm, use the config_builder which will
+-- help provide clearer error messages
+if wezterm.config_builder then
+	config = wezterm.config_builder()
+end
 
-	-- disable ligatures font 
-	harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+config.xcursor_theme="Vimix-cursors"
+config.color_scheme = "kanagawabones"
 
-	enable_tab_bar = false,
-	enable_scroll_bar = false,
-	enable_wayland = true,
+config.font = wezterm.font_with_fallback {
+	{ family="Comic Code", weight="Medium", style=Regular, italic=false },
+	{ family="MesloLGS NF", style=Regular, italic=false },
+	-- { family="Operator Mono SSm", weight="Book", style=Book, italic=false },
 }
+config.font_size = 12.0
+
+-- Disable ligatures font 
+config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+
+config.enable_tab_bar = false
+config.enable_scroll_bar = false
+config.enable_wayland = true
+
+-- disable_default_key_bindings = true,
+config.keys = {
+	{
+		key = 'Enter',
+		mods = 'ALT',
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+}
+
+return config
