@@ -255,7 +255,11 @@ require("lazy").setup({
 					signature = {
 						enabled = false,
 					}
+				},
+				messages = {
+					enabled = false,
 				}
+
 			})
 	  	end
 	},
@@ -376,6 +380,7 @@ require("lazy").setup({
 			"rafamadriz/friendly-snippets",
 			-- "honza/vim-snippets",
 		},
+		build = "make install_jsregexp",
 		config = function()
 			require("luasnip.loaders.from_vscode").lazy_load()
 			-- require("luasnip.loaders.from_snipmate").lazy_load()
