@@ -237,10 +237,12 @@ zinit ice wait lucid
 zinit ${ZINIT_LOAD_METHOD} Aloxaf/fzf-tab
 
 # history 同步
-export ATUIN_NOBIND="true"
-zinit ${ZINIT_LOAD_METHOD} ellie/atuin
-bindkey '^[[A' _atuin_search_widget
-bindkey '^[OA' _atuin_search_widget
+if installed atuin; then
+	export ATUIN_NOBIND="true"
+	zinit ${ZINIT_LOAD_METHOD} ellie/atuin
+	bindkey '^[[A' _atuin_search_widget
+	bindkey '^[OA' _atuin_search_widget
+fi
 
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
