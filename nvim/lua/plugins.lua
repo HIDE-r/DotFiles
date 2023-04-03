@@ -311,13 +311,46 @@ require("lazy").setup({
 	},
 
 	{
-	  'nvim-tree/nvim-tree.lua',
-	  cmd = "NvimTreeToggle",
-	  dependencies = {
-	    'nvim-tree/nvim-web-devicons', -- optional, for file icons
-	  },
-	  version = 'nightly', -- optional, updated every week. (see issue #1193)
-	  config = true, 
+		'nvim-tree/nvim-tree.lua',
+		cmd = "NvimTreeToggle",
+		dependencies = {
+			'nvim-tree/nvim-web-devicons', -- optional, for file icons
+		},
+		version = 'nightly', -- optional, updated every week. (see issue #1193)
+		init = function()
+			-- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup
+			local function open_nvim_tree(data)
+
+				-- buffer is a directory
+				local directory = vim.fn.isdirectory(data.file) == 1
+
+				if not directory then
+					return
+				end
+
+				-- change to the directory
+				vim.cmd.cd(data.file)
+
+				-- open the tree
+				vim.cmd([[NvimTreeToggle]])
+			end
+
+			vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+		end,
+		config = true,
+	},
+
+	{
+		'toppair/peek.nvim', 
+		ft = 'markdown',
+		build = 'deno task --quiet build:fast',
+		config = function()
+			require('peek').setup({
+				theme = 'light',
+			})
+			vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+			vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+		end,
 	},
 
 	-- Treesitter
