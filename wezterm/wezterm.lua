@@ -38,4 +38,22 @@ config.keys = {
 config.check_for_updates = false
 config.show_update_window = false
 
+config.front_end="OpenGL"
+
+config.use_ime = true
+
+-- https://github.com/wez/wezterm/issues/3142
+config.mouse_bindings = {
+  {
+    event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+    mods = 'NONE',
+    action = wezterm.action.ScrollByLine(-5),
+  },
+  {
+    event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+    mods = 'NONE',
+    action = wezterm.action.ScrollByLine(5),
+  },
+}
+
 return config

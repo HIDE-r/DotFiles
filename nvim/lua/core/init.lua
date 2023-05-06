@@ -30,6 +30,7 @@ vim.o.showcmd=true
 
 vim.o.splitright=true
 vim.o.number=false
+vim.o.cursorline=true
 
 -- search
 vim.o.hlsearch=true 	-- 高亮搜索
