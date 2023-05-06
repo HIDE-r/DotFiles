@@ -46,8 +46,8 @@
       path: rime/clover.custom.yaml
     ~/.czrc:
       path: ./commitizen/czrc
-    # ~/.local/share/dwm/autostart.sh:
-    #   path: dwm/autostart.sh
+    ~/.config/clash/config.yaml:
+      path: ./clash/config.yaml
 
 - clean:
     ~/:
