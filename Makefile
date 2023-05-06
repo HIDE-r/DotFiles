@@ -47,6 +47,14 @@ git_update_submodule:
 	git submodule update --remote
 	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Update all submodule from remote End=====$(_N)\n'
 
+#: export git-crypt key
+git-crypt_export_key:
+	git-crypt export-key git-crypt.key
+
+#: unlock git-crypt encryption
+git-crypt_unlock:
+	git-crypt unlock git-crypt.key
+
 create_tmp:
 	${MKDIR} ${TMP_DIR}
 	${MKDIR} ${STAMP_DIR}
