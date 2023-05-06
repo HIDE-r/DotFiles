@@ -58,12 +58,12 @@ map gs :fzf_search
 
 set icons
 
-cmd open ${{
-    case $(file --mime-type -Lb $f) in
-        text/*) vi $fx;;
-        *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
-    esac
-}}
+# cmd open ${{
+#     case $(file --mime-type -Lb $f) in
+#         text/*) vi $fx;;
+#         *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
+#     esac
+# }}
 
 set previewer ctpv
 set cleaner ctpvclear

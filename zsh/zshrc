@@ -309,6 +309,9 @@ alias grep='grep --color=auto --exclude "tags"'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
+# \rm to bypass the alias
+alias rm='echo "This is not the command you are looking for. Maybe you need trash-cli !!!"; false'
+
 # Pipe anything into `clip` to forward it to Clipper
 alias clip="nc localhost 8377"
 

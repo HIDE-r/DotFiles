@@ -67,12 +67,12 @@ require("lazy").setup({
 		end
 	},
 
-	{
-		'akinsho/bufferline.nvim', 
-		version = "v3.*", 
-		dependencies = 'nvim-tree/nvim-web-devicons',
-		config = true, 
-	},
+	-- {
+	-- 	'akinsho/bufferline.nvim', 
+	-- 	version = "v3.*", 
+	-- 	dependencies = 'nvim-tree/nvim-web-devicons',
+	-- 	config = true, 
+	-- },
 
 	{
 		'lewis6991/gitsigns.nvim',
@@ -141,6 +141,7 @@ require("lazy").setup({
 		},
 		config = function()
 			require('telescope').load_extension('vim_bookmarks')
+			require('telescope').load_extension('macros')
 		end
 	},
 
@@ -352,6 +353,26 @@ require("lazy").setup({
 			vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
 		end,
 	},
+
+	{
+		'karb94/neoscroll.nvim',
+		event = "BufRead",
+		config = true,
+	},
+
+	{
+		"ecthelionvi/NeoComposer.nvim",
+		dependencies = { "kkharji/sqlite.lua" },
+		config = true,
+	},
+
+	-- debug
+	{
+		"rcarriga/nvim-dap-ui",
+		'theHamsta/nvim-dap-virtual-text',
+		dependencies = { "mfussenegger/nvim-dap" },
+	},
+
 
 	-- Treesitter
 	{
