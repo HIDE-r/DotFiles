@@ -10,7 +10,7 @@ wk.setup {
 wk.register({
 	r = {
 		name = "reload/resume",
-		s = { "<cmd>set hlsearch!<cr>"		, "highlight search" },
+		s = { "<cmd>nohlsearch<cr>"		, "no highlight search" },
 		l = { "<cmd>set list!<cr>"		, "list mode" },
 		n = { "<cmd>set number!<cr>"		, "line number" },
 		c = { "<cmd>ColorizerToggle<cr>"	, "color" },
