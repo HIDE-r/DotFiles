@@ -26,7 +26,7 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
+		-- ['<C-Space>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.abort(),
 		['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 
@@ -35,8 +35,8 @@ cmp.setup({
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
-			elseif has_words_before() then
-				cmp.complete()
+			-- elseif has_words_before() then
+			-- 	cmp.complete()
 			else
 				fallback()
 			end
@@ -55,6 +55,7 @@ cmp.setup({
 
 	sources = cmp.config.sources(
 	{
+		{ name = "copilot" },
 		{ name = 'nvim_lsp' },
 		-- { name = 'vsnip' }, -- For vsnip users.
 		{ name = 'luasnip' }, -- For luasnip users.
@@ -78,7 +79,8 @@ cmp.setup({
 				luasnip = "[LuaSnip]",
 				nvim_lua = "[Lua]",
 				latex_symbols = "[Latex]",
-			})
+			}),
+			symbol_map = { Copilot = "" }
 		}),
 	},
 })

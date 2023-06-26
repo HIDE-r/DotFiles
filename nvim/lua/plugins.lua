@@ -19,6 +19,11 @@ require("lazy").setup({
 		end
 	},
 
+	-- {
+	-- 	'mrjones2014/legendary.nvim',
+	-- 	config = true,
+	-- },
+
 	{
 		"rebelot/kanagawa.nvim",
 		lazy = false,
@@ -360,6 +365,28 @@ require("lazy").setup({
 		config = true,
 	},
 
+	-- Jump Position
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			require('leap').add_default_mappings()
+		end
+	},
+
+	{
+		"ggandor/flit.nvim",
+		opts = {
+			keys = { f = 'f', F = 'F', t = 't', T = 'T' },
+			-- A string like "nv", "nvo", "o", etc.
+			labeled_modes = "v",
+			multiline = true,
+			-- Like `leap`s similar argument (call-specific overrides).
+			-- E.g.: opts = { equivalence_classes = {} }
+			opts = {}
+		}
+	},
+
+	-- Marco
 	{
 		"ecthelionvi/NeoComposer.nvim",
 		dependencies = { "kkharji/sqlite.lua" },
@@ -368,11 +395,47 @@ require("lazy").setup({
 
 	-- debug
 	{
-		"rcarriga/nvim-dap-ui",
+		"mfussenegger/nvim-dap",
+		config = function()
+			require("conf.dap")
+		end
+	},
+	{
 		'theHamsta/nvim-dap-virtual-text',
 		dependencies = { "mfussenegger/nvim-dap" },
+		config = true
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = { "mfussenegger/nvim-dap" },
+		config = true
 	},
 
+	-- Copilot
+	-- {
+	-- 	"github/copilot.vim",
+	-- },
+	
+	{
+		"zbirenbaum/copilot.lua",
+		-- cmd = "Copilot",
+		-- event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
+		end
+	},
+
+	{
+		"zbirenbaum/copilot-cmp",
+		dependencies = "zbirenbaum/copilot.lua",
+		after = 'zbirenbaum/copilot.lua',
+		config = function ()
+			require("copilot_cmp").setup()
+		end
+	},
 
 	-- Treesitter
 	{

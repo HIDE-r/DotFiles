@@ -30,3 +30,4 @@ kp_enter_is_return:
 esc_is_change_mode:
   __append:
     - { when: always, accept: Release+Escape, toggle: ascii_mode}
+    - { when: always, accept: Control+space, toggle: ascii_mode}
