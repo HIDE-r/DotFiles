@@ -2,8 +2,6 @@ Host *
 	TCPKeepAlive yes
 	ServerAliveInterval 60
 
-	# Forward Clipper connection to remote host
-	RemoteForward 8377 localhost:8377
 
 	HostKeyAlgorithms +ssh-rsa
 	StrictHostKeyChecking no
@@ -46,15 +44,21 @@ HOST 206
         User hide_liao
         port 22
         IdentityFile ~/.ssh/id_rsa
+	# Forward Clipper connection to remote host
+	RemoteForward 8377 localhost:8377
 
 HOST 198
         HostName 10.118.81.198
         User hide_liao
         port 22
         IdentityFile ~/.ssh/id_rsa
+	# Forward Clipper connection to remote host
+	RemoteForward 8377 localhost:8377
 
 HOST 190
         HostName 10.118.81.190
         User hide_liao
         port 22
         IdentityFile ~/.ssh/id_rsa
+	# Forward Clipper connection to remote host
+	RemoteForward 8377 localhost:8377

@@ -28,8 +28,12 @@ wk.register({
 		p = { "<cmd>Lazy profile<cr>"		, "profile"},
 	},
 	d = {
-		name = "neogen",
+		name = "neogen/dap",
 		d = { "<cmd>Neogen<cr>"		, "annotation"},
+		r = { function() require'dap'.continue() end, "[Dap] start/continue"},
+		s = { function() require'dap'.step_into() end, "[Dap] step"},
+		n = { function() require'dap'.step_over() end, "[Dap] next"},
+		b = { function() require'dap'.toggle_breakpoint() end, "[Dap] breakpoint"},
 	},
 	-- d = {
 	-- 	name = "doxygen",
