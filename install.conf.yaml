@@ -48,6 +48,8 @@
       path: ./commitizen/czrc
     ~/.config/clash/config.yaml:
       path: ./clash/config.yaml
+    ~/.config/hypr:
+      path: ./hyprland
 
 - clean:
     ~/:
