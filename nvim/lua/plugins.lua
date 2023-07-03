@@ -359,11 +359,11 @@ require("lazy").setup({
 		end,
 	},
 
-	{
-		'karb94/neoscroll.nvim',
-		event = "BufRead",
-		config = true,
-	},
+	-- {
+	-- 	'karb94/neoscroll.nvim',
+	-- 	event = "BufRead",
+	-- 	config = true,
+	-- },
 
 	-- Jump Position
 	{
