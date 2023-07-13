@@ -29,41 +29,51 @@ STAMP_DIR:=${TOPDIR}/tmp/stamp
 
 default: help
 
-#: daily update
-daily_update:
-	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Daily update Start=====$(_N)\n'
-	@ $(MAKE) git_update_submodule
-	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Daily update End=====$(_N)\n'
+DAILY_UPDATE_ACTION+=git_update_submodule
+DAILY_UPDATE_ACTION+=zinit_update
+#: Daily update
+daily_update: pre_daily_update $(DAILY_UPDATE_ACTION) post_daily_update
 
-#: init all submodule from parent repo
+###
+### git submodule
+###
+#: Init all submodule from parent repo
 git_init_submodule:
-	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Reset all submodule Start=====$(_N)\n'
+	@ $(ECHO) '\n$(_Y)===== [Submodule init] Start =====$(_N)\n'
 	git submodule update --init --recursive
-	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Reset all submodule End=====$(_N)\n'
+	@ $(ECHO) '\n$(_Y)===== [Submodule init] End =====$(_N)\n'
 
-#: update all submodule from remote
+#: Update all submodule from remote
 git_update_submodule:
-	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Update all submodule from remote Start=====$(_N)\n'
+	@ $(ECHO) '\n$(_Y)===== [Submodule update] Start =====$(_N)\n'
 	git submodule update --remote
-	@ $(ECHO) '\n$(_Y)=====[$(MAKELEVEL)] Update all submodule from remote End=====$(_N)\n'
+	@ $(ECHO) '\n$(_Y)===== [Submodule update] End =====$(_N)\n'
 
-#: export git-crypt key
+###
+### git-crypt
+###
+#: Export git-crypt key
 git-crypt_export_key:
 	git-crypt export-key git-crypt.key
 
-#: unlock git-crypt encryption
+#: Unlock git-crypt encryption
 git-crypt_unlock:
 	git-crypt unlock git-crypt.key
 
-create_tmp:
-	${MKDIR} ${TMP_DIR}
-	${MKDIR} ${STAMP_DIR}
+###
+### miscellaneous
+###
 
-prepare: create_tmp
-	@ $(ECHO) '=====Prepare Completely====='
-	touch ${STAMP_DIR}/stamp_prepare_completed
+zinit_update:
+	zinit update
+
+pre_daily_update:
+	@ $(ECHO) '\n$(_Y)===== [Daily update] Start =====$(_N)\n'
+
+post_daily_update:
+	@ $(ECHO) '\n$(_Y)===== [Daily update] End =====$(_N)\n'
 
 help:
 	@ remake --tasks
 
-.PHONY:all 
+.PHONY: daily_update

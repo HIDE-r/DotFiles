@@ -50,6 +50,8 @@
       path: ./clash/config.yaml
     ~/.config/hypr:
       path: ./hyprland
+    ~/.config/waybar:
+      path: ./waybar
 
 - clean:
     ~/:
