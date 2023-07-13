@@ -88,7 +88,7 @@ zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/vi-mode
 zinit snippet OMZ::plugins/history-substring-search/history-substring-search.zsh
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
-ZSH_TMUX_DEFAULT_SESSION_NAME=$(tmux list-sessions | wc -l)
+ZSH_TMUX_DEFAULT_SESSION_NAME=$(tmux list-sessions | sed -rn '/^[0-9]+:.*/p' | awk -F ':' 'BEGIN {max=0}{ if($1 > max){max=$1} } END {print max}' | awk -v line_counter=$(tmux list-sessions | wc -l) '{print ($0 < line_counter) ? line_counter:$0+1}' )
 zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
 #zinit snippet OMZ::lib/completion.zsh
 #zinit snippet OMZ::lib/key-bindings.zsh
