@@ -14,7 +14,7 @@ config.color_scheme = "kanagawabones"
 
 config.font = wezterm.font_with_fallback {
 	{ family="Comic Code", weight="Medium", style=Regular, italic=false },
-	-- { family="MesloLGS NF", style=Regular, italic=false },
+	{ family="MesloLGS NF", style=Regular, italic=false },
 	-- { family="Operator Mono SSm", weight="Book", style=Book, italic=false },
 }
 config.font_size = 12.0

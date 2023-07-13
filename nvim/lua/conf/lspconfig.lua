@@ -1,11 +1,11 @@
--- local lspconfig = require'lspconfig'
--- lspconfig.util.default_config = vim.tbl_extend(
--- "force",
--- lspconfig.util.default_config,
--- {
--- 	autostart = false,
--- }
--- )
+local lspconfig = require'lspconfig'
+lspconfig.util.default_config = vim.tbl_extend(
+"force",
+lspconfig.util.default_config,
+{
+	autostart = false,
+}
+)
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.diagnostic.disable()
@@ -73,6 +73,10 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(lsp_capabiliti
 require('lspconfig')['clangd'].setup {
 	capabilities = capabilities,
 	semanticHighlighting=true,
+	cmd = {
+		"clangd",
+		"--offset-encoding=utf-16",
+	},
 }
 
 require('lspconfig')['lua_ls'].setup {

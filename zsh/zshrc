@@ -86,6 +86,10 @@ zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/vi-mode
 # zinit snippet https://${ZINIT_RAW_GITHUB}/kutsan/zsh-system-clipboard/master/zsh-system-clipboard.zsh
 
 zinit snippet OMZ::plugins/history-substring-search/history-substring-search.zsh
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=false
+ZSH_TMUX_DEFAULT_SESSION_NAME=$(tmux list-sessions | wc -l)
+zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
 #zinit snippet OMZ::lib/completion.zsh
 #zinit snippet OMZ::lib/key-bindings.zsh
 #zinit snippet OMZ::lib/theme-and-appearance.zsh
