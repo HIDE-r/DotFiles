@@ -316,6 +316,7 @@ alias cman='man -M /usr/share/man/zh_CN'
 alias grep='grep --color=auto --exclude "tags"'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias beep='print "\a"'
 
 # \rm to bypass the alias
 alias rm='echo "This is not the command you are looking for. Maybe you need trash-cli !!!"; false'
