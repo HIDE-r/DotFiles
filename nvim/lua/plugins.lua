@@ -239,15 +239,6 @@ require("lazy").setup({
 		},
 	},
 
-	--- Remote server clipboard
-	{
-		'wincent/vim-clipper',
-		cmd="Clip",
-		init = function()
-			vim.g.ClipperMap=0
-		end
-	},
-
 	--- noice
 	-- {
 	-- 	"folke/noice.nvim",
