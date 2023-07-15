@@ -24,14 +24,16 @@ Host remote_198
 	Port 		22
 	User 		hide_liao
 	IdentityFile 	~/.ssh/id_arcadyan
-	ProxyCommand 	ssh -q -W %h:%p arcadyan_jumper
+	ProxyJump	arcadyan_jumper
+	# ProxyCommand 	ssh -q -W %h:%p arcadyan_jumper
 
 Host remote_206
 	Hostname 	10.118.81.206
 	Port 		22
 	User 		hide_liao
 	IdentityFile 	~/.ssh/id_arcadyan
-	ProxyCommand 	ssh -q -W %h:%p arcadyan_jumper
+	ProxyJump	arcadyan_jumper
+	# ProxyCommand 	ssh -q -W %h:%p arcadyan_jumper
 
 Host tencent
 	Hostname 	106.52.194.228

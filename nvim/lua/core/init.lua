@@ -49,6 +49,9 @@ vim.o.termguicolors=true
 -- 显示不可见字符格式，set list打开，set nolist关闭
 vim.o.listchars="eol:$,tab:>-,trail:-,extends:>,precedes:<,nbsp:+"
 
+-- 系统粘贴板
+vim.o.clipboard=vim.o.clipboard .. "unnamedplus"
+
 -- leader key
 vim.g.mapleader=" "
 vim.g.maplocalleadhr=','
