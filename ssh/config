@@ -24,6 +24,10 @@ Host remote_198
 	Port 		22
 	User 		hide_liao
 	IdentityFile 	~/.ssh/id_arcadyan
+	# lemonade forward
+	RemoteForward	2489 127.0.0.1:2489
+	# clash forward
+	RemoteForward	7892 127.0.0.1:7892
 	ProxyJump	arcadyan_jumper
 	# ProxyCommand 	ssh -q -W %h:%p arcadyan_jumper
 
@@ -32,6 +36,10 @@ Host remote_206
 	Port 		22
 	User 		hide_liao
 	IdentityFile 	~/.ssh/id_arcadyan
+	# lemonade forward
+	RemoteForward	2489 127.0.0.1:2489
+	# clash forward
+	RemoteForward	7892 127.0.0.1:7892
 	ProxyJump	arcadyan_jumper
 	# ProxyCommand 	ssh -q -W %h:%p arcadyan_jumper
 
