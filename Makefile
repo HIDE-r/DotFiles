@@ -86,11 +86,11 @@ tldr_update:
 	tldr -u
 
 pkgfile_update: bitwarden_get_password
-	expect -c 'spawn sudo pkgfile -u; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
+	@ expect -c 'spawn sudo pkgfile -u; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
 
 pacman_update: bitwarden_get_password
 	@ $(ECHO) '\n$(_Y)===== [Pacman system update] Start =====$(_N)\n'
-	expect -c 'spawn sudo pacman -Syu --noconfirm; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
+	@ expect -c 'spawn sudo pacman -Syu --noconfirm; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
 	@ $(ECHO) '\n$(_Y)===== [Pacman system update] End =====$(_N)\n'
 
 pre_daily_update:
