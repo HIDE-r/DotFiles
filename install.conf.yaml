@@ -52,6 +52,8 @@
       path: ./hyprland
     ~/.config/waybar:
       path: ./waybar
+    ~/.config/mako:
+      path: ./mako
 
 - clean:
     ~/:
