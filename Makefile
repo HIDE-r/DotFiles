@@ -31,6 +31,7 @@ default: help
 
 DAILY_UPDATE_ACTION+=git_update_submodule
 DAILY_UPDATE_ACTION+=zinit_update
+DAILY_UPDATE_ACTION+=tldr_update
 #: Daily update
 daily_update: pre_daily_update $(DAILY_UPDATE_ACTION) post_daily_update
 
@@ -66,6 +67,12 @@ git-crypt_unlock:
 
 zinit_update:
 	zinit update
+
+tldr_update:
+	tldr -u
+
+pkgfile_update:
+	sudo pkgfile -u
 
 pre_daily_update:
 	@ $(ECHO) '\n$(_Y)===== [Daily update] Start =====$(_N)\n'

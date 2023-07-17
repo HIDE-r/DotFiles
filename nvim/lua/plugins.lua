@@ -462,12 +462,7 @@ require("lazy").setup({
 		dependencies = { "mfussenegger/nvim-dap" },
 		config = true
 	},
-
-	-- Copilot
-	-- {
-	-- 	"github/copilot.vim",
-	-- },
-	
+--[[
 	{
 		"zbirenbaum/copilot.lua",
 		-- cmd = "Copilot",
@@ -488,7 +483,7 @@ require("lazy").setup({
 			require("copilot_cmp").setup()
 		end
 	},
-
+]]
 	-- Treesitter
 	{
 		'nvim-treesitter/nvim-treesitter',
