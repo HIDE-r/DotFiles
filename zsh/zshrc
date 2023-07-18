@@ -128,6 +128,7 @@ zinit ice as"program" from"gh-r" pick="*/bat"
 zinit ${ZINIT_LOAD_METHOD} sharkdp/bat
 fi
 export BAT_PAGER="less -QRF"
+export PAGER="less -QRF"
 
 # fd
 if ! installed fd; then
