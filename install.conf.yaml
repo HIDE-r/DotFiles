@@ -4,8 +4,6 @@
       relink: true
 
 - link:
-    ~/.gitconfig:
-      path: git/gitconfig
     ~/.zshrc:
       path: zsh/zshrc
     ~/.tmux.conf:
