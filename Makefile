@@ -34,6 +34,7 @@ DAILY_UPDATE_ACTION+=zinit_update
 DAILY_UPDATE_ACTION+=tldr_update
 DAILY_UPDATE_ACTION+=pacman_update
 DAILY_UPDATE_ACTION+=pkgfile_update
+DAILY_UPDATE_ACTION+=neovim_plugin_update
 
 #: Daily update
 daily_update: pre_daily_update bitwarden_get_password $(DAILY_UPDATE_ACTION) post_daily_update
@@ -86,12 +87,19 @@ tldr_update:
 	tldr -u
 
 pkgfile_update: bitwarden_get_password
+	@ $(ECHO) '\n$(_Y)===== [Pkgfile update] Start =====$(_N)\n'
 	@ expect -c 'spawn sudo pkgfile -u; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
+	@ $(ECHO) '\n$(_Y)===== [Pkgfile update] End =====$(_N)\n'
 
 pacman_update: bitwarden_get_password
 	@ $(ECHO) '\n$(_Y)===== [Pacman system update] Start =====$(_N)\n'
 	@ expect -c 'spawn sudo pacman -Syu --noconfirm; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
 	@ $(ECHO) '\n$(_Y)===== [Pacman system update] End =====$(_N)\n'
+
+neovim_plugin_update:
+	@ $(ECHO) '\n$(_Y)===== [$@ update] Start =====$(_N)\n'
+	nvim -i NONE -V1 --headless -c 'lua require("lazy").sync({wait=true,show=false})' +qa
+	@ $(ECHO) '\n$(_Y)===== [$@ update] End =====$(_N)\n'
 
 pre_daily_update:
 	@ $(ECHO) '\n$(_Y)===== [Daily update] Start =====$(_N)\n'
