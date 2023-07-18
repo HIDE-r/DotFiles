@@ -1,0 +1,138 @@
+{
+	"layer": "top",
+	"position": "top",
+	//"modules-left": [ "custom/launcher","wlr/workspaces","temperature","custom/wall","mpd","custom/cava-internal" ],
+	"modules-left": [ 
+		"custom/launcher",
+		"wlr/workspaces",
+		"temperature",
+		"custom/wall",
+		"mpd",
+		"custom/cava-internal"
+	],
+	"modules-center": [
+		"clock"
+	],
+	"modules-right": [
+		"pulseaudio",
+		"backlight",
+		"memory",
+		"cpu",
+		"network",
+		"battery",
+		"custom/powermenu",
+		"tray"
+	],
+	"custom/launcher": {
+		"format": " ",
+		//"format": " ",
+		"tooltip": false,
+	},
+	"custom/wall": {
+		//"on-click": "wallpaper_random",
+		//"on-click-middle": "default_wall",
+		//"on-click-right": "killall dynamic_wallpaper || dynamic_wallpaper &",
+		"format": " 󰠖 ",
+		//"format": " 󰺔 ",
+		"tooltip": false,
+	},
+	"custom/cava-internal": {
+		"exec": "sleep 1s && cava -p ~/.config/cava/config1 | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'",
+		"tooltip": false,
+	},
+	"wlr/workspaces": {
+		"format": "{icon}",
+		"on-click": "activate",
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": "",
+		},
+		"tooltip": false,
+	},
+	"backlight": {
+		"device": "intel_backlight",
+		"on-scroll-up": "light -A 5",
+		"on-scroll-down": "light -U 5",
+		"format": "{icon} {percent}%",
+		"format-icons": [ "󰃝","󰃞","󰃟","󰃠" ],
+	},
+	"pulseaudio": {
+		"scroll-step": 1,
+		"format": "{icon} {volume}%",
+		"format-muted": "󰖁 Muted",
+		"format-icons": {
+			"default": [ "","","" ],
+		},
+		"on-click": "pamixer -t",
+		"tooltip": false,
+	},
+	"battery": {
+		"interval": 10,
+		"states": {
+			"warning": 20,
+			"critical": 10,
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [ "󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹" ],
+		"format-full": "{icon} {capacity}%",
+		"format-charging": "󰂄 {capacity}%",
+		"tooltip": false,
+	},
+	"clock": {
+		"interval": 1,
+		"format": "{:%I:%M %p  %A %b %d}",
+		"tooltip": false,
+	},
+	"memory": {
+		"interval": 1,
+		"format": " {percentage}%",
+		"states": {
+			"warning": 85,
+		},
+	},
+	"cpu": {
+		"interval": 1,
+		"format": " {usage}%",
+	},
+	"mpd": {
+		"max-length": 25,
+		"format": "<span foreground='#bb9af7'></span> {title}-{artist}",
+		"format-paused": " {title}-{artist}",
+		"format-stopped": "<span foreground='#bb9af7'></span>",
+        	"unknown-tag": "N/A",
+		"format-disconnected": "",
+		"on-click": "mpc --quiet toggle",
+		"on-click-right": "mpc update; mpc ls | mpc add",
+		"on-click-middle": "kitty --class='ncmpcpp' ncmpcpp ",
+		"on-scroll-up": "mpc --quiet prev",
+		"on-scroll-down": "mpc --quiet next",
+		"smooth-scrolling-threshold": 5,
+		"tooltip-format": "{elapsedTime:%M:%S}/{totalTime:%H:%M:%S}",
+	},
+	"network": {
+		"format-disconnected": "󰯡 Disconnected",
+		"format-ethernet": "󰈀 {ifname} ({ipaddr})",
+		"format-linked": "󰖪 {essid} (No IP)",
+		"format-wifi": "󰖩 {essid}",
+		"interval": 1,
+		"tooltip": false,
+	},
+	"temperature": {
+		"tooltip": false,
+		"hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+		"format": " {temperatureC}°C",
+	},
+	"custom/powermenu": {
+		"format": "",
+		//"on-click": "pkill rofi || ~/.config/rofi/powermenu.sh",
+		"on-click": "wlogout",
+		"tooltip": false,
+	},
+	"tray": {
+		"icon-size": 15,
+		"spacing": 5,
+	},
+}
