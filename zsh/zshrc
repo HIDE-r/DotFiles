@@ -127,6 +127,7 @@ if ! installed bat; then
 zinit ice as"program" from"gh-r" pick="*/bat"
 zinit ${ZINIT_LOAD_METHOD} sharkdp/bat
 fi
+export BAT_PAGER="less -QRF"
 
 # fd
 if ! installed fd; then
@@ -319,6 +320,7 @@ alias cman='man -M /usr/share/man/zh_CN'
 alias grep='grep --color=auto --exclude "tags"'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias less='less -q'
 alias beep='print "\a"'
 
 # \rm to bypass the alias
