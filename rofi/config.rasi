@@ -3,10 +3,12 @@ configuration{
     lines: 5;
     font: "Monaco 15";
     show-icons: true;
-    icon-theme: "Oranchelo";
+    icon-theme: "Reversal-green";
     terminal: "wezterm start";
     drun-display-format: "{icon}{name}";
-    display-drun: "  ";
+    display-drun: " ";
+    display-window: " ";
+    display-run: " ";
     location: 0;
     separator-style: "solid";
     disable-history: false;
@@ -54,7 +56,8 @@ inputbar {
 
 prompt {
     background-color: @blue;
-    padding: 5px 5px 0px;
+    padding: 8px 10px 0px 13px;
+    //padding: 5px 10px 0px;
     text-color: @bg-col;
     border-radius: 3px;
 }
