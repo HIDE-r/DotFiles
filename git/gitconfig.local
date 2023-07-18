@@ -1,13 +1,16 @@
-[http]
+# Nedd add follow line to ~/.gitconfig
+# [include]
+#         path = ~/DotFiles/git/gitconfig.local
+
+# [http]
 #	proxy = socks5://127.0.0.1:1080
-[https]
+# [https]
 #	proxy = socks5://127.0.0.1:1080
 [user]
 	email = LKangN@outlook.com
 	name = HideOnLie
 [alias]
 	st = status -s -b
-	br = branch -v
 	logs = log --graph --stat
 [color]
 	ui = auto
