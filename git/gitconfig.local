@@ -7,8 +7,8 @@
 # [https]
 #	proxy = socks5://127.0.0.1:1080
 [user]
-	email = LKangN@outlook.com
-	name = HideOnLie
+	email = lkangn.collin@gmail.com
+	name = Collin L
 [alias]
 	st = status -s -b
 	logs = log --graph --stat
