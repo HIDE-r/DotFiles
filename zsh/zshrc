@@ -104,6 +104,12 @@ zinit wait"1" lucid ${ZINIT_LIGHT_MODE} for \
 	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh \
 	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh \
 
+
+# vi 模式剪切板复制到系统
+zinit ice wait lucid
+zinit ${ZINIT_LOAD_METHOD} kutsan/zsh-system-clipboard
+ZSH_SYSTEM_CLIPBOARD_METHOD=wlc
+
 # 语法高亮
 zinit ice wait lucid
 zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-syntax-highlighting
