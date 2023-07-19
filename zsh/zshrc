@@ -133,8 +133,6 @@ if ! installed bat; then
 zinit ice as"program" from"gh-r" pick="*/bat"
 zinit ${ZINIT_LOAD_METHOD} sharkdp/bat
 fi
-export BAT_PAGER="less -QRF"
-export PAGER="less -QRF"
 
 # fd
 if ! installed fd; then
@@ -327,8 +325,9 @@ alias cman='man -M /usr/share/man/zh_CN'
 alias grep='grep --color=auto --exclude "tags"'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias less='less -q'
-alias beep='print "\a"'
+
+bell_message=$(tmux display-message -p 'Bell in session ❐ #{session_name} ● #{window_index}:#{window_name}')
+alias bell="print '\a'; notify-send -u critical '${bell_message}'"
 
 # \rm to bypass the alias
 # alias rm='echo "This is not the command you are looking for. Maybe you need trash-cli !!!"; false'
