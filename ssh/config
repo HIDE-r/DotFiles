@@ -54,21 +54,27 @@ HOST 206
         User hide_liao
         port 22
         IdentityFile ~/.ssh/id_rsa
-	# Forward Clipper connection to remote host
-	RemoteForward 8377 localhost:8377
+        # lemonade forward
+        RemoteForward  2489 127.0.0.1:2489
+        # clash forward
+        RemoteForward  7892 127.0.0.1:7892
 
 HOST 198
         HostName 10.118.81.198
         User hide_liao
         port 22
         IdentityFile ~/.ssh/id_rsa
-	# Forward Clipper connection to remote host
-	RemoteForward 8377 localhost:8377
+        # lemonade forward
+        RemoteForward  2489 127.0.0.1:2489
+        # clash forward
+        RemoteForward  7892 127.0.0.1:7892
 
 HOST 190
         HostName 10.118.81.190
         User hide_liao
         port 22
         IdentityFile ~/.ssh/id_rsa
-	# Forward Clipper connection to remote host
-	RemoteForward 8377 localhost:8377
+        # lemonade forward
+        RemoteForward  2489 127.0.0.1:2489
+        # clash forward
+        RemoteForward  7892 127.0.0.1:7892
