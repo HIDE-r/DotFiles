@@ -1,31 +1,4 @@
-TOPDIR:=${CURDIR}
-
-export IS_TTY=$(if $(MAKE_TERMOUT),1,0)
-
-# ANSI 转义序列
-ifeq ($(IS_TTY),1)
-  ifneq ($(strip $(NO_COLOR)),1)
-    _Y:=\033[33m
-    _R:=\033[31m
-    _N:=\033[m
-  endif
-endif
-
-
-EMPTY:=
-SPACE:= $(EMPTY) $(EMPTY)
-GITHUB_REPLACE=hub.fastgit.org
-RAW_GITHUB_REPLACE=raw.staticdn.net
-
-# Command
-NVIM ?= nvim
-MKDIR ?= mkdir
-ECHO ?= echo -e
-MAKE ?= make
-
-# Directory Path
-TMP_DIR:=${TOPDIR}/tmp
-STAMP_DIR:=${TOPDIR}/tmp/stamp
+include rules.mk
 
 default: help
 
@@ -33,8 +6,10 @@ DAILY_UPDATE_ACTION+=git_update_submodule
 DAILY_UPDATE_ACTION+=zinit_update
 DAILY_UPDATE_ACTION+=tldr_update
 DAILY_UPDATE_ACTION+=pacman_update
+DAILY_UPDATE_ACTION+=paru_update
 DAILY_UPDATE_ACTION+=pkgfile_update
 DAILY_UPDATE_ACTION+=neovim_plugin_update
+DAILY_UPDATE_ACTION+=tmux_plugin_update
 
 #: Daily update
 daily_update: pre_daily_update bitwarden_get_password $(DAILY_UPDATE_ACTION) post_daily_update
@@ -74,6 +49,25 @@ bitwarden_unlock:
 bitwarden_get_password: bitwarden_unlock
 	$(eval export ROOT_PASSWD:=$(shell bw get password "ArchLinux-R9000K-root"))
 
+
+###
+### ArchLinux Package Manager
+###
+pkgfile_update: bitwarden_get_password
+	@ $(ECHO) '\n$(_Y)===== [Pkgfile update] Start =====$(_N)\n'
+	@ expect -c 'spawn sudo pkgfile -u; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
+	@ $(ECHO) '\n$(_Y)===== [Pkgfile update] End =====$(_N)\n'
+
+pacman_update: bitwarden_get_password
+	@ $(ECHO) '\n$(_Y)===== [Pacman system update] Start =====$(_N)\n'
+	@ expect -c 'spawn sudo pacman -Syu --noconfirm; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
+	@ $(ECHO) '\n$(_Y)===== [Pacman system update] End =====$(_N)\n'
+
+paru_update: bitwarden_get_password
+	@ $(ECHO) '\n$(_Y)===== [paru system update] Start =====$(_N)\n'
+	@ expect -c 'spawn paru -Syu --noconfirm; expect "password for*"; send "$(ROOT_PASSWD)\r"; interact'
+	@ $(ECHO) '\n$(_Y)===== [paru system update] End =====$(_N)\n'
+
 ###
 ### miscellaneous
 ###
@@ -86,20 +80,15 @@ zinit_update:
 tldr_update:
 	tldr -u
 
-pkgfile_update: bitwarden_get_password
-	@ $(ECHO) '\n$(_Y)===== [Pkgfile update] Start =====$(_N)\n'
-	@ expect -c 'spawn sudo pkgfile -u; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
-	@ $(ECHO) '\n$(_Y)===== [Pkgfile update] End =====$(_N)\n'
-
-pacman_update: bitwarden_get_password
-	@ $(ECHO) '\n$(_Y)===== [Pacman system update] Start =====$(_N)\n'
-	@ expect -c 'spawn sudo pacman -Syu --noconfirm; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
-	@ $(ECHO) '\n$(_Y)===== [Pacman system update] End =====$(_N)\n'
-
 neovim_plugin_update:
-	@ $(ECHO) '\n$(_Y)===== [$@ update] Start =====$(_N)\n'
+	@ $(ECHO) '\n$(_Y)===== [$@] Start =====$(_N)\n'
 	nvim -i NONE -V1 --headless -c 'lua require("lazy").sync({wait=true,show=false})' +qa
-	@ $(ECHO) '\n$(_Y)===== [$@ update] End =====$(_N)\n'
+	@ $(ECHO) '\n$(_Y)===== [$@] End =====$(_N)\n'
+
+tmux_plugin_update:
+	@ $(ECHO) '\n$(_Y)===== [$@] Start =====$(_N)\n'
+	~/.tmux/plugins/tpm/bin/update_plugins all
+	@ $(ECHO) '\n$(_Y)===== [$@] End =====$(_N)\n'
 
 pre_daily_update:
 	@ $(ECHO) '\n$(_Y)===== [Daily update] Start =====$(_N)\n'
@@ -107,7 +96,5 @@ pre_daily_update:
 post_daily_update:
 	@ $(ECHO) '\n$(_Y)===== [Daily update] End =====$(_N)\n'
 
-help:
-	@ remake --tasks
 
 .PHONY: daily_update
