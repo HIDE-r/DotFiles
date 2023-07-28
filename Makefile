@@ -90,6 +90,12 @@ tmux_plugin_update:
 	~/.tmux/plugins/tpm/bin/update_plugins all
 	@ $(ECHO) '\n$(_Y)===== [$@] End =====$(_N)\n'
 
+rime_sync:
+	@ $(ECHO) '\n$(_Y)===== [$@] Start =====$(_N)\n'
+	~/ScriptTools/Rime/sync_fcitx5.sh
+	@ $(ECHO) '\n$(_Y)===== [$@] End =====$(_N)\n'
+
+
 pre_daily_update:
 	@ $(ECHO) '\n$(_Y)===== [Daily update] Start =====$(_N)\n'
 
