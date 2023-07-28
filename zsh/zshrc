@@ -214,9 +214,9 @@ bindkey '^g' _navi_widget
 ## Options to fzf command
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_COMPLETION_OPTS='--border --info=inline'
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+export FZF_DEFAULT_COMMAND='fd -I --type f --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude ".git" ."
+export FZF_ALT_C_COMMAND="fd -I --type d --hidden --follow --exclude ".git" ."
 export FZF_ALT_C_OPTS="--preview 'exa -T -L1 {}'"
 
 _fzf_compgen_path() {
@@ -342,6 +342,7 @@ export TERM=xterm-256color
 export BROWSER=microsoft-edge-stable
 export XCURSOR_PATH=~/.local/share/icons:${XCURSOR_PATH}
 export MANPAGER="nvim +Man\!"
+export MENUCONFIG_COLOR=mono
 
 PATH=${PATH}:/home/collin/Work/Scripts
 
