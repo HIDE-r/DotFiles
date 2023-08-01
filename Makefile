@@ -12,20 +12,31 @@ DAILY_UPDATE_ACTION+=pkgfile_update
 DAILY_UPDATE_ACTION+=neovim_plugin_update
 DAILY_UPDATE_ACTION+=tmux_plugin_update
 
+DOTBOT_DIR=.dotbot
+DOTBOT_BIN=bin/dotbot
+DOTBOT_CONFIG=install.conf.yaml
+
+#: Configuration Install
+dotbot:
+	@$(CURDIR)/$(DOTBOT_DIR)/$(DOTBOT_BIN) -d $(CURDIR) -c $(DOTBOT_CONFIG)
+
 #: Daily update
 daily_update: pre_daily_update bitwarden_get_password $(DAILY_UPDATE_ACTION) post_daily_update
 
 ###
 ### git submodule
 ###
+git_sync_submodule:
+	git submodule sync --recursive --quiet
+
 #: Init all submodule from parent repo
-git_init_submodule:
+git_init_submodule:git_sync_submodule
 	@ $(ECHO) '\n$(_Y)===== [Submodule init] Start =====$(_N)\n'
 	git submodule update --init --recursive
 	@ $(ECHO) '\n$(_Y)===== [Submodule init] End =====$(_N)\n'
 
 #: Update all submodule from remote
-git_update_submodule:
+git_update_submodule:git_sync_submodule
 	@ $(ECHO) '\n$(_Y)===== [Submodule update] Start =====$(_N)\n'
 	git submodule update --remote
 	@ $(ECHO) '\n$(_Y)===== [Submodule update] End =====$(_N)\n'
