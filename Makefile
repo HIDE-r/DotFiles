@@ -5,6 +5,7 @@ default: help
 DAILY_UPDATE_ACTION+=git_update_submodule
 DAILY_UPDATE_ACTION+=zinit_update
 DAILY_UPDATE_ACTION+=tldr_update
+DAILY_UPDATE_ACTION+=rime_sync
 DAILY_UPDATE_ACTION+=pacman_update
 DAILY_UPDATE_ACTION+=paru_update
 DAILY_UPDATE_ACTION+=pkgfile_update
