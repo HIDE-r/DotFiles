@@ -344,7 +344,7 @@ export XCURSOR_PATH=~/.local/share/icons:${XCURSOR_PATH}
 export MANPAGER="nvim +Man\!"
 export MENUCONFIG_COLOR=mono
 
-PATH=${PATH}:/home/collin/Work/Scripts
+export PATH=/home/collin/.local/bin:${PATH}:/home/collin/Work/Scripts
 
 ### 按键绑定
 typeset -g -A key
