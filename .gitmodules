@@ -10,6 +10,6 @@
 	url = git@github.com:HideOnLie/Cheatsheet-navi.git
 	branch = main
 	update=rebase
-[submodule "tpm"]
-	path = tpm
-	url = https://github.com/tmux-plugins/tpm
+[submodule ".tpm"]
+	path = .tpm
+	url = git@github.com:tmux-plugins/tpm.git
