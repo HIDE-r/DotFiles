@@ -31,7 +31,7 @@
     ~/.config/lf:
       path: lf
     ~/.local/share/navi/cheats/HideOnLie__Cheatsheet-navi:
-      path: navi/cheatsheet
+      path: navi
     ~/.ssh/config:
       path: ssh/config
     ~/.local/share/fcitx5/rime/clover.dict.yaml:
