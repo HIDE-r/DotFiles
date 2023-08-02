@@ -99,7 +99,7 @@ neovim_plugin_update:
 
 tmux_plugin_update:
 	@ $(ECHO) '\n$(_Y)===== [$@] Start =====$(_N)\n'
-	~/.tmux/plugins/tpm/bin/update_plugins all
+	~/DotFiles/.tpm/bin/update_plugins all
 	@ $(ECHO) '\n$(_Y)===== [$@] End =====$(_N)\n'
 
 rime_sync:
