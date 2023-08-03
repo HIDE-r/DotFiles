@@ -313,7 +313,7 @@ if installed bat;then
 fi
 
 if installed rg;then
-    alias rg='rg -g '!tags' -g '!cscope.out''
+    alias rg='rg -g '!tags' -g '!cscope.out' -g '!compile_commands.json''
 fi
 
 if installed viddy;then
