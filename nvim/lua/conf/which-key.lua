@@ -141,11 +141,13 @@ wk.register({
 		a= { "code action"},
 		s= { "<cmd>LspStart<cr>", "start"},
 	},
-	g = {
+	s = {
 		name = "lspsaga",
-		h = { "<cmd>Lspsaga lsp_finder<cr>"		, "symbol's definition"},
+		f = { "<cmd>Lspsaga finder def+ref+imp<cr>"			, "symbol's definition"},
 		d = { "<cmd>Lspsaga peek_definition<cr>"	, "definition"},
 		t = { "<cmd>Lspsaga peek_type_definition<cr>"	, "type definition"},
+		k = { "<cmd>Lspsaga hover_doc<cr>"		, "hover doc"},
+		K = { "<cmd>Lspsaga hover_doc ++keep<cr>"	, "hover doc(pin)"},
 	},
 	b = {
 		name = "bookmark",

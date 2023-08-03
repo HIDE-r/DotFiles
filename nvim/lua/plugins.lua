@@ -534,7 +534,7 @@ require("lazy").setup({
 	},
 
 	{
-		"glepnir/lspsaga.nvim",
+		"nvimdev/lspsaga.nvim",
 		event = 'LspAttach',
 		config = function()
 			require("lspsaga").setup({})
@@ -544,6 +544,16 @@ require("lazy").setup({
 			--Please make sure you install markdown and markdown_inline parser
 			{"nvim-treesitter/nvim-treesitter"}
 		}
+	},
+
+	-- Standalone UI for nvim-lsp progress
+	{
+		"j-hui/fidget.nvim",
+		tag = "legacy",
+		event = "LspAttach",
+		opts = {
+			-- options
+		},
 	},
 
 	-- Snippet Engine
@@ -564,7 +574,7 @@ require("lazy").setup({
 
 	{
 		'hrsh7th/nvim-cmp',
-		event = "VeryLazy",
+		event = "BufRead",
 		dependencies = {
 			{'hrsh7th/cmp-nvim-lsp', dependencies = 'nvim-lspconfig'},
 			{'hrsh7th/cmp-path' },
