@@ -1,11 +1,11 @@
-local lspconfig = require'lspconfig'
-lspconfig.util.default_config = vim.tbl_extend(
-"force",
-lspconfig.util.default_config,
-{
-	autostart = false,
-}
-)
+-- local lspconfig = require'lspconfig'
+-- lspconfig.util.default_config = vim.tbl_extend(
+-- 	"force",
+-- 	lspconfig.util.default_config,
+-- 	{
+-- 		autostart = false,
+-- 	}
+-- )
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.diagnostic.disable()
@@ -95,6 +95,8 @@ require('lspconfig')['lua_ls'].setup {
 			workspace = {
 				-- Make the server aware of Neovim runtime files
 				library = vim.api.nvim_get_runtime_file("", true),
+				-- FIXME: https://github.com/LuaLS/lua-language-server/discussions/1688
+				checkThirdParty = false,
 			},
 			-- Do not send telemetry data containing a randomized but unique identifier
 			telemetry = {
@@ -113,5 +115,9 @@ require('lspconfig')['bashls'].setup {
 }
 
 require('lspconfig')['pyright'].setup {
+	capabilities = capabilities,
+}
+
+require('lspconfig')['cmake'].setup {
 	capabilities = capabilities,
 }
