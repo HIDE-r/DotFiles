@@ -2,10 +2,15 @@ Host *
 	TCPKeepAlive yes
 	ServerAliveInterval 60
 
+	LogLevel ERROR
 
 	HostKeyAlgorithms +ssh-rsa
 	StrictHostKeyChecking no
     	UserKnownHostsFile /dev/null
+
+Host aur.archlinux.org
+	IdentityFile ~/.ssh/aur
+	User aur
 
 Host github.com
 	Hostname ssh.github.com
