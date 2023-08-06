@@ -146,6 +146,7 @@ wk.register({
 		f = { "<cmd>Lspsaga finder def+ref+imp<cr>"			, "symbol's definition"},
 		d = { "<cmd>Lspsaga peek_definition<cr>"	, "definition"},
 		t = { "<cmd>Lspsaga peek_type_definition<cr>"	, "type definition"},
+		a = { "<cmd>Lspsaga code_action<cr>"		, "code action"},
 		k = { "<cmd>Lspsaga hover_doc<cr>"		, "hover doc"},
 		K = { "<cmd>Lspsaga hover_doc ++keep<cr>"	, "hover doc(pin)"},
 	},

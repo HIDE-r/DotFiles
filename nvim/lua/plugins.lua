@@ -362,6 +362,28 @@ require("lazy").setup({
 		end,
 	},
 
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		opts = {
+			-- char = "▏",
+			char = "│",
+			filetype_exclude = {
+				"help",
+				"alpha",
+				"dashboard",
+				"neo-tree",
+				"Trouble",
+				"lazy",
+				"mason",
+				"notify",
+				"toggleterm",
+				"lazyterm",
+			},
+			show_trailing_blankline_indent = false,
+			show_current_context = false,
+		}
+	},
+
 	-- {
 	-- 	'karb94/neoscroll.nvim',
 	-- 	event = "BufRead",
@@ -473,11 +495,11 @@ require("lazy").setup({
 		dependencies = { "mfussenegger/nvim-dap" },
 		config = true
 	},
---[[
+
 	{
 		"zbirenbaum/copilot.lua",
-		-- cmd = "Copilot",
-		-- event = "InsertEnter",
+		cmd = "Copilot",
+		event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
 				suggestion = { enabled = false },
@@ -494,7 +516,6 @@ require("lazy").setup({
 			require("copilot_cmp").setup()
 		end
 	},
-]]
 	-- Treesitter
 	{
 		'nvim-treesitter/nvim-treesitter',
