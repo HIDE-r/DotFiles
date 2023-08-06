@@ -20,7 +20,7 @@
 		"cpu",
 		"network",
 		"battery",
-		"custom/powermenu",
+		//"custom/powermenu",
 		"tray"
 	],
 	"custom/launcher": {
