@@ -58,7 +58,7 @@ HOST 206
         HostName 10.118.81.206
         User hide_liao
         port 22
-        IdentityFile ~/.ssh/id_rsa
+        IdentityFile ~/.ssh/id_arcadyan
         # lemonade forward
         RemoteForward  2489 127.0.0.1:2489
         # clash forward
@@ -68,7 +68,7 @@ HOST 198
         HostName 10.118.81.198
         User hide_liao
         port 22
-        IdentityFile ~/.ssh/id_rsa
+        IdentityFile ~/.ssh/id_arcadyan
         # lemonade forward
         RemoteForward  2489 127.0.0.1:2489
         # clash forward
