@@ -325,6 +325,7 @@ alias cman='man -M /usr/share/man/zh_CN'
 alias grep='grep --color=auto --exclude "tags"'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias info='info --vi-keys'
 
 bell_message=$(tmux display-message -p 'Bell in session ❐ #{session_name} ● #{window_index}:#{window_name}')
 alias bell="print '\a'; notify-send -u critical '${bell_message}'"
@@ -333,9 +334,6 @@ alias bell="print '\a'; notify-send -u critical '${bell_message}'"
 # alias rm='echo "This is not the command you are looking for. Maybe you need trash-cli !!!"; false'
 alias rm='rmtrash'
 alias rmdir='rmdirtrash'
-
-# Pipe anything into `clip` to forward it to Clipper
-alias clip="nc localhost 8377"
 
 export TERMINAL="wezterm start --cwd . -- "
 export TERM=xterm-256color
