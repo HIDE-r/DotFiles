@@ -364,6 +364,9 @@ require("lazy").setup({
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		init = function()
+			vim.g.indent_blankline_enabled = false
+		end,
 		opts = {
 			-- char = "▏",
 			char = "│",
@@ -383,6 +386,37 @@ require("lazy").setup({
 			show_current_context = false,
 		}
 	},
+
+	-- {
+	-- 	'nmac427/guess-indent.nvim',
+	-- 	config = true,
+	-- },
+	-- {
+	-- 	"tpope/vim-sleuth",
+	-- },
+	-- {
+		-- "tenxsoydev/tabs-vs-spaces.nvim",
+		-- config = true,
+		-- opts = {
+		-- 	-- highlight = {},
+		-- 	ignore = {
+		-- 		filetypes = {
+		-- 			"dashboard",
+		-- 		},
+		-- 		buftypes = {
+		-- 			"acwrite",
+		-- 			"help",
+		-- 			"nofile",
+		-- 			"nowrite",
+		-- 			"quickfix",
+		-- 			"terminal",
+		-- 			"prompt",
+		-- 		},
+		-- 	},
+		-- 	standartize_on_save = false,
+		-- 	user_commands = true,
+		-- },
+	-- },
 
 	-- {
 	-- 	'karb94/neoscroll.nvim',
