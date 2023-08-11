@@ -14,6 +14,7 @@ wk.register({
 		l = { "<cmd>set list!<cr>"		, "list mode" },
 		n = { "<cmd>set number!<cr>"		, "line number" },
 		c = { "<cmd>ColorizerToggle<cr>"	, "color" },
+		i = { "<cmd>IndentBlanklineToggle<cr>"	, "indent line" },
 	},
 	m = {
 		name = "mark",
@@ -43,6 +44,13 @@ wk.register({
 	-- },
 	v = { "<cmd>Vista!!<cr>", "vista"},
 	z = { "<cmd>ZenMode<cr>", "zen mode"},
+	i = {
+		name = "indent",
+		i = { "<cmd>TabsVsSpacesToggle<cr>"		, "show indent different toggle"},
+		f = { "<cmd>TabsVsSpacesStandardize<cr>"	, "buffer/range format indent"},
+		t = { "<cmd>'<,'>TabsVsSpacesConvert spaces_to_tabs<cr>"	, "space to tab"},
+		s = { "<cmd>'<,'>TabsVsSpacesConvert tabs_to_spaces<cr>"	, "tab to space"},
+	},
 }, { 
 	prefix = "<leader>",
 	mode = {"n", "v"}
