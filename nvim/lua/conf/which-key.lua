@@ -14,7 +14,7 @@ wk.register({
 		l = { "<cmd>set list!<cr>"		, "list mode" },
 		n = { "<cmd>set number!<cr>"		, "line number" },
 		c = { "<cmd>ColorizerToggle<cr>"	, "color" },
-		i = { "<cmd>IndentBlanklineToggle<cr>"	, "indent line" },
+		i = { "<cmd>IBLToggle<cr>"		, "indent line" },
 	},
 	m = {
 		name = "mark",

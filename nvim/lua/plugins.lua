@@ -364,26 +364,14 @@ require("lazy").setup({
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
-		init = function()
-			vim.g.indent_blankline_enabled = false
-		end,
+		main = 'ibl',
 		opts = {
-			-- char = "▏",
-			char = "│",
-			filetype_exclude = {
-				"help",
-				"alpha",
-				"dashboard",
-				"neo-tree",
-				"Trouble",
-				"lazy",
-				"mason",
-				"notify",
-				"toggleterm",
-				"lazyterm",
+			enabled = false,
+			exclude = {
+				filetypes = {
+					"dashboard",
+				},
 			},
-			show_trailing_blankline_indent = false,
-			show_current_context = false,
 		}
 	},
 
