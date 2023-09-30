@@ -36,9 +36,15 @@ git_init_submodule:git_sync_submodule
 	@ $(ECHO) '\n$(_Y)===== [Submodule init] End =====$(_N)\n'
 
 #: Update all submodule from remote
+git_update_submodule_from_remote:git_sync_submodule
+	@ $(ECHO) '\n$(_Y)===== [Submodule update] Start =====$(_N)\n'
+	git submodule update --remote --recursive
+	@ $(ECHO) '\n$(_Y)===== [Submodule update] End =====$(_N)\n'
+
+#: Update all submodule
 git_update_submodule:git_sync_submodule
 	@ $(ECHO) '\n$(_Y)===== [Submodule update] Start =====$(_N)\n'
-	git submodule update --remote
+	git submodule update --recursive
 	@ $(ECHO) '\n$(_Y)===== [Submodule update] End =====$(_N)\n'
 
 ###
