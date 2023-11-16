@@ -2,7 +2,7 @@ include rules.mk
 
 default: help
 
-DAILY_UPDATE_ACTION+=git_update_submodule
+DAILY_UPDATE_ACTION+=git_update_submodule_from_remote
 DAILY_UPDATE_ACTION+=zinit_update
 DAILY_UPDATE_ACTION+=tldr_update
 DAILY_UPDATE_ACTION+=rime_sync
@@ -38,7 +38,7 @@ git_init_submodule:git_sync_submodule
 #: Update all submodule from remote
 git_update_submodule_from_remote:git_sync_submodule
 	@ $(ECHO) '\n$(_Y)===== [Submodule update] Start =====$(_N)\n'
-	git submodule update --remote --recursive
+	git submodule update --remote
 	@ $(ECHO) '\n$(_Y)===== [Submodule update] End =====$(_N)\n'
 
 #: Update all submodule
