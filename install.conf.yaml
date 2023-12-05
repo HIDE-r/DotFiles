@@ -6,6 +6,8 @@
 - link:
     ~/.zshrc:
       path: zsh/zshrc
+    ~/.config/starship.toml:
+      path: ./starship/starship.toml
     ~/.tmux.conf:
       path: tmux/tmux.conf
     ~/.xprofile:
