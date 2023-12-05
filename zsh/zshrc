@@ -122,10 +122,10 @@ zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-autosuggestions
 zinit ice wait lucid blockf
 zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-completions
 
-# exa
-if ! installed exa; then
-zinit ice as"program" from"gh-r" pick="bin/exa"
-zinit ${ZINIT_LOAD_METHOD} ogham/exa
+# eza
+if ! installed eza; then
+zinit ice as"program" from"gh-r" pick="eza"
+zinit ${ZINIT_LOAD_METHOD} eza-community/eza
 fi
 
 # bat
@@ -217,7 +217,7 @@ export FZF_COMPLETION_OPTS='--border --info=inline'
 export FZF_DEFAULT_COMMAND='fd -I --type f --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd -I --type d --hidden --follow --exclude ".git" ."
-export FZF_ALT_C_OPTS="--preview 'exa -T -L1 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza -T -L1 {}'"
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
@@ -249,7 +249,7 @@ zinit ${ZINIT_LOAD_METHOD} junegunn/fzf
 #zstyle ':completion:*' menu select
 
 # z 跳转
-export _ZO_FZF_OPTS='--exit-0 --height=40% --inline-info --no-sort --reverse --select-1 --preview="exa -la {2..}"'
+export _ZO_FZF_OPTS='--exit-0 --height=40% --inline-info --no-sort --reverse --select-1 --preview="eza -la {2..}"'
 zinit ice as"program" from"gh-r" \
 	atclone"./zoxide init zsh > init.zsh" \
 	atpull"%atclone" src"init.zsh"
@@ -276,8 +276,8 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
@@ -287,11 +287,11 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 #### Alias
 ### 
 
-if installed exa; then
-	alias ls='exa'
-	alias la='exa -ga'
-	alias ll='exa -lgha'
-	alias l='exa -lgh'
+if installed eza; then
+	alias ls='eza'
+	alias la='eza -ga'
+	alias ll='eza -lgha'
+	alias l='eza -lgh'
 else
 	alias ls='ls --color=auto'
 	alias la='ls -a --color=auto'
