@@ -14,8 +14,6 @@
       path: xorg/xprofile
     ~/.Xresources:
       path: xorg/Xresources
-    ~/.config/alacritty:
-      path: alacritty
     ~/.config/nvim:
       path: nvim
     ~/.config/awesome:
