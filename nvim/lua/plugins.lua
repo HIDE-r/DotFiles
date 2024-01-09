@@ -325,7 +325,7 @@ require("lazy").setup({
 		dependencies = {
 			'nvim-tree/nvim-web-devicons', -- optional, for file icons
 		},
-		version = 'nightly', -- optional, updated every week. (see issue #1193)
+		-- version = 'nightly', -- optional, updated every week. (see issue #1193)
 		init = function()
 			-- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup
 			local function open_nvim_tree(data)
