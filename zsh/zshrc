@@ -146,27 +146,38 @@ zinit ice as"program" from"gh-r" pick="*/rg"
 zinit ${ZINIT_LOAD_METHOD} BurntSushi/ripgrep
 fi
 
-if ! installed lf; then
-zinit ice as"program" from"gh-r" pick="lf"
-zinit ${ZINIT_LOAD_METHOD} gokcehan/lf
-fi
+# if ! installed lf; then
+# zinit ice as"program" from"gh-r" pick="lf"
+# zinit ${ZINIT_LOAD_METHOD} gokcehan/lf
+# fi
+#
+# # https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
+# lfcd () {
+#     tmp="$(mktemp)"
+#     lf -last-dir-path="$tmp" "$@"
+#     if [ -f "$tmp" ]; then
+#         dir="$(cat "$tmp")"
+#         rm -f "$tmp"
+#         if [ -d "$dir" ]; then
+#             if [ "$dir" != "$(pwd)" ]; then
+#                 cd "$dir"
+#             fi
+#         fi
+#     fi
+# }
+#
+# bindkey -s '^o' 'lfcd\n'
 
-# https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir"
-            fi
-        fi
-    fi
+# yazi
+function ya() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
-
-bindkey -s '^o' 'lfcd\n'
+bindkey -s '^o' 'ya\n'
 
 # navi
 #zinit ice as"program" from"gh-r" pick="navi" \
