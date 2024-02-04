@@ -45,16 +45,16 @@ config.use_ime = true
 
 -- https://github.com/wez/wezterm/issues/3142
 config.mouse_bindings = {
-  {
-    event = { Down = { streak = 1, button = { WheelUp = 1 } } },
-    mods = 'NONE',
-    action = wezterm.action.ScrollByLine(-5),
-  },
-  {
-    event = { Down = { streak = 1, button = { WheelDown = 1 } } },
-    mods = 'NONE',
-    action = wezterm.action.ScrollByLine(5),
-  },
+	{
+		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+		mods = 'NONE',
+		action = wezterm.action.ScrollByLine(-5),
+	},
+	{
+		event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+		mods = 'NONE',
+		action = wezterm.action.ScrollByLine(5),
+	},
 }
 
 config.disable_default_key_bindings = true
