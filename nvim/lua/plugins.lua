@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{
 		"folke/which-key.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("conf.which-key")
 		end
@@ -29,38 +30,7 @@ require("lazy").setup({
 		lazy = false,
 		priority=1000,
 		config = function()
-			require('kanagawa').setup({
-				colors = {
-					theme = {
-						all = {
-							ui = {
-								bg_gutter = "none"
-							}
-						}
-					}
-				},
-				overrides = function(colors)
-					local theme = colors.theme
-					return {
-						-- Borderless Telescope
-						TelescopeTitle = { fg = theme.ui.special, bold = true },
-						TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-						TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-						TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-						TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-						TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-						TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
-
-						-- Dark completion (popup) menu
-						Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
-						PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-						PmenuSbar = { bg = theme.ui.bg_m1 },
-						PmenuThumb = { bg = theme.ui.bg_p2 },
-					}
-				end,
-			})
-
-			vim.cmd([[colorscheme kanagawa]])
+			require("conf.kanagawa")
 		end
 	},
 
@@ -72,12 +42,12 @@ require("lazy").setup({
 		end
 	},
 
-	-- {
-	-- 	'akinsho/bufferline.nvim', 
-	-- 	version = "v3.*", 
-	-- 	dependencies = 'nvim-tree/nvim-web-devicons',
-	-- 	config = true, 
-	-- },
+	{
+		'akinsho/bufferline.nvim', 
+		version = "*", 
+		dependencies = 'nvim-tree/nvim-web-devicons',
+		config = true, 
+	},
 
 	{
 		'lewis6991/gitsigns.nvim',
@@ -89,9 +59,18 @@ require("lazy").setup({
 
 	{
 		'sindrets/diffview.nvim',
-		enabled = false,
-		-- dependencies = 'nvim-lua/plenary.nvim',
 	},
+
+	-- {
+	--     'goolord/alpha-nvim',
+	--     dependencies = {
+	-- 	'nvim-tree/nvim-web-devicons',
+	-- 	'nvim-lua/plenary.nvim'
+	--     },
+	--     config = function ()
+	-- 	require'alpha'.setup(require'alpha.themes.theta'.config)
+	--     end
+	-- },
 
 	{
 		'glepnir/dashboard-nvim',
@@ -147,6 +126,7 @@ require("lazy").setup({
 		config = function()
 			require('telescope').load_extension('vim_bookmarks')
 			require('telescope').load_extension('macros')
+			require('telescope').load_extension("workspaces")
 		end
 	},
 
@@ -165,11 +145,11 @@ require("lazy").setup({
 		end
 	},
 
-	{
-		"dstein64/vim-startuptime",
-		enabled = false,
-		cmd = "StartupTime",
-	},
+	-- {
+	-- 	"dstein64/vim-startuptime",
+	-- 	enabled = false,
+	-- 	cmd = "StartupTime",
+	-- },
 
 	--- lastplace
 	{
@@ -349,31 +329,31 @@ require("lazy").setup({
 		config = true,
 	},
 
-	{
-		'toppair/peek.nvim', 
-		ft = 'markdown',
-		build = 'deno task --quiet build:fast',
-		config = function()
-			require('peek').setup({
-				theme = 'light',
-			})
-			vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
-			vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
-		end,
-	},
+	-- {
+	-- 	'toppair/peek.nvim', 
+	-- 	ft = 'markdown',
+	-- 	build = 'deno task --quiet build:fast',
+	-- 	config = function()
+	-- 		require('peek').setup({
+	-- 			theme = 'light',
+	-- 		})
+	-- 		vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+	-- 		vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+	-- 	end,
+	-- },
 
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = 'ibl',
-		opts = {
-			enabled = false,
-			exclude = {
-				filetypes = {
-					"dashboard",
-				},
-			},
-		}
-	},
+	-- {
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	main = 'ibl',
+	-- 	opts = {
+	-- 		enabled = false,
+	-- 		exclude = {
+	-- 			filetypes = {
+	-- 				"dashboard",
+	-- 			},
+	-- 		},
+	-- 	}
+	-- },
 
 	-- {
 	-- 	'nmac427/guess-indent.nvim',
@@ -498,15 +478,24 @@ require("lazy").setup({
 			}
 		},
 	},
+	-- {
+	-- 	"ludovicchabant/vim-gutentags",
+	-- 	after = "cscope_maps.nvim",
+	-- 	init = function()
+	-- 		vim.g.gutentags_modules = {"cscope_maps"} -- This is required. Other config is optional
+	-- 		vim.g.gutentags_cscope_build_inverted_index_maps = 1
+	-- 		vim.g.gutentags_cache_dir = vim.fn.expand("~/code/.gutentags")
+	-- 		vim.g.gutentags_file_list_command = "fd -e c -e h"
+	-- 		-- vim.g.gutentags_trace = 1
+	-- 	end,
+	-- },
+
+	-- session mananger
 	{
-		"ludovicchabant/vim-gutentags",
-		after = "cscope_maps.nvim",
-		init = function()
-			vim.g.gutentags_modules = {"cscope_maps"} -- This is required. Other config is optional
-			vim.g.gutentags_cscope_build_inverted_index_maps = 1
-			vim.g.gutentags_cache_dir = vim.fn.expand("~/code/.gutentags")
-			vim.g.gutentags_file_list_command = "fd -e c -e h"
-			-- vim.g.gutentags_trace = 1
+		'natecraddock/workspaces.nvim',
+		event = 'VeryLazy',
+		config = function()
+			require("workspaces").setup()
 		end,
 	},
 
@@ -535,6 +524,7 @@ require("lazy").setup({
 		config = true
 	},
 
+	-- AI
 	-- {
 	-- 	"zbirenbaum/copilot.lua",
 	-- 	cmd = "Copilot",
@@ -622,7 +612,6 @@ require("lazy").setup({
 	-- Standalone UI for nvim-lsp progress
 	{
 		"j-hui/fidget.nvim",
-		tag = "legacy",
 		event = "LspAttach",
 		opts = {
 			-- options
