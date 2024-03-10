@@ -8,6 +8,7 @@ DAILY_UPDATE_ACTION+=tldr_update
 DAILY_UPDATE_ACTION+=rime_sync
 DAILY_UPDATE_ACTION+=pacman_update
 DAILY_UPDATE_ACTION+=paru_update
+DAILY_UPDATE_ACTION+=pacdiff_notify
 DAILY_UPDATE_ACTION+=pkgfile_update
 DAILY_UPDATE_ACTION+=tmux_plugin_update
 DAILY_UPDATE_ACTION+=neovim_plugin_update
@@ -85,6 +86,11 @@ paru_update: bitwarden_get_password
 	@ $(ECHO) '\n$(_Y)===== [paru system update] Start =====$(_N)\n'
 	@ expect -c 'spawn paru -Syu --noconfirm; expect "password for*"; send "$(ROOT_PASSWD)\r"; interact'
 	@ $(ECHO) '\n$(_Y)===== [paru system update] End =====$(_N)\n'
+
+pacdiff_notify:
+	@ $(ECHO) '\n$(_Y)===== [pacdiff] Start =====$(_N)\n'
+	@ pacdiff -p -o
+	@ $(ECHO) '\n$(_Y)===== [pacdiff] End =====$(_N)\n'
 
 ###
 ### miscellaneous
