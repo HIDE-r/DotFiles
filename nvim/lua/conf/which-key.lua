@@ -1,3 +1,19 @@
+--[[
+1. When the WhichKey popup is open, you can use the following key bindings (they are also displayed at the bottom of the screen):
+
+- hit one of the keys to open a group or execute a key binding
+- <esc> to cancel and close the popup
+- <bs> go up one level
+- <c-d> scroll down
+- <c-u> scroll up
+
+2. Apart from the automatic opening, you can also manually open WhichKey for a certain prefix:
+:WhichKey  					"show all mappings
+:WhichKey <leader> 				"show all <leader> mappings
+:WhichKey <leader> v 				"show all <leader> mappings for VISUAL mode
+:WhichKey '' v 					"show ALL mappings for VISUAL mode
+]]
+
 local wk = require("which-key")
 
 -- https://github.com/folke/which-key.nvim#%EF%B8%8F-configuration
@@ -82,38 +98,30 @@ wk.register({
 		}
 	},
 	f = {
-		name = "leaderf/telescope",
+		name = "telescope",
 		f = { "<cmd>Telescope find_files<cr>"		, "files"},
 		t = {
 			name = "tag",
-			t = { "<cmd>LeaderfTag<cr>"		, "tag" },
+			t = { "<cmd>Telescope tags<cr>"		, "tag" },
 			s = { "<cmd>Telescope tagstack<cr>"	, "tagstack"},
 			r = { "(gtags)references"},
 			d = { "(gtags)define"},
 			o = { "(gtags)recall"},
 			n = { "(gtags)next"},
 			p = { "(gtags)prev"},
-			u = { "<cmd>Leaderf gtags --update<cr>"		, "(gtags)update DB" },
 		},
-		y = { "<cmd>LeaderfFunction<cr>"	, "function"},
-		l = { "<cmd>LeaderfLine<cr>"		, "line"},
-		q = { "<cmd>LeaderfQuickFix<cr>"	, "quickfix"},
+		q = { "<cmd>Telescope quickfix<cr>"	, "quickfix"},
 		b = { "<cmd>Telescope buffers<cr>"	, "buffer"},
-		w = { "<cmd>LeaderfWindow<cr>"		, "window"},
-		m = { "<cmd>LeaderfMru<cr>"		, "mru"},
-		o = { "<cmd>Leaderf --recall<cr>"	, "recall"},
+		o = { "<cmd>Telescope resume<cr>"	, "resume"},
 		g = {
-			name = "rg",
+			name = "grep",
 		 	l= { "<cmd>Telescope live_grep<cr>"		, "live grep"},
-		 	b= { "buffer grep word"},
-		 	w= { "global grep word"},
-		 	o= { "recall"},
 		},
 		h = { "<cmd>Telescope help_tags<cr>"		, "help"},
 		c = { "<cmd>Telescope commands<cr>"		, "commands"},
 		r = { "<cmd>Telescope command_history<cr>"	, "commands history"},
-		v = { "<cmd>Leaderf floaterm<cr>"		, "floaterm"},
 		d = { "<cmd>TodoTelescope<cr>"			, "todo"},
+		s = { "<cmd>Telescope vim_options"		, "vim options"},
 		["'"] = { "<cmd>Telescope marks<cr>"		, "mark"}
 	},
 	l = {
