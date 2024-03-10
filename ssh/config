@@ -24,7 +24,7 @@ Host arcadyan_jumper
 	User 		sw1
 	IdentityFile 	~/.ssh/id_arcadyan
 
-Host remote_198
+Host arcadyan_remote_198
 	Hostname 	10.118.81.198
 	Port 		22
 	User 		hide_liao
@@ -36,7 +36,7 @@ Host remote_198
 	ProxyJump	arcadyan_jumper
 	# ProxyCommand 	ssh -q -W %h:%p arcadyan_jumper
 
-Host remote_206
+Host arcadyan_remote_206
 	Hostname 	10.118.81.206
 	Port 		22
 	User 		hide_liao
@@ -54,7 +54,7 @@ Host tencent
 	User 		ubuntu
 	IdentityFile 	~/.ssh/id_tencent_cloudserver
 
-HOST 206
+HOST arcadyan_206
         HostName 10.118.81.206
         User hide_liao
         port 22
@@ -64,7 +64,7 @@ HOST 206
         # clash forward
         RemoteForward  7892 127.0.0.1:7892
 
-HOST 198
+HOST arcadyan_198
         HostName 10.118.81.198
         User hide_liao
         port 22
@@ -74,7 +74,7 @@ HOST 198
         # clash forward
         RemoteForward  7892 127.0.0.1:7892
 
-HOST 190
+HOST arcadyan_190
         HostName 10.118.81.190
         User hide_liao
         port 22
@@ -83,3 +83,9 @@ HOST 190
         RemoteForward  2489 127.0.0.1:2489
         # clash forward
         RemoteForward  7892 127.0.0.1:7892
+
+# HOST tenda_gerrit
+# 	HostName 172.16.30.72
+# 	User liaokangning
+#         port 29418
+#         IdentityFile ~/.ssh/id_tenda_gerrit
