@@ -37,7 +37,7 @@ config.keys = {
 }
 
 config.check_for_updates = false
-config.show_update_window = false
+-- config.show_update_window = false
 
 config.front_end="OpenGL"
 
