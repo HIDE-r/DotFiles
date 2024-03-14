@@ -124,6 +124,20 @@ require("lazy").setup({
 			'tom-anders/telescope-vim-bookmarks.nvim',
 		},
 		config = function()
+			local action_layout = require("telescope.actions.layout")
+			require('telescope').setup{
+				defaults = {
+					mappings = {
+						i = {
+							["<M-p>"] = action_layout.toggle_preview,
+
+						}
+					},
+					-- preview = {
+					-- 	hide_on_startup = true -- hide previewer when picker starts
+					-- }
+				}
+			}
 			require('telescope').load_extension('vim_bookmarks')
 			require('telescope').load_extension('macros')
 			require('telescope').load_extension("workspaces")
