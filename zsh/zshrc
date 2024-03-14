@@ -36,10 +36,6 @@ unsetopt beep
 zstyle :compinstall filename '/home/collin/.zshrc'
 # End of lines added by compinstall
 
-ZINIT_GITHUB=gitclone.com/github.com
-#ZINIT_RAW_GITHUB=raw.staticdn.net
-ZINIT_RAW_GITHUB=raw.githubusercontent.com
-
 ZINIT_HOME="${HOME}/DotFiles/.zinit/"
 source "${ZINIT_HOME}/zinit.zsh"
 
@@ -52,6 +48,10 @@ if [ ${ZINIT_LOAD_METHOD} = "light" ]; then
 else
 	ZINIT_LIGHT_MODE=""
 fi
+
+# lucid - skip Loaded ... message under prompt for wait
+# notify - Output given message under-prompt after successfully loading a plugin/snippet
+ZINIT_TURBO_OPTION="lucid"
 
 ### Proxy Setting
 #
@@ -81,11 +81,8 @@ alias unsetss='unset all_proxy'
 #    zdharma-continuum/z-a-bin-gem-node
 
 # Note: 新的shell中需要先回车一下同步最新的history
-zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/lib/history.zsh
-zinit snippet https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/vi-mode/vi-mode.plugin.zsh 
 # zinit snippet https://${ZINIT_RAW_GITHUB}/kutsan/zsh-system-clipboard/master/zsh-system-clipboard.zsh
 
-zinit snippet OMZ::plugins/history-substring-search/history-substring-search.zsh
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 ZSH_TMUX_DEFAULT_SESSION_NAME=$(\
@@ -94,32 +91,33 @@ ZSH_TMUX_DEFAULT_SESSION_NAME=$(\
 	awk -v session_counter=$(tmux list-sessions 2>/dev/null | wc -l) '{ if(session_counter == 0){print 0}else{print ($0 < session_counter) ? session_counter:$0+1} }' \
 )
 ZSH_TMUX_FIXTERM=false
-zinit snippet OMZP::tmux
 #zinit snippet OMZ::lib/completion.zsh
 #zinit snippet OMZ::lib/key-bindings.zsh
 #zinit snippet OMZ::lib/theme-and-appearance.zsh
 
-zinit wait"1" lucid ${ZINIT_LIGHT_MODE} for \
-	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh \
-	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh \
-	https://${ZINIT_RAW_GITHUB}/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh \
+zinit  ${ZINIT_TURBO_OPTION} ${ZINIT_LIGHT_MODE} for \
+	OMZP::tmux \
+	OMZ::lib/history.zsh \
+	OMZP::vi-mode \
+	wait	OMZP::sudo \
+	wait"1"	OMZP::colored-man-pages \
+	wait"1"	OMZP::extract \
 
+zinit ice atload'bindkey "$terminfo[kcuu1]" history-substring-search-up; bindkey "$terminfo[kcud1]" history-substring-search-down'
+zinit light zsh-users/zsh-history-substring-search
 
 # vi 模式剪切板复制到系统
-zinit ice wait lucid
+zinit ice wait ${ZINIT_TURBO_OPTION}
 zinit ${ZINIT_LOAD_METHOD} kutsan/zsh-system-clipboard
 ZSH_SYSTEM_CLIPBOARD_METHOD=wlc
 
 # 语法高亮
-zinit ice wait lucid
-zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-syntax-highlighting
+zinit ice wait ${ZINIT_TURBO_OPTION}
+zinit ${ZINIT_LOAD_METHOD} zdharma-continuum/fast-syntax-highlighting
 
-# 自动建议
-zinit ice wait lucid atload'_zsh_autosuggest_start'
-zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-autosuggestions
 
 # 补全
-zinit ice wait lucid blockf
+zinit ice wait ${ZINIT_TURBO_OPTION} blockf
 zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-completions
 
 # eza
@@ -267,8 +265,13 @@ zinit ice as"program" from"gh-r" \
 zinit ${ZINIT_LOAD_METHOD} ajeetdsouza/zoxide
 
 # fzf-tab 替换tab功能
-zinit ice wait lucid
+zinit ice wait ${ZINIT_TURBO_OPTION} src"fzf-tab.plugin.zsh"
 zinit ${ZINIT_LOAD_METHOD} Aloxaf/fzf-tab
+
+# 自动建议
+# Note: 需要在 fzf-tab 后运行, 否则第一个补全与tab有冲突
+zinit ice wait ${ZINIT_TURBO_OPTION} atload'_zsh_autosuggest_start'
+zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-autosuggestions
 
 # history 同步
 if installed atuin; then
@@ -287,13 +290,16 @@ zinit ${ZINIT_LOAD_METHOD} asdf-vm/asdf
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
+# NOTE: don't use escape sequences here, fzf-tab will ignore them
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
 # preview directory's content with eza when completing cd
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-# switch group using `,` and `.`
-zstyle ':fzf-tab:*' switch-group ',' '.'
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
 ###
 #### Alias
