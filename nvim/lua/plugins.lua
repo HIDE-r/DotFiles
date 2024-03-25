@@ -278,6 +278,9 @@ require("lazy").setup({
 	-- file bookmark, which is project base
 	{
 		"otavioschwanck/arrow.nvim",
+		keys = {
+			'<space>a',
+		},
 		opts = {
 			show_icons = true,
 			always_show_path = true,
