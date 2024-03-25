@@ -6,7 +6,7 @@ Host *
 
 	HostKeyAlgorithms +ssh-rsa
 	StrictHostKeyChecking no
-    	UserKnownHostsFile /dev/null
+	UserKnownHostsFile /dev/null
 
 Host aur.archlinux.org
 	IdentityFile ~/.ssh/aur
@@ -55,37 +55,37 @@ Host tencent
 	IdentityFile 	~/.ssh/id_tencent_cloudserver
 
 HOST arcadyan_206
-        HostName 10.118.81.206
-        User hide_liao
-        port 22
-        IdentityFile ~/.ssh/id_arcadyan
-        # lemonade forward
-        RemoteForward  2489 127.0.0.1:2489
-        # clash forward
-        RemoteForward  7892 127.0.0.1:7892
+	HostName 10.118.81.206
+	User hide_liao
+	port 22
+	IdentityFile ~/.ssh/id_arcadyan
+	# lemonade forward
+	RemoteForward  2489 127.0.0.1:2489
+	# clash forward
+	RemoteForward  7892 127.0.0.1:7892
 
 HOST arcadyan_198
-        HostName 10.118.81.198
-        User hide_liao
-        port 22
-        IdentityFile ~/.ssh/id_arcadyan
-        # lemonade forward
-        RemoteForward  2489 127.0.0.1:2489
-        # clash forward
-        RemoteForward  7892 127.0.0.1:7892
+	HostName 10.118.81.198
+	User hide_liao
+	port 22
+	IdentityFile ~/.ssh/id_arcadyan
+	# lemonade forward
+	RemoteForward  2489 127.0.0.1:2489
+	# clash forward
+	RemoteForward  7892 127.0.0.1:7892
 
 HOST arcadyan_190
-        HostName 10.118.81.190
-        User hide_liao
-        port 22
-        IdentityFile ~/.ssh/id_rsa
-        # lemonade forward
-        RemoteForward  2489 127.0.0.1:2489
-        # clash forward
-        RemoteForward  7892 127.0.0.1:7892
+	HostName 10.118.81.190
+	User hide_liao
+	port 22
+	IdentityFile ~/.ssh/id_rsa
+	# lemonade forward
+	RemoteForward  2489 127.0.0.1:2489
+	# clash forward
+	RemoteForward  7892 127.0.0.1:7892
 
-# HOST tenda_gerrit
-# 	HostName 172.16.30.72
-# 	User liaokangning
-#         port 29418
-#         IdentityFile ~/.ssh/id_tenda_gerrit
+HOST 172.16.30.72
+	HostName 172.16.30.72
+	User liaokangning
+	port 29418
+	IdentityFile ~/.ssh/id_tenda_gerrit
