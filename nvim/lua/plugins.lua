@@ -1,3 +1,4 @@
+-- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -19,6 +20,7 @@ require("lazy").setup({
 			require("conf.which-key")
 		end
 	},
+	{ "folke/neodev.nvim", opts = {} },
 
 	-- {
 	-- 	'mrjones2014/legendary.nvim',
@@ -158,12 +160,6 @@ require("lazy").setup({
 			require("conf.tmux")
 		end
 	},
-
-	-- {
-	-- 	"dstein64/vim-startuptime",
-	-- 	enabled = false,
-	-- 	cmd = "StartupTime",
-	-- },
 
 	--- lastplace
 	{
@@ -357,19 +353,6 @@ require("lazy").setup({
 	},
 
 	-- {
-	-- 	'toppair/peek.nvim', 
-	-- 	ft = 'markdown',
-	-- 	build = 'deno task --quiet build:fast',
-	-- 	config = function()
-	-- 		require('peek').setup({
-	-- 			theme = 'light',
-	-- 		})
-	-- 		vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
-	-- 		vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
-	-- 	end,
-	-- },
-
-	-- {
 	-- 	"lukas-reineke/indent-blankline.nvim",
 	-- 	main = 'ibl',
 	-- 	opts = {
@@ -389,29 +372,29 @@ require("lazy").setup({
 	-- {
 	-- 	"tpope/vim-sleuth",
 	-- },
-	-- {
-		-- "tenxsoydev/tabs-vs-spaces.nvim",
-		-- config = true,
-		-- opts = {
-		-- 	-- highlight = {},
-		-- 	ignore = {
-		-- 		filetypes = {
-		-- 			"dashboard",
-		-- 		},
-		-- 		buftypes = {
-		-- 			"acwrite",
-		-- 			"help",
-		-- 			"nofile",
-		-- 			"nowrite",
-		-- 			"quickfix",
-		-- 			"terminal",
-		-- 			"prompt",
-		-- 		},
-		-- 	},
-		-- 	standartize_on_save = false,
-		-- 	user_commands = true,
-		-- },
-	-- },
+	{
+		"tenxsoydev/tabs-vs-spaces.nvim",
+		config = true,
+		opts = {
+			highlight = {},
+			ignore = {
+				filetypes = {
+					"dashboard",
+				},
+				buftypes = {
+					"acwrite",
+					"help",
+					"nofile",
+					"nowrite",
+					"quickfix",
+					"terminal",
+					"prompt",
+				},
+			},
+			standartize_on_save = false,
+			user_commands = true,
+		},
+	},
 
 	-- Scroll
 	-- {
@@ -421,13 +404,6 @@ require("lazy").setup({
 	-- },
 
 	-- Jump Position
-	-- {
-	-- 	"ggandor/leap.nvim",
-	-- 	config = function()
-	-- 		require('leap').add_default_mappings()
-	-- 	end
-	-- },
-	
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
@@ -437,24 +413,13 @@ require("lazy").setup({
 		keys = {
 			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
 			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-			{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+			-- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
 			{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+
+			-- use for '/' search to see the origin word
 			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
 		},
 	},
-
-	-- {
-	-- 	"ggandor/flit.nvim",
-	-- 	opts = {
-	-- 		keys = { f = 'f', F = 'F', t = 't', T = 'T' },
-	-- 		-- A string like "nv", "nvo", "o", etc.
-	-- 		labeled_modes = "v",
-	-- 		multiline = true,
-	-- 		-- Like `leap`s similar argument (call-specific overrides).
-	-- 		-- E.g.: opts = { equivalence_classes = {} }
-	-- 		opts = {}
-	-- 	}
-	-- },
 
 	{
 		"kevinhwang91/nvim-hlslens",
@@ -651,6 +616,12 @@ require("lazy").setup({
 			require("conf.lspconfig")
 		end
 	},
+
+	{
+		'stevearc/conform.nvim',
+		opts = {},
+	},
+
 }, {
 	performance = {
 		cache = {
