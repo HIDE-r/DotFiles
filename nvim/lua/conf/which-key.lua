@@ -24,6 +24,7 @@ wk.setup {
 -- <leader>
 
 wk.register({
+	a = {"arrow"},
 	r = {
 		name = "reload/resume",
 		s = { "<cmd>nohlsearch<cr>"		, "no highlight search" },
