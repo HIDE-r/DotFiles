@@ -8,11 +8,11 @@ DAILY_UPDATE_ACTION+=tldr_update
 DAILY_UPDATE_ACTION+=rime_sync
 DAILY_UPDATE_ACTION+=pacman_update
 DAILY_UPDATE_ACTION+=paru_update
-DAILY_UPDATE_ACTION+=pacdiff_notify
 DAILY_UPDATE_ACTION+=pkgfile_update
 DAILY_UPDATE_ACTION+=tmux_plugin_update
 DAILY_UPDATE_ACTION+=neovim_plugin_update
 DAILY_UPDATE_ACTION+=plocate_update
+DAILY_UPDATE_ACTION+=pacdiff_notify
 
 DOTBOT_DIR=.dotbot
 DOTBOT_BIN=bin/dotbot
