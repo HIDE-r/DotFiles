@@ -489,6 +489,13 @@ require("lazy").setup({
 	-- 		opts = {}
 	-- 	}
 	-- },
+
+	{
+		"kevinhwang91/nvim-hlslens",
+		config = function()
+			require("conf.hlslens")
+		end,
+	},
 	
 	-- cscope
 	{
