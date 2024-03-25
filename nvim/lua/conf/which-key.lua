@@ -65,8 +65,8 @@ wk.register({
 		name = "indent",
 		i = { "<cmd>TabsVsSpacesToggle<cr>"		, "show indent different toggle"},
 		f = { "<cmd>TabsVsSpacesStandardize<cr>"	, "buffer/range format indent"},
-		t = { "<cmd>'<,'>TabsVsSpacesConvert spaces_to_tabs<cr>"	, "space to tab"},
-		s = { "<cmd>'<,'>TabsVsSpacesConvert tabs_to_spaces<cr>"	, "tab to space"},
+		t = { "<cmd>TabsVsSpacesConvert spaces_to_tabs<cr>"	, "space to tab"},
+		s = { "<cmd>TabsVsSpacesConvert tabs_to_spaces<cr>"	, "tab to space"},
 	},
 }, { 
 	prefix = "<leader>",
@@ -185,7 +185,6 @@ wk.register({
 		e = {"<cmd>NvimTreeToggle<cr>" 	, "[nvim-tree] toggle"},
 		f = {"<cmd>NvimTreeFindFile<cr>", "[nvim-tree] find file"},
 	},
-	y = {"<cmd>Clip<cr>", "sync clipboard"},
 }, { 
 	prefix = "<leader>",
 	mode = "n",

@@ -346,6 +346,10 @@ if installed viddy;then
 	alias watch='viddy'
 fi
 
+if installed tmux;then
+	alias clear='clear && tmux run 2>/dev/null && tmux clear-history -t ${TMUX_PANE}'
+fi
+
 alias ip='ip -c'
 alias cman='man -M /usr/share/man/zh_CN'
 alias grep='grep --color=auto --exclude "tags"'
