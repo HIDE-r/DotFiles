@@ -275,6 +275,16 @@ require("lazy").setup({
 		end,
 	},
 
+	-- file bookmark, which is project base
+	{
+		"otavioschwanck/arrow.nvim",
+		opts = {
+			show_icons = true,
+			always_show_path = true,
+			leader_key = '<space>a',
+		}
+	},
+
 	{
 		'akinsho/toggleterm.nvim',
 		cmd = "ToggleTerm",
