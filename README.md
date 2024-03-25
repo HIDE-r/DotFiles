@@ -1,10 +1,8 @@
 # Dotfile Management
 
-This is my dotfiles project which I use 'dotbot' as manager.
+This is my dotfiles project which I use [GitHub - anishathalye/dotbot: A tool that bootstraps your dotfiles ⚡️](https://github.com/anishathalye/dotbot) as manager.
 
-So if you want to use it, please read 'dotbot' first.
-
-Set up this project, just need one step:
+To set up this project, just need one step:
 
 ```bash
 make dotbot
