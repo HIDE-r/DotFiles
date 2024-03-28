@@ -38,8 +38,6 @@ vim.o.incsearch=true 	-- 实时匹配
 vim.o.ignorecase=true 	-- 忽略大小写
 vim.o.smartcase=true
 
-vim.o.nohlsearch=true
-
 -- 标志栏
 vim.o.signcolumn='yes'
 
