@@ -32,6 +32,9 @@ unsetopt beep
 # vim key
 #bindkey -v
 
+declare -A ZINIT
+ZINIT[NO_ALIASES]=1
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/collin/.zshrc'
 # End of lines added by compinstall
