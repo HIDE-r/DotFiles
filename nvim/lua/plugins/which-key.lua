@@ -58,6 +58,9 @@ local leader_mapping_n = {
 	e = {
 		name = "file explorer",
 	},
+	d = {
+		name = "debug",
+	},
 }
 
 return {
