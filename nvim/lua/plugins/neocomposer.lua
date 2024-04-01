@@ -1,9 +1,9 @@
 return {
 	{
 		"ecthelionvi/NeoComposer.nvim",
-		enabled = false,
-		dependencies = { 
-			"kkharji/sqlite.lua", 
+		-- enabled = false,
+		dependencies = {
+			"kkharji/sqlite.lua",
 			'nvim-telescope/telescope.nvim',
 			'nvim-lualine/lualine.nvim',
 		},
@@ -12,7 +12,7 @@ return {
 				"q",
 				[[<Plug>toggle_record]],
 				mode = {'n'},
-				desc = "marco record",
+				desc = "[neocomposer] marco record",
 			},
 		},
 		opts = {
@@ -26,7 +26,7 @@ return {
 				toggle_macro_menu = "<m-q>",
 			},
 		},
-		config = function()
+		config = function(_,opts)
 			require("NeoComposer").setup(opts)
 			require('telescope').load_extension('macros')
 		end

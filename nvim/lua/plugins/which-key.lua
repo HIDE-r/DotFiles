@@ -17,7 +17,7 @@
 -- FIXME: https://github.com/folke/which-key.nvim/issues/482
 local leader_mapping_nv = {
 	t = {
-		name = "toggle",
+		name = "applet",
 		s = { "<cmd>nohlsearch<cr>"		, "highlight search" },
 		l = { "<cmd>set list!<cr>"		, "list mode" },
 		n = { "<cmd>set number!<cr>"		, "line number" },
@@ -53,7 +53,7 @@ local leader_mapping_n = {
 		name = "diagnostic",
 	},
 	f = {
-		name = "telescope",
+		name = "find",
 	},
 	e = {
 		name = "file explorer",

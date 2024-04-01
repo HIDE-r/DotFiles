@@ -5,7 +5,7 @@ return {
 			"<leader>z",
 			"<Cmd>ZenMode<CR>",
 			mode = {'n'},
-			desc = "[zen-mode] ZenMode toggle",
+			desc = "[zen-mode] zen mode",
 		},
 	},
 	opts = {},

@@ -1,11 +1,12 @@
 return {
 	'liuchengxu/vista.vim',
+	-- enabled = false,
 	keys = {
 		{
-			"<leader>v",
+			"<leader>o",
 			"<Cmd>Vista!!<CR>",
 			mode = {'n'},
-			desc = "[vista] symbol list",
+			desc = "[vista] symbol outline",
 		},
 	},
 }
