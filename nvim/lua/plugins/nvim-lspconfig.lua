@@ -15,6 +15,22 @@ return {
 			{ "folke/neodev.nvim", opts = {} },
 		},
 		config = function()
+
+			local diagnostic_signs = {
+				[vim.diagnostic.severity.ERROR] = ' ',
+				[vim.diagnostic.severity.WARN] = ' ',
+				[vim.diagnostic.severity.HINT] = ' ',
+				[vim.diagnostic.severity.INFO] = ' ',
+			}
+
+			-- diagnostics signs
+			if vim.fn.has("nvim-0.10.0") == 0 then
+				for severity, icon in pairs(diagnostic_signs) do
+					local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
+					name = "DiagnosticSign" .. name
+					vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+				end
+			end
 --[[
 			local lspconfig = require'lspconfig'
 			lspconfig.util.default_config = vim.tbl_extend(
@@ -26,7 +42,7 @@ return {
 			)
 ]]
 			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
---[[
+
 			vim.diagnostic.disable()
 			local diagnostics_active = false
 			map('n', '<leader>ldt', function()
@@ -38,7 +54,7 @@ return {
 					-- vim.diagnostic.disable()
 				end
 			end, {desc = "[LSP] toggle diagnostic"})
-]]
+
 
 			-- Mappings.
 			map('n', '<leader>ldd', vim.diagnostic.open_float, { desc = "[LSP] diagnostic detail on float" })
@@ -55,26 +71,31 @@ return {
 				callback = function(ev)
 					-- Enable completion triggered by <c-x><c-o>
 					vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+					-- help lsp-defaults-disable
 					vim.bo[ev.buf].tagfunc = ''
+					vim.keymap.del("n", "K", { buffer = ev.buf })
 
 					-- Buffer local mappings.
 					-- See `:help vim.lsp.*` for documentation on any of the below functions
 					vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = ev.buf, desc = "[LSP] goto declaration" })
 					vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = ev.buf, desc = "[LSP] goto definition" })
-					vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = ev.buf, desc = "[LSP] hover doc" })
 					vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, { buffer = ev.buf, desc = "[LSP] goto implementation" })
+					vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, { buffer = ev.buf, desc = "[LSP] type definition" })
+					vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = ev.buf, desc = "[LSP] goto references" })
+
+					vim.keymap.set('n', 'gk', vim.lsp.buf.hover, { buffer = ev.buf, desc = "[LSP] hover doc" })
 					vim.keymap.set('n', 'gK', vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "[LSP] signature help" })
+--[[
 					vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, { buffer = ev.buf, desc = "[LSP] add workspace folder" })
 					vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf, desc = "[LSP] remove workspace folder" })
 					vim.keymap.set('n', '<leader>wl', function()
 						print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 					end, { buffer = ev.buf, desc = "[LSP] list workspace folders" })
-					vim.keymap.set('n', 'go', vim.lsp.buf.type_definition,
-						{ buffer = ev.buf, desc = "[LSP] type definition" })
+]]
 					-- vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename,
 					-- 	{ buffer = ev.buf, desc = "[LSP] rename" })
 					-- vim.keymap.set({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, { buffer = ev.buf, desc = "[LSP] code action" })
-					vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = ev.buf, desc = "[LSP] goto references" })
 					-- vim.keymap.set('n', '<leader>lf', function()
 					-- 	vim.lsp.buf.format { async = true }
 					-- end, { buffer = ev.buf, desc = "[LSP] format" })

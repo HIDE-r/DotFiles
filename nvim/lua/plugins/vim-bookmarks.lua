@@ -12,7 +12,7 @@ return {
 		},
 		keys = {
 			{
-				"<leader>bm",
+				"<leader>bb",
 				[[<Plug>BookmarkToggle]],
  				mode = {'n'},
 				desc = "[bookmark] toggle",
@@ -24,10 +24,10 @@ return {
 				desc = "[bookmark] annotate",
 			},
 			{
-				"<leader>ba",
+				"<leader>bl",
 				[[<Cmd>Telescope vim_bookmarks all<CR>]],
  				mode = {'n'},
-				desc = "[bookmark] show all mark",
+				desc = "[bookmark] list all mark",
 			},
 			{
 				"<leader>bn",

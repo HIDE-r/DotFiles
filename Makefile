@@ -10,9 +10,9 @@ DAILY_UPDATE_ACTION+=pacman_update
 DAILY_UPDATE_ACTION+=paru_update
 DAILY_UPDATE_ACTION+=pkgfile_update
 DAILY_UPDATE_ACTION+=tmux_plugin_update
-DAILY_UPDATE_ACTION+=neovim_plugin_update
 DAILY_UPDATE_ACTION+=plocate_update
 DAILY_UPDATE_ACTION+=pacdiff_notify
+DAILY_UPDATE_ACTION+=neovim_plugin_update
 
 DOTBOT_DIR=.dotbot
 DOTBOT_BIN=bin/dotbot

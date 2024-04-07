@@ -29,14 +29,14 @@ vim.cmd([[aunmenu PopUp.How-to\ disable\ mouse]])
 vim.cmd([[aunmenu PopUp.-1-]])
 
 -- 显示不可见字符格式，set list打开，set nolist关闭
--- vim.opt.listchars = {
--- 	eol = '$',
--- 	tab = '>-',
--- 	trail = '·',
--- 	extends = '⟩',
--- 	precedes = '⟨',
--- 	nbsp = '␣',
--- }
+vim.opt.listchars = {
+	eol = '$',
+	tab = '│─',
+	trail = '·',
+	extends = '⟩',
+	precedes = '⟨',
+	nbsp = '␣',
+}
 
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -102,7 +102,7 @@ require('lspconfig')['clangd'].setup {
 
 require('lspconfig')['lua_ls'].setup {
 	capabilities = capabilities,
-  	settings = {
+	settings = {
 		Lua = {
 			runtime = {
 				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)

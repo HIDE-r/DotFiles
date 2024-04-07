@@ -1,7 +1,10 @@
 return {
 	{
 		'nvim-tree/nvim-tree.lua',
-		cmd = "NvimTreeToggle",
+		cmd = {
+			"NvimTreeToggle",
+			"NvimTreeOpen",
+		},
 		keys = {
 			{
 				"<leader>ee",
