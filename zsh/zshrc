@@ -228,8 +228,25 @@ export FZF_COMPLETION_TRIGGER='~~'
 export FZF_COMPLETION_OPTS='--border --info=inline'
 export FZF_DEFAULT_COMMAND='fd -I --type f --strip-cwd-prefix'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
 export FZF_ALT_C_COMMAND="fd -I --type d --hidden --follow --exclude ".git" ."
-export FZF_ALT_C_OPTS="--preview 'eza -T -L1 {}'"
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'eza -T -L1 {}'"
+
+# CTRL-/ to toggle small preview window to see the full command
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
 
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
@@ -251,10 +268,12 @@ _fzf_comprun() {
   esac
 }
 
-zinit ice lucid as"program" pick="bin/(fzf|fzf-tmux)" \
-	atclone="make install;" \
+
+zinit ice lucid as"program" pick="bin/(fzf|fzf-tmux|fzf-preview.sh)" \
+	atclone="make install; ./bin/fzf --zsh > _fzf.zsh;" \
 	atpull="%atclone" \
-	multisrc="shell/{completion,key-bindings}.zsh"
+	src="_fzf.zsh"
+	# multisrc="shell/{completion,key-bindings}.zsh"
 zinit ${ZINIT_LOAD_METHOD} junegunn/fzf
 
 
