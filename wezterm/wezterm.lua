@@ -11,7 +11,51 @@ if wezterm.config_builder then
 end
 
 config.xcursor_theme="Vimix-cursors"
-config.color_scheme = "kanagawabones"
+
+config.colors = {
+    ansi = {
+        "#1f1f28",
+        "#e46a78",
+        "#98bc6d",
+        "#e5c283",
+        "#7eb3c9",
+        "#957fb8",
+        "#7eb3c9",
+
+-- menuconfig 背景颜色
+        "#ddd8bb",
+    },
+    background = "#1f1f28",
+    brights = {
+        "#3c3c51",
+        "#ec818c",
+        "#9ec967",
+
+-- menuconfig 特殊字母颜色
+        -- "#f1c982",
+        "#c75a22",
+
+        "#7bc2df",
+        "#a98fd2",
+        "#7bc2df",
+
+-- menuconfig 选中的文字
+        -- "#a8a48d",
+        "#ffffff",
+    },
+    cursor_bg = "#e6e0c2",
+    cursor_border = "#e6e0c2",
+    cursor_fg = "#1f1f28",
+    foreground = "#ddd8bb",
+    selection_bg = "#49473e",
+    selection_fg = "#ddd8bb",
+}
+-- local scheme = wezterm.color.get_builtin_schemes()['Hacktober']
+-- print(scheme)
+-- config.color_scheme = "kanagawabones"
+-- config.color_scheme = 'Kanagawa (Gogh)'
+-- config.color_scheme = 'Github Dark (Gogh)'
+-- config.color_scheme = 'Hacktober'
 
 config.font = wezterm.font_with_fallback {
 	{ family="Comic Code", weight="Medium", style=Regular, italic=false },
