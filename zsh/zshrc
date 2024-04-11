@@ -227,6 +227,7 @@ bindkey '^g' _navi_widget
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_COMPLETION_OPTS='--border --info=inline'
 export FZF_DEFAULT_COMMAND='fd -I --type f --strip-cwd-prefix'
+
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target
@@ -296,11 +297,16 @@ zinit ice wait ${ZINIT_TURBO_OPTION} atload'_zsh_autosuggest_start'
 zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-autosuggestions
 
 # history 同步
-if installed atuin; then
+if ! installed atuin; then
 	export ATUIN_NOBIND="true"
-	zinit ${ZINIT_LOAD_METHOD} ellie/atuin
-	bindkey '^[[A' _atuin_search_widget
-	bindkey '^[OA' _atuin_search_widget
+
+	zinit ice lucid as"program" from"gh-r" mv"*/atuin -> atuin" pick="*/atuin" \
+		atclone"./atuin init zsh > init.zsh" \
+		atpull"%atclone" src"init.zsh"
+	zinit ${ZINIT_LOAD_METHOD} atuinsh/atuin
+
+	bindkey '^r' _atuin_search_widget
+	# bindkey '^[OA' _atuin_search_widget
 fi
 
 zinit ice as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" make"PREFIX=$ZPFX"
@@ -413,8 +419,8 @@ key[Delete]="${terminfo[kdch1]}"
 [[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"     delete-char
 
 #Rebind substring search
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down
+# bindkey '^P' history-substring-search-up
+# bindkey '^N' history-substring-search-down
 
 :<< powerlevel10k
 # powerlevel10k 主题
