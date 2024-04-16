@@ -2,7 +2,7 @@ return {
   -- kanagawa.nvim
   {
 	  "rebelot/kanagawa.nvim",
-	  priority=1000,
+	  lazy = true,
 	  opts = {
 		  colors = {
 			  theme = {

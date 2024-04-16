@@ -38,6 +38,10 @@ vim.opt.listchars = {
 	nbsp = '␣',
 }
 
+-- vim.o.hlsearch=true    -- 高亮搜索
+-- vim.o.incsearch=true   -- 实时匹配
+vim.o.ignorecase=true  -- 忽略大小写
+
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
