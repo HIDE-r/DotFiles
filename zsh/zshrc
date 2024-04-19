@@ -107,7 +107,7 @@ zinit  ${ZINIT_TURBO_OPTION} ${ZINIT_LIGHT_MODE} for \
 	wait"1"	OMZP::colored-man-pages \
 	wait"1"	OMZP::extract \
 
-zinit ice atload'bindkey "$terminfo[kcuu1]" history-substring-search-up; bindkey "$terminfo[kcud1]" history-substring-search-down'
+zinit ice atload'bindkey "$terminfo[kcuu1]" history-substring-search-up; bindkey "$terminfo[kcud1]" history-substring-search-down; bindkey "^P" history-substring-search-up; bindkey "^N" history-substring-search-down'
 zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-history-substring-search
 
 # vi 模式剪切板复制到系统
@@ -420,10 +420,6 @@ key[Delete]="${terminfo[kdch1]}"
 [[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"        end-of-line
 [[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"     overwrite-mode
 [[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"     delete-char
-
-#Rebind substring search
-# bindkey '^P' history-substring-search-up
-# bindkey '^N' history-substring-search-down
 
 :<< powerlevel10k
 # powerlevel10k 主题
