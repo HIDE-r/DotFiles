@@ -74,7 +74,7 @@ return {
 
 					-- help lsp-defaults-disable
 					vim.bo[ev.buf].tagfunc = ''
-					-- vim.keymap.del("n", "K", { buffer = ev.buf })
+					vim.keymap.del("n", "K", { buffer = ev.buf })
 
 					-- Buffer local mappings.
 					-- See `:help vim.lsp.*` for documentation on any of the below functions
