@@ -52,6 +52,8 @@
       path: ./waybar
     ~/.config/mako:
       path: ./mako
+    ~/.config/microsoft-edge-stable-flags.conf:
+      path: ./microsoft-edge/microsoft-edge-stable-flags.conf
 
 - clean:
     ~/:
