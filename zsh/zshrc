@@ -86,7 +86,8 @@ alias unsetss='unset all_proxy'
 # Note: 新的shell中需要先回车一下同步最新的history
 # zinit snippet https://${ZINIT_RAW_GITHUB}/kutsan/zsh-system-clipboard/master/zsh-system-clipboard.zsh
 
-ZSH_TMUX_AUTOSTART=true
+cat /proc/$PPID/comm | grep wezterm >/dev/null 2>&1 && ZSH_TMUX_AUTOSTART=true
+
 ZSH_TMUX_AUTOCONNECT=false
 ZSH_TMUX_DEFAULT_SESSION_NAME=$(\
 	tmux list-sessions 2>/dev/null| \
