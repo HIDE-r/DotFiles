@@ -107,8 +107,10 @@ zinit  ${ZINIT_TURBO_OPTION} ${ZINIT_LIGHT_MODE} for \
 	wait"1"	OMZP::colored-man-pages \
 	wait"1"	OMZP::extract \
 
+# FIXME: https://github.com/zsh-users/zsh-history-substring-search/issues/154
 zinit ice atload'bindkey "$terminfo[kcuu1]" history-substring-search-up; bindkey "$terminfo[kcud1]" history-substring-search-down; bindkey "^P" history-substring-search-up; bindkey "^N" history-substring-search-down'
-zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-history-substring-search
+# zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-history-substring-search
+zinit ${ZINIT_LOAD_METHOD} dxrcy/zsh-history-substring-search
 
 # vi 模式剪切板复制到系统
 zinit ice wait ${ZINIT_TURBO_OPTION}
@@ -321,6 +323,10 @@ zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
     atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
     pick"direnv" src="zhook.zsh"
 zinit ${ZINIT_LOAD_METHOD} direnv/direnv
+
+
+# FIXME:https://github.com/Aloxaf/fzf-tab/issues/424#issuecomment-2073756724
+zstyle ':completion:*:complete:networkctl:*' list-grouped true
 
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
