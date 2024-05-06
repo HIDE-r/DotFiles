@@ -84,6 +84,7 @@ config.check_for_updates = false
 -- config.show_update_window = false
 
 config.front_end="OpenGL"
+-- config.front_end="WebGpu"
 
 config.use_ime = true
 
