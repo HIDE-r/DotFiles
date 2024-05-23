@@ -113,9 +113,9 @@ zinit ice atload'bindkey "$terminfo[kcuu1]" history-substring-search-up; bindkey
 zinit ${ZINIT_LOAD_METHOD} dxrcy/zsh-history-substring-search
 
 # vi 模式剪切板复制到系统
-zinit ice wait ${ZINIT_TURBO_OPTION}
-zinit ${ZINIT_LOAD_METHOD} kutsan/zsh-system-clipboard
-ZSH_SYSTEM_CLIPBOARD_METHOD=wlc
+# zinit ice wait ${ZINIT_TURBO_OPTION}
+# zinit ${ZINIT_LOAD_METHOD} kutsan/zsh-system-clipboard
+# ZSH_SYSTEM_CLIPBOARD_METHOD=wlc
 
 # 语法高亮
 zinit ice wait ${ZINIT_TURBO_OPTION}
