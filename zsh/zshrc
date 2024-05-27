@@ -400,7 +400,7 @@ alias rm='rmtrash'
 alias rmdir='rmdirtrash'
 
 export TERMINAL="wezterm start --cwd . -- "
-export TERM=wezterm
+# export TERM=wezterm
 export BROWSER=microsoft-edge-stable
 export XCURSOR_PATH=~/.local/share/icons:${XCURSOR_PATH}
 export MANPAGER="nvim +Man\!"
