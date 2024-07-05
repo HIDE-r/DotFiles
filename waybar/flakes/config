@@ -70,7 +70,7 @@
 			"focused": "",
 			"default": ""
 		},
-		"on-click": "activate",
+		//"on-click": "activate",
 		"show-special": false,
 	},
 	"idle_inhibitor": {
