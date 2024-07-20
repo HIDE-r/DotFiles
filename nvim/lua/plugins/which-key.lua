@@ -15,82 +15,59 @@
 ]]
 
 -- FIXME: https://github.com/folke/which-key.nvim/issues/482
-local leader_mapping_nv = {
-	t = {
-		name = "applet",
-		s = { "<cmd>nohlsearch<cr>"		, "highlight search" },
-		l = { "<cmd>set list!<cr>"		, "list mode" },
-		n = { "<cmd>set number!<cr>"		, "line number" },
+local leader_mapping = {
+	{
+		mode = { "n", "v" },
+		{ "<leader>b", group = "bookmark" },
+		{ "<leader>h", group = "git" },
+		{ "<leader>m", group = "mark" },
+		{ "<leader>t", group = "applet" },
+		{ "<leader>tl", "<cmd>set list!<cr>", desc = "list mode" },
+		{ "<leader>tn", "<cmd>set number!<cr>", desc = "line number" },
+		{ "<leader>ts", "<cmd>nohlsearch<cr>", desc = "highlight search" },
 	},
-	m = {
-		name = "mark",
-	},
-	h = {
-		name = "git",
-	},
-	b = {
-		name = "bookmark",
-	},
-}
-
-local leader_mapping_n = {
-	ht = {
-		name = "toggle",
-	},
-	p = {
-		name = "lazy",
-		l = { "<cmd>Lazy show<cr>"		, "[Lazy] status"},
-		s = { "<cmd>Lazy sync<cr>"		, "[Lazy] sync"},
-		p = { "<cmd>Lazy profile<cr>"		, "[Lazy] profile"},
-	},
-	w = {
-		name = "workspace",
-	},
-	l = {
-		name = "lsp",
-	},
-	ld = {
-		name = "diagnostic",
-	},
-	f = {
-		name = "find",
-	},
-	e = {
-		name = "file explorer",
-	},
-	d = {
-		name = "debug",
+	{
+		{ "<leader>d", group = "diagnostic" },
+		{ "<leader>e", group = "file explorer" },
+		{ "<leader>f", group = "find" },
+		{ "<leader>ht", group = "toggle" },
+		{ "<leader>l", group = "lspsaga" },
+		{ "<leader>p", group = "lazy" },
+		{ "<leader>pl", "<cmd>Lazy show<cr>", desc = "[Lazy] status" },
+		{ "<leader>pp", "<cmd>Lazy profile<cr>", desc = "[Lazy] profile" },
+		{ "<leader>ps", "<cmd>Lazy sync<cr>", desc = "[Lazy] sync" },
+		{ "<leader>w", group = "workspace" },
 	},
 }
 
 return {
 	{
 		"folke/which-key.nvim",
+		dependencies = {
+			{'nvim-tree/nvim-web-devicons'},
+			-- {'echasnovski/mini.icons'}
+		},
 		event = "VeryLazy",
 		opts = {
 			defaults = {
-				mode = { "n", "v" },
-				["g"] = { name = "goto" },
-				["z"] = { name = "fold" },
-				["]"] = { name = "next" },
-				["["] = { name = "prev" },
+				{
+					mode = { "n", "v" },
+					{ "[", group = "prev" },
+					{ "]", group = "next" },
+					{ "g", group = "goto" },
+					{ "z", group = "fold" },
+				},
+			},
+			icons = {
+				rules = false
 			},
 		},
 		config = function(_, opts)
 			local wk = require("which-key")
 			wk.setup(opts)
 
-			wk.register(leader_mapping_nv, {
-				prefix = "<leader>",
-				mode = {"n", "v"}
-			})
-
-			wk.register(leader_mapping_n, {
-				prefix = "<leader>",
-				mode = {"n"}
-			})
-
-			wk.register(opts.defaults)
+			wk.add(leader_mapping)
+			wk.add(opts.defaults)
 		end
 	},
 }

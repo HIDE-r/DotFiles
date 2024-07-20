@@ -1,6 +1,11 @@
+if vim.g.neovide then
+    vim.o.guifont = "Comic Code:h12"
+    -- vim.o.guifont = "Operator Mono Lig:h14"
+end
+
 -- leader key
 vim.g.mapleader=" "
-vim.g.maplocalleadhr=','
+vim.g.maplocalleader=','
 
 vim.g.have_nerd_font = true
 

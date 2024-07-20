@@ -72,43 +72,43 @@ return {
 		dependencies = { "mfussenegger/nvim-dap", 'nvim-neotest/nvim-nio' },
 		keys = {
 			{
-				"<leader>dr",
+				"<localleader>r",
 				function() require'dap'.continue() end,
  				mode = {'n'},
 				desc = "[dap] run",
 			},
 			{
-				"<leader>ds",
+				"<localleader>s",
 				function() require'dap'.step_into() end,
  				mode = {'n'},
 				desc = "[dap] step",
 			},
 			{
-				"<leader>dn",
+				"<localleader>n",
 				function() require'dap'.step_over() end,
  				mode = {'n'},
 				desc = "[dap] next",
 			},
 			{
-				"<leader>db",
+				"<localleader>b",
 				function() require'dap'.toggle_breakpoint() end,
  				mode = {'n'},
 				desc = "[dap] breakpoint",
 			},
 			{
-				"<leader>db",
+				"<localleader>b",
 				function() require'dap'.toggle_breakpoint() end,
  				mode = {'n'},
 				desc = "[dap] breakpoint",
 			},
 			{
-				"<leader>d`",
+				"<localleader>`",
 				function() require'dap'.repl.toggle() end,
  				mode = {'n'},
 				desc = "[dap] REPL",
 			},
 			{
-				"<leader>dq",
+				"<localleader>q",
 				function()
 					require'dap'.disconnect()
 					require'dap'.close()

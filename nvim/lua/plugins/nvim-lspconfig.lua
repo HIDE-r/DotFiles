@@ -45,7 +45,7 @@ return {
 
 			vim.diagnostic.disable()
 			local diagnostics_active = false
-			map('n', '<leader>ldt', function()
+			map('n', '<leader>dt', function()
 				diagnostics_active = not diagnostics_active
 				if diagnostics_active then
 					vim.diagnostic.enable()
@@ -57,14 +57,14 @@ return {
 
 
 			-- Mappings.
-			map('n', '<leader>ldd', vim.diagnostic.open_float, { desc = "[LSP] diagnostic detail on float" })
+			map('n', '<leader>dd', vim.diagnostic.open_float, { desc = "[LSP] diagnostic detail on float" })
 			map('n', '[d', vim.diagnostic.goto_prev, { desc = "[LSP] prev diagnostic" })
 			map('n', ']d', vim.diagnostic.goto_next, { desc = "[LSP] next diagnostic" })
-			map('n', '<leader>ldp', vim.diagnostic.goto_prev, { desc = "[LSP] prev diagnostic" })
-			map('n', '<leader>ldn', vim.diagnostic.goto_next, { desc = "[LSP] next diagnostic" })
-			map('n', '<leader>ldl', vim.diagnostic.setloclist, { desc = "[LSP] diagnostic list" })
-			map('n', '<leader>lds', vim.diagnostic.show, { desc = "[LSP] show diagnostic" })
-			map('n', '<leader>ldh', vim.diagnostic.hide, { desc = "[LSP] hide diagnostic"})
+			map('n', '<leader>dp', vim.diagnostic.goto_prev, { desc = "[LSP] prev diagnostic" })
+			map('n', '<leader>dn', vim.diagnostic.goto_next, { desc = "[LSP] next diagnostic" })
+			map('n', '<leader>dl', vim.diagnostic.setloclist, { desc = "[LSP] diagnostic list" })
+			map('n', '<leader>ds', vim.diagnostic.show, { desc = "[LSP] show diagnostic" })
+			map('n', '<leader>dh', vim.diagnostic.hide, { desc = "[LSP] hide diagnostic"})
 
 			vim.api.nvim_create_autocmd('LspAttach', {
 				group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -84,7 +84,7 @@ return {
 					vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, { buffer = ev.buf, desc = "[LSP] type definition" })
 					vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = ev.buf, desc = "[LSP] goto references" })
 
-					vim.keymap.set('n', 'gk', vim.lsp.buf.hover, { buffer = ev.buf, desc = "[LSP] hover doc" })
+					-- vim.keymap.set('n', 'gk', vim.lsp.buf.hover, { buffer = ev.buf, desc = "[LSP] hover doc" })
 					vim.keymap.set('n', 'gK', vim.lsp.buf.signature_help, { buffer = ev.buf, desc = "[LSP] signature help" })
 --[[
 					vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, { buffer = ev.buf, desc = "[LSP] add workspace folder" })
