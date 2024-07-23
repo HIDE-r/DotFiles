@@ -33,6 +33,7 @@ return {
 		'natecraddock/workspaces.nvim',
 		dependencies = {
 			'nvim-telescope/telescope.nvim',
+			"nvim-neo-tree/neo-tree.nvim",
 		},
 		keys = {
 			{
@@ -57,8 +58,8 @@ return {
 		opts = {
 			-- 指定切换目录时要执行的动作
 			hooks = {
-				open = { "NvimTreeOpen" },
-			}
+				open = { "Neotree" },
+			},
 		},
 		config = function(_, opts)
 			require("workspaces").setup(opts)

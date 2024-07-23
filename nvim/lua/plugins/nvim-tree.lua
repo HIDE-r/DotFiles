@@ -4,6 +4,7 @@
 return {
 	{
 		'nvim-tree/nvim-tree.lua',
+		enabled = false,
 		cmd = {
 			"NvimTreeToggle",
 			"NvimTreeOpen",

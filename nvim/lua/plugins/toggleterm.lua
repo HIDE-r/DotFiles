@@ -76,6 +76,7 @@ return {
 		opts = {
 			open_mapping = [[<C-\>]],
 			insert_mappings = true,
+			-- direction = 'float',
 			winbar = {
 				enabled = true,
 			},
