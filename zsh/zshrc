@@ -303,8 +303,8 @@ if ! installed atuin; then
 
 	# NOTE: This will overwrite fzf <c-r> key-binding. This is what I want!
 	# https://docs.atuin.sh/configuration/key-binding/#disable-up-arrow
-	zinit ice lucid as"program" from"gh-r" mv"*/atuin -> atuin" pick="*/atuin" \
-		atclone"./atuin init zsh --disable-ctrl-r > init.zsh" \
+	zinit ice lucid as"program" from"gh-r" mv"*/atuin -> atuin" bpick="*x86_64*linux*tar.gz" pick="*/atuin" \
+		atclone"./atuin init zsh --disable-up-arrow > init.zsh" \
 		atpull"%atclone" src"init.zsh"
 	zinit ${ZINIT_LOAD_METHOD} atuinsh/atuin
 fi
