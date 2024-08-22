@@ -389,7 +389,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias info='info --vi-keys'
 
-bell_message=$(tmux run 2>/dev/null && tmux display-message -p 'Bell in session ❐ #{session_name} ● #{window_index}:#{window_name}')
+bell_message=$(tmux run 2>/dev/null && tmux display-message -p 'Bell in session ❐ #{session_name} ● #{window_index}.#{pane_index}:#{window_name}')
 alias bell="print '\a'; notify-send -i wezterm -u critical '${bell_message}'"
 
 # \rm to bypass the alias

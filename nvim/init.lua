@@ -1,6 +1,6 @@
 if vim.g.neovide then
-    vim.o.guifont = "Comic Code:h12"
-    -- vim.o.guifont = "Operator Mono Lig:h14"
+	vim.o.guifont = "Comic Code:h12"
+	-- vim.o.guifont = "Operator Mono Lig:h14"
 end
 
 -- leader key
