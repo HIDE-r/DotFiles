@@ -27,5 +27,7 @@ MAKE ?= make
 TMP_DIR:=${TOPDIR}/tmp
 STAMP_DIR:=${TOPDIR}/tmp/stamp
 
+IS_WSL := $(shell grep -i microsoft /proc/version > /dev/null && echo "true" || echo "false")
+
 help:
 	@ remake --tasks

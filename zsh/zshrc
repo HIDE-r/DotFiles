@@ -39,7 +39,7 @@ ZINIT[NO_ALIASES]=1
 zstyle :compinstall filename '/home/collin/.zshrc'
 # End of lines added by compinstall
 
-ZINIT_HOME="${HOME}/DotFiles/.zinit/"
+ZINIT_HOME="${HOME}/Public/DotFiles/.zinit/"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # load - with reporting/investigating.
@@ -390,7 +390,11 @@ alias fgrep='fgrep --color=auto'
 alias info='info --vi-keys'
 
 bell_message=$(tmux run 2>/dev/null && tmux display-message -p 'Bell in session ❐ #{session_name} ● #{window_index}.#{pane_index}:#{window_name}')
-alias bell="print '\a'; notify-send -i wezterm -u critical '${bell_message}'"
+if installed notify-send;then
+	alias bell="print '\a'; notify-send -i wezterm -u critical '${bell_message}'"
+else
+	alias bell="print '\a'"
+fi
 
 # \rm to bypass the alias
 # alias rm='echo "This is not the command you are looking for. Maybe you need trash-cli !!!"; false'

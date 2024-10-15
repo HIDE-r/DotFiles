@@ -5,7 +5,9 @@ default: help
 DAILY_UPDATE_ACTION+=git_update_submodule_from_remote
 DAILY_UPDATE_ACTION+=zinit_update
 DAILY_UPDATE_ACTION+=tldr_update
+ifeq ($(IS_WSL), false)
 DAILY_UPDATE_ACTION+=rime_sync
+endif
 DAILY_UPDATE_ACTION+=pacman_update
 DAILY_UPDATE_ACTION+=paru_update
 DAILY_UPDATE_ACTION+=pkgfile_update
@@ -17,6 +19,8 @@ DAILY_UPDATE_ACTION+=neovim_plugin_update
 DOTBOT_DIR=.dotbot
 DOTBOT_BIN=bin/dotbot
 DOTBOT_CONFIG=install.conf.yaml
+
+TPM_PATH=~/Public/DotFiles/.tpm
 
 #: Configuration Install
 dotbot:
@@ -112,7 +116,7 @@ neovim_plugin_update:
 
 tmux_plugin_update:
 	@ $(ECHO) '\n$(_Y)===== [$@] Start =====$(_N)\n'
-	~/DotFiles/.tpm/bin/update_plugins all
+	$(TPM_PATH)/bin/update_plugins all
 	@ $(ECHO) '\n$(_Y)===== [$@] End =====$(_N)\n'
 
 rime_sync:

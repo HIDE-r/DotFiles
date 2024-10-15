@@ -61,6 +61,27 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- wsl
+-- https://neovim.io/doc/user/provider.html#clipboard-wsl
+local is_wsl = function()
+    local output = vim.fn.systemlist('uname -r')
+    return not not string.find(output[1] or '', 'WSL')
+end
+if is_wsl() then
+	vim.g.clipboard = {
+		name = 'WslClipboard',
+		copy = {
+			['+'] = 'clip.exe',
+			['*'] = 'clip.exe',
+		},
+		paste = {
+			['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+			['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+		},
+		cache_enabled = 0,
+	}
+end
+
 require("lazy").setup("plugins", {
 	performance = {
 		cache = {
