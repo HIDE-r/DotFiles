@@ -15,7 +15,13 @@ return {
 				mru = { limit = 15 },
 				-- project = { enable = true, limit = 8, action = 'Telescope find_files cwd=~/Public/Project' },
 				shortcut = {
-					{ desc = ' Update', group = '@property', action = 'Lazy update', key = 'u' },
+					{
+						icon = '󰊳 ',
+						desc = 'Update',
+						group = '@property',
+						action = 'Lazy update',
+						key = 'u'
+					},
 					{
 						icon = ' ',
 						icon_hl = '@variable',
