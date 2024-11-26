@@ -172,7 +172,7 @@ fi
 
 # yazi
 if ! installed yazi; then
-zinit ice as"program" from "gh-r" pick="yazi"
+zinit ice as"program" from"gh-r" bpick="*x86_64*linux*zip" pick="*/yazi"
 zinit ${ZINIT_LOAD_METHOD} sxyazi/yazi
 fi
 
