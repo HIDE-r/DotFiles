@@ -1,6 +1,6 @@
 return {
 	{
-		'glepnir/dashboard-nvim',
+		'nvimdev/dashboard-nvim',
 		event = 'VimEnter',
 		enabled = vim.g.have_nerd_font,
 		-- enabled = false,
