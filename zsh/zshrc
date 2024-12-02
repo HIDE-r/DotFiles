@@ -89,10 +89,14 @@ alias unsetss='unset all_proxy'
 cat /proc/$PPID/comm | grep wezterm >/dev/null 2>&1 && ZSH_TMUX_AUTOSTART=true
 
 ZSH_TMUX_AUTOCONNECT=false
+# 自动设置 tmux 的 session name, 从 0 开始找到第一个非连续的数字作为 session name
+# Note: 由于变量无法延迟解析, 无法在不改动插件的情况下实现
 ZSH_TMUX_DEFAULT_SESSION_NAME=$(\
 	tmux list-sessions 2>/dev/null| \
-	sed -rn '/^[0-9]+:.*/p' | awk -F ':' 'BEGIN {max=0}{ if($1 > max){max=$1} } END {print max}' | \
-	awk -v session_counter=$(tmux list-sessions 2>/dev/null | wc -l) '{ if(session_counter == 0){print 0}else{print ($0 < session_counter) ? session_counter:$0+1} }' \
+	sed -rn '/^[0-9]+:.*/p' | \
+	cut -d ':' -f 1 | \
+	sort -n | \
+	awk 'NR==1 {expect=$1+1; next} {if ($1 != expect) {exit} expect=expect+1} END {print expect}' \
 )
 ZSH_TMUX_FIXTERM=false
 #zinit snippet OMZ::lib/completion.zsh
