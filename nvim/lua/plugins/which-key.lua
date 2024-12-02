@@ -14,7 +14,6 @@
 :WhichKey '' v 					"show ALL mappings for VISUAL mode
 ]]
 
--- FIXME: https://github.com/folke/which-key.nvim/issues/482
 local leader_mapping = {
 	{
 		mode = { "n", "v" },
