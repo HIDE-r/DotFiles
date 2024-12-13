@@ -9,12 +9,12 @@ return {
 				mode = {'n'},
 				desc = "[lspsaga] code action",
 			},
-			{
-				"<leader>ld",
-				"<Cmd>Lspsaga peek_definition<CR>",
-				mode = {'n'},
-				desc = "[lspsaga] definition",
-			},
+			-- {
+			-- 	"<leader>ld",
+			-- 	"<Cmd>Lspsaga peek_definition<CR>",
+			-- 	mode = {'n'},
+			-- 	desc = "[lspsaga] definition",
+			-- },
 			{
 				"<leader>lf",
 				"<Cmd>Lspsaga finder def+ref+imp<CR>",

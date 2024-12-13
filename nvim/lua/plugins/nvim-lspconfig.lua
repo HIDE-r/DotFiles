@@ -11,8 +11,8 @@ return {
 		'neovim/nvim-lspconfig',
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
-			{ "folke/neoconf.nvim", opts = {} },
-			{ "folke/neodev.nvim", opts = {} },
+			-- { "folke/neoconf.nvim", opts = {} },
+			-- { "folke/neodev.nvim", opts = {} },
 		},
 		config = function()
 

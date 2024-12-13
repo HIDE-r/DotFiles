@@ -1,8 +1,12 @@
 return {
 	{
 		"shellRaining/hlchunk.nvim",
-		event = { "UIEnter" },
+		enabled = false,
+		event = { "BufReadPre", "BufNewFile" },
 		opts = {
+			chunk = {
+				enable = false,
+			},
 			line_num = {
 				enable = false,
 			},
@@ -11,7 +15,14 @@ return {
 			},
 			blank = {
 				enable = false,
-			}
+				chars = {
+					" ",
+				},
+				style = {
+					{ bg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("cursorline")), "bg", "gui") },
+					{ bg = "", fg = "" },
+				},
+			},
 		},
 	},
 }

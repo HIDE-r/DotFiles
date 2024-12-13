@@ -1,4 +1,4 @@
-local copilot_enable = true
+local copilot_enable = false
 
 return {
 	{
