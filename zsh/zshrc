@@ -419,6 +419,11 @@ export MENUCONFIG_COLOR=mono
 # ssh agent
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
 export PATH=/home/collin/.local/bin:${PATH}:/home/collin/Work/Scripts
 
 ### 按键绑定
