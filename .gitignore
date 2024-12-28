@@ -2,3 +2,4 @@ nvim/plugin/
 nvim/lazy-lock.json
 nvim/lua/.luarc.json
 git-crypt.key
+root_passwd

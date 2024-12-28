@@ -27,7 +27,7 @@ dotbot:
 	@$(CURDIR)/$(DOTBOT_DIR)/$(DOTBOT_BIN) -d $(CURDIR) -c $(DOTBOT_CONFIG)
 
 #: Daily update
-daily_update: pre_daily_update bitwarden_get_password $(DAILY_UPDATE_ACTION) post_daily_update
+daily_update: check_passwd $(DAILY_UPDATE_ACTION)
 
 ###
 ### git submodule
@@ -67,27 +67,36 @@ git-crypt_unlock:
 ###
 ### bitwarden
 ###
-bitwarden_unlock:
+
+root_passwd:
 	$(eval export BW_SESSION:=$(shell bw unlock | sed -n '/BW_SESSION=/{p;q}' | cut -d '"' -f2))
+	@ echo $$(bw get password "ArchLinux-R9000K-root") | md5sum > root_passwd
 
-bitwarden_get_password: bitwarden_unlock
-	$(eval export ROOT_PASSWD:=$(shell bw get password "ArchLinux-R9000K-root"))
-
+check_passwd: root_passwd
+	$(eval export INPUT_PASSWD:=$(shell read -s -p "Enter the root password:" input_passwd && echo $${input_passwd} ))
+	@ echo
+	@ input_hash=$$(echo ${INPUT_PASSWD} | md5sum | awk '{print $$1}'); \
+	file_hash=$$(cat root_passwd | awk '{print $$1}'); \
+	if [ "$$input_hash" != "$$file_hash" ]; then \
+		echo "Password does not match."; \
+		exit 1; \
+	fi
+	$(eval export ROOT_PASSWD:=$(INPUT_PASSWD))
 
 ###
 ### ArchLinux Package Manager
 ###
-pkgfile_update: bitwarden_get_password
+pkgfile_update: check_passwd
 	@ $(ECHO) '\n$(_Y)===== [Pkgfile update] Start =====$(_N)\n'
 	@ expect -c 'spawn sudo pkgfile -u; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
 	@ $(ECHO) '\n$(_Y)===== [Pkgfile update] End =====$(_N)\n'
 
-pacman_update: bitwarden_get_password
+pacman_update: check_passwd 
 	@ $(ECHO) '\n$(_Y)===== [Pacman system update] Start =====$(_N)\n'
 	@ expect -c 'spawn sudo pacman -Syu --noconfirm; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
 	@ $(ECHO) '\n$(_Y)===== [Pacman system update] End =====$(_N)\n'
 
-paru_update: bitwarden_get_password
+paru_update: check_passwd
 	@ $(ECHO) '\n$(_Y)===== [paru system update] Start =====$(_N)\n'
 	@ expect -c 'spawn paru -Syu --noconfirm; expect "password*"; send "$(ROOT_PASSWD)\r"; interact'
 	@ $(ECHO) '\n$(_Y)===== [paru system update] End =====$(_N)\n'
@@ -125,16 +134,11 @@ rime_sync:
 	@ $(ECHO) '\n$(_Y)===== [$@] End =====$(_N)\n'
 
 #: update plocate database
-plocate_update: bitwarden_get_password
+plocate_update: check_passwd
 	@ $(ECHO) '\n$(_Y)===== [$@] Start =====$(_N)\n'
 	@ expect -c 'spawn sudo updatedb; expect "*password*"; send "$(ROOT_PASSWD)\r"; interact'
 	@ $(ECHO) '\n$(_Y)===== [$@] End =====$(_N)\n'
 
-pre_daily_update:
-	@ $(ECHO) '\n$(_Y)===== [Daily update] Start =====$(_N)\n'
-
-post_daily_update:
-	@ $(ECHO) '\n$(_Y)===== [Daily update] End =====$(_N)\n'
 
 
 .PHONY: daily_update
