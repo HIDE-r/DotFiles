@@ -6,10 +6,18 @@
 - link:
     ~/.zshrc:
       path: zsh/zshrc
+    ~/.zinit:
+      path: .zinit
     ~/.config/starship.toml:
       path: ./starship/starship.toml
     ~/.tmux.conf:
       path: tmux/tmux.conf
+    ~/.tmux.plugin_local.conf:
+      path: ./tmux/tmux.plugin_local.conf
+    ~/.tmux.plugin_remote.conf:
+      path: ./tmux/tmux.plugin_remote.conf
+    ~/.tpm:
+      path: .tpm
     ~/.xprofile:
       path: xorg/xprofile
     ~/.Xresources:
@@ -24,6 +32,8 @@
       path: polybar/config
     ~/.config/rofi/config.rasi:
       path: rofi/config.rasi
+    ~/.gitconfig.local:
+      path: git/gitconfig.local
     ~/.config/gitui:
       path: gitui
     ~/.config/wezterm/wezterm.lua:

@@ -20,7 +20,7 @@ DOTBOT_DIR=.dotbot
 DOTBOT_BIN=bin/dotbot
 DOTBOT_CONFIG=install.conf.yaml
 
-TPM_PATH=~/Public/DotFiles/.tpm
+TPM_PATH=~/.tpm
 
 #: Configuration Install
 dotbot:

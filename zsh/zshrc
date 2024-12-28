@@ -39,7 +39,7 @@ ZINIT[NO_ALIASES]=1
 zstyle :compinstall filename '/home/collin/.zshrc'
 # End of lines added by compinstall
 
-ZINIT_HOME="${HOME}/Public/DotFiles/.zinit/"
+ZINIT_HOME="${HOME}/.zinit/"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # load - with reporting/investigating.

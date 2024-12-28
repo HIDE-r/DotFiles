@@ -1,6 +1,6 @@
 # Nedd add follow line to ~/.gitconfig
 # [include]
-#         path = ~/DotFiles/git/gitconfig.local
+#         path = ~/.gitconfig.local
 
 # [http]
 #	proxy = socks5://127.0.0.1:1080
