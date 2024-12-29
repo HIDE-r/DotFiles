@@ -4,11 +4,3 @@
 [submodule ".tpm"]
 	path = .tpm
 	url = git@github.com:tmux-plugins/tpm.git
-[submodule ".dotbot"]
-	path = .dotbot
-	url = git@github.com:anishathalye/dotbot.git
-[submodule "navi"]
-	path = navi
-	url = git@github.com:HIDE-r/Cheatsheet-navi.git
-	branch = main
-	update=rebase
