@@ -1,5 +1,6 @@
 if vim.g.neovide then
 	vim.o.guifont = "Comic Code:h12"
+	vim.g.neovide_cursor_vfx_mode = "pixiedust"
 	-- vim.o.guifont = "Operator Mono Lig:h14"
 end
 
