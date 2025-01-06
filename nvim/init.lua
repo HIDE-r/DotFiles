@@ -1,5 +1,14 @@
+local is_wsl = function()
+    local output = vim.fn.systemlist('uname -r')
+    return not not string.find(output[1] or '', 'WSL')
+end
+
 if vim.g.neovide then
-	vim.o.guifont = "Comic Code:h12"
+	if is_wsl() then
+		vim.o.guifont = "Comic Code:h10"
+	else
+		vim.o.guifont = "Comic Code:h12"
+	end
 	vim.g.neovide_cursor_vfx_mode = "pixiedust"
 	-- vim.o.guifont = "Operator Mono Lig:h14"
 end
@@ -64,10 +73,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- wsl
 -- https://neovim.io/doc/user/provider.html#clipboard-wsl
-local is_wsl = function()
-    local output = vim.fn.systemlist('uname -r')
-    return not not string.find(output[1] or '', 'WSL')
-end
 if is_wsl() then
 	vim.g.clipboard = {
 		name = 'WslClipboard',
