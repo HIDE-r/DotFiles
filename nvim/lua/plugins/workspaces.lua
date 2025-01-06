@@ -52,7 +52,7 @@ return {
 				"<leader>wd",
 				[[<Cmd>WorkspacesRemove<CR>]],
 				mode = {'n'},
-				desc = "[workspaces] add workspaces",
+				desc = "[workspaces] remove workspaces",
 			},
 		},
 		opts = {
