@@ -7,6 +7,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 powerlevel10k
 
+if cat /proc/version | grep -q -i wsl ;then
+	is_wsl=1
+else
+	is_wsl=0
+fi
+
 installed () {
 	command -v "$1" >/dev/null 2>&1
 }
@@ -398,10 +404,15 @@ alias fgrep='fgrep --color=auto'
 alias info='info --vi-keys'
 
 bell_message=$(tmux run 2>/dev/null && tmux display-message -p 'Bell in session ❐ #{session_name} ● #{window_index}.#{pane_index}:#{window_name}')
-if installed notify-send;then
-	alias bell="print '\a'; notify-send -i wezterm -u critical '${bell_message}'"
+if [ "${is_wsl}" = "1" ]; then
+	notify-send() { wsl-notify-send.exe --category $WSL_DISTRO_NAME "${@}"; }
+	alias bell="print '\a'; notify-send '${bell_message}'"
 else
-	alias bell="print '\a'"
+	if installed notify-send;then
+		alias bell="print '\a'; notify-send -i wezterm -u critical '${bell_message}'"
+	else
+		alias bell="print '\a'"
+	fi
 fi
 
 # \rm to bypass the alias
