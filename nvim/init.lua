@@ -6,11 +6,18 @@ end
 if vim.g.neovide then
 	if is_wsl() then
 		vim.o.guifont = "Comic Code:h10"
+		vim.g.neovide_title_background_color = string.format(
+			"%x",
+			vim.api.nvim_get_hl(0, {id=vim.api.nvim_get_hl_id_by_name("Normal")}).bg
+		)
 	else
 		vim.o.guifont = "Comic Code:h12"
+		-- vim.o.guifont = "Operator Mono Lig:h14"
 	end
 	vim.g.neovide_cursor_vfx_mode = "pixiedust"
-	-- vim.o.guifont = "Operator Mono Lig:h14"
+
+	-- https://neovide.dev/configuration.html#hiding-the-mouse-when-typing
+	vim.g.neovide_hide_mouse_when_typing = true
 end
 
 -- leader key
