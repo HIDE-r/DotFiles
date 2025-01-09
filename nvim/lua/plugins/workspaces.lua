@@ -58,7 +58,7 @@ return {
 		opts = {
 			-- 指定切换目录时要执行的动作
 			hooks = {
-				open = { "Neotree" },
+				open = { "Yazi cwd" },
 			},
 		},
 		config = function(_, opts)

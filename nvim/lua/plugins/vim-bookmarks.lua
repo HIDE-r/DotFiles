@@ -5,6 +5,7 @@ return {
 			{
 				'tom-anders/telescope-vim-bookmarks.nvim',
 				dependencies = 'nvim-telescope/telescope.nvim',
+				cmd = "Telescope",
 				config = function()
 					require('telescope').load_extension('vim_bookmarks')
 				end
