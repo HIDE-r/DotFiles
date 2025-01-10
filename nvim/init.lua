@@ -3,8 +3,14 @@ local is_wsl = function()
     return not not string.find(output[1] or '', 'WSL')
 end
 
+if is_wsl() then
+	vim.g.dotfiles_is_wsl = true
+else
+	vim.g.dotfiles_is_wsl = false
+end
+
 if vim.g.neovide then
-	if is_wsl() then
+	if vim.g.dotfiles_is_wsl then
 		vim.o.guifont = "Comic Code:h10"
 		vim.g.neovide_title_background_color = string.format(
 			"%x",
