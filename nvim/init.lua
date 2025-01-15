@@ -24,6 +24,8 @@ if vim.g.neovide then
 
 	-- https://neovide.dev/configuration.html#hiding-the-mouse-when-typing
 	vim.g.neovide_hide_mouse_when_typing = true
+
+	vim.api.nvim_set_keymap('n', '<F11>', ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
 end
 
 -- leader key
