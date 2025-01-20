@@ -466,6 +466,11 @@ zinit ice as"command" from"gh-r" \
 zinit ${ZINIT_LOAD_METHOD} starship/starship
 #starship
 
+# 命令行编辑模式
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 # cd 的补全目录
 autoload -Uz compinit
 compinit
