@@ -8,5 +8,9 @@ return {
 			desc = "[zen-mode] zen mode",
 		},
 	},
-	opts = {},
+	opts = {
+		window = {
+			width = .95
+		},
+	},
 }
