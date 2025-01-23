@@ -10,7 +10,7 @@ return {
 				delete = "#c75c6a",
 				insert = "#78ccc5",
 				-- visual = "#9745be",
-				visual = "#989848",
+				visual = "#FF82AB",
 			},
 		},
 	}
