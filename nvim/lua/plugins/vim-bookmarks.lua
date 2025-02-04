@@ -1,16 +1,7 @@
 return {
 	{
 		'MattesGroeger/vim-bookmarks',
-		dependencies = {
-			{
-				'tom-anders/telescope-vim-bookmarks.nvim',
-				dependencies = 'nvim-telescope/telescope.nvim',
-				cmd = "Telescope",
-				config = function()
-					require('telescope').load_extension('vim_bookmarks')
-				end
-			},
-		},
+		enabled = false,
 		keys = {
 			{
 				"<leader>bb",
@@ -26,7 +17,7 @@ return {
 			},
 			{
 				"<leader>bl",
-				[[<Cmd>Telescope vim_bookmarks all<CR>]],
+				[[<Plug>BookmarkShowAll]],
  				mode = {'n'},
 				desc = "[bookmark] list all mark",
 			},
@@ -75,6 +66,7 @@ return {
 		},
 		init = function()
 			vim.g.bookmark_no_default_key_mappings = 1
+			vim.g.bookmark_auto_save = 1
 		end,
 	},
 }
