@@ -11,7 +11,7 @@ patch:
         # - clover.key_bindings:/numbered_mode_switch   # Ctrl+Shift+数字 切换开关
         # - clover.key_bindings:/windows_compatible_mode_switch   # Windows 兼容
         - clover.key_bindings:/kp_enter_is_return # 小键盘回车设为普通回车
-        - clover.key_bindings:/esc_is_change_mode
+        # - clover.key_bindings:/esc_is_change_mode
   ascii_composer:
     switch_key:
       Shift_L: noop # 左 Shift 切换直接上屏字母
@@ -38,5 +38,5 @@ patch:
       reset: 0
       states: [ 半, 全 ]
     - name: ascii_mode
-      reset: 1
+      reset: 0
       states: [ 中, 英 ]
