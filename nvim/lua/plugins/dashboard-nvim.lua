@@ -11,9 +11,8 @@ return {
 			config = {
 				week_header = { enable=true },
 				packages = { enable = true },
-				project = { enable = false },
+				project = { enable = false, limit = 8, action = 'Telescope find_files cwd=' },
 				mru = { limit = 15 },
-				-- project = { enable = true, limit = 8, action = 'Telescope find_files cwd=~/Public/Project' },
 				shortcut = {
 					{
 						icon = '󰊳 ',
@@ -31,19 +30,23 @@ return {
 						key = 'f',
 					},
 					{
-						desc = ' Todo',
+						desc = ' Project',
 						group = 'DiagnosticHint',
-						action = 'TodoTelescope',
-						key = 't',
+						action = 'Telescope workspaces',
+						key = 'p',
 					},
 					{
 						desc = '󱥬 Bookmarks',
 						group = 'Number',
-						action = 'Telescope vim_bookmarks',
+						action = 'BookmarksLists',
 						key = 'b',
 					},
 				},
-				-- footer = {},
+				footer = {
+					"",
+					"",
+					"🌲 The best time to plant a tree is 20 years ago. The second-best time is now.",
+				},
 			},
 		}
 	},
