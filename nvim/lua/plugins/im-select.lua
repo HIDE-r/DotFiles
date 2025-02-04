@@ -1,7 +1,7 @@
 return {
 	{
 		"keaising/im-select.nvim",
-		enabled = vim.g.dotfiles_is_wsl,
+		enabled = true,
 		opts = {
 			set_previous_events = {}
 		},
