@@ -13,12 +13,23 @@ else
 	is_wsl=0
 fi
 
-installed () {
+function installed () {
 	command -v "$1" >/dev/null 2>&1
 }
 
-running () {
+function running () {
 	pgrep "$1" > /dev/null 2>&1
+}
+
+function get_next_tmux_session_number() {
+    tmux list-sessions 2>/dev/null | \
+    sed -rn '/^[0-9]+:.*/p' | \
+    cut -d ':' -f 1 | \
+    sort -n | \
+    tail -n 1 | \
+    awk '{print $1 + 1}'
+
+    # awk 'NR==1 {expect=$1+1; next} {if ($1 != expect) {exit} expect=expect+1} END {print expect}'
 }
 
 #HISTFILE=~/.histfile
@@ -95,15 +106,7 @@ alias unsetss='unset all_proxy'
 cat /proc/$PPID/comm | grep wezterm >/dev/null 2>&1 && ZSH_TMUX_AUTOSTART=true
 
 ZSH_TMUX_AUTOCONNECT=false
-# 自动设置 tmux 的 session name, 从 0 开始找到第一个非连续的数字作为 session name
-# Note: 由于变量无法延迟解析, 无法在不改动插件的情况下实现
-ZSH_TMUX_DEFAULT_SESSION_NAME=$(\
-	tmux list-sessions 2>/dev/null| \
-	sed -rn '/^[0-9]+:.*/p' | \
-	cut -d ':' -f 1 | \
-	sort -n | \
-	awk 'NR==1 {expect=$1+1; next} {if ($1 != expect) {exit} expect=expect+1} END {print expect}' \
-)
+# ZSH_TMUX_DEFAULT_SESSION_NAME=$(get_next_tmux_session_number)
 ZSH_TMUX_FIXTERM=false
 #zinit snippet OMZ::lib/completion.zsh
 #zinit snippet OMZ::lib/key-bindings.zsh
@@ -419,6 +422,8 @@ fi
 # alias rm='echo "This is not the command you are looking for. Maybe you need trash-cli !!!"; false'
 alias rm='rmtrash'
 alias rmdir='rmdirtrash'
+
+alias tmux='ZSH_TMUX_DEFAULT_SESSION_NAME=$(get_next_tmux_session_number);_zsh_tmux_plugin_run'
 
 export TERMINAL="wezterm start --cwd . -- "
 # export TERM=wezterm
