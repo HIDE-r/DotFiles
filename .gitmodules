@@ -1,6 +1,6 @@
 [submodule ".zinit"]
 	path = .zinit
-	url = git@github.com:zdharma-continuum/zinit.git
+	url = https://github.com/zdharma-continuum/zinit.git
 [submodule ".tpm"]
 	path = .tpm
-	url = git@github.com:tmux-plugins/tpm.git
+	url = https://github.com/tmux-plugins/tpm.git
