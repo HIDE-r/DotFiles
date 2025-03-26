@@ -395,7 +395,7 @@ if installed viddy;then
 	alias watch='viddy'
 fi
 
-if installed tmux;then
+if [ -n "$TMUX" ]; then
 	alias clear='clear && tmux run 2>/dev/null && tmux clear-history -t ${TMUX_PANE}'
 fi
 
