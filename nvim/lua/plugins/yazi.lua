@@ -5,6 +5,7 @@ return {
 		event = "VeryLazy",
 		dependencies = {
 			"folke/snacks.nvim",
+			"MagicDuck/grug-far.nvim",
 		},
 		keys = {
 			-- 👇 in this section, choose your own keymappings!
