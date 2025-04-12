@@ -43,15 +43,14 @@ return {
 ]]
 			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 
-			vim.diagnostic.disable()
+			vim.diagnostic.enable(false)
 			local diagnostics_active = false
 			map('n', '<leader>dt', function()
 				diagnostics_active = not diagnostics_active
 				if diagnostics_active then
-					vim.diagnostic.enable()
+					vim.diagnostic.enable(true)
 				else
-					vim.diagnostic.disable()
-					-- vim.diagnostic.disable()
+					vim.diagnostic.enable(false)
 				end
 			end, {desc = "[LSP] toggle diagnostic"})
 
