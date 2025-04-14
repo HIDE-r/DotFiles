@@ -142,8 +142,8 @@ lsp_capabilities.textDocument.foldingRange = {
     lineFoldingOnly = true
 }
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities(lsp_capabilities)
--- local capabilities = require('blink.cmp').get_lsp_capabilities()
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities(lsp_capabilities)
+local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 -------------------------------------------------------- LSP Server Configuration
 require('lspconfig')['clangd'].setup {

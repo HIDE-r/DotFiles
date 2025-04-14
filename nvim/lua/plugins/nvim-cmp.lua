@@ -16,7 +16,7 @@ return {
 
 	{
 		'hrsh7th/nvim-cmp',
-		-- enabled = false,
+		enabled = false,
 		event = "BufRead",
 		dependencies = {
 			{'hrsh7th/cmp-nvim-lsp', dependencies = 'nvim-lspconfig'},
