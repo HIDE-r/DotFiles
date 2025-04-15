@@ -29,6 +29,7 @@ local leader_mapping = {
 		{ "<leader>d", group = "diagnostic" },
 		{ "<leader>e", group = "file explorer" },
 		{ "<leader>f", group = "find" },
+		{ "<leader>s", group = "search" },
 		{ "<leader>ht", group = "toggle" },
 		{ "<leader>l", group = "lspsaga" },
 		{ "<leader>p", group = "lazy" },

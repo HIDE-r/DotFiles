@@ -1,4 +1,4 @@
-local copilot_enable = false
+local copilot_enable = true
 
 return {
 	{
@@ -14,13 +14,13 @@ return {
 		end
 	},
 
-	{
-		"zbirenbaum/copilot-cmp",
-		enabled = copilot_enable,
-		dependencies = "zbirenbaum/copilot.lua",
-		after = 'zbirenbaum/copilot.lua',
-		config = function ()
-			require("copilot_cmp").setup()
-		end
-	},
+	-- {
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	enabled = copilot_enable,
+	-- 	dependencies = "zbirenbaum/copilot.lua",
+	-- 	after = 'zbirenbaum/copilot.lua',
+	-- 	config = function ()
+	-- 		require("copilot_cmp").setup()
+	-- 	end
+	-- },
 }

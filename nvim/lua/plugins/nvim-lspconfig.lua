@@ -65,11 +65,19 @@ return {
 			map('n', '<leader>ds', vim.diagnostic.show, { desc = "[LSP] show diagnostic" })
 			map('n', '<leader>dh', vim.diagnostic.hide, { desc = "[LSP] hide diagnostic"})
 
+
+			-- help lsp-defaults-disable 
+			vim.keymap.del('n', 'grn')
+			vim.keymap.del('n', 'grr')
+			vim.keymap.del('n', 'gra')
+			vim.keymap.del('n', 'gri')
+
 			vim.api.nvim_create_autocmd('LspAttach', {
 				group = vim.api.nvim_create_augroup('UserLspConfig', {}),
 				callback = function(ev)
 					-- Enable completion triggered by <c-x><c-o>
-					vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+					-- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+					vim.bo[ev.buf].omnifunc = ''
 
 					-- help lsp-defaults-disable
 					vim.bo[ev.buf].tagfunc = ''
@@ -81,6 +89,7 @@ return {
 					vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = ev.buf, desc = "[LSP] goto definition" })
 					vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, { buffer = ev.buf, desc = "[LSP] goto implementation" })
 					vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, { buffer = ev.buf, desc = "[LSP] type definition" })
+					vim.keymap.set('n', 'gO', vim.lsp.buf.document_symbol, { buffer = ev.buf, desc = "[LSP] document symbol" })
 					vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = ev.buf, desc = "[LSP] goto references" })
 
 					-- vim.keymap.set('n', 'gk', vim.lsp.buf.hover, { buffer = ev.buf, desc = "[LSP] hover doc" })
