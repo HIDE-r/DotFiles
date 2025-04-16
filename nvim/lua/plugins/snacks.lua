@@ -10,7 +10,7 @@ return {
 		{ "<leader>ff", function() Snacks.picker.files() end, desc = "[snacks.picker] Find Files" },
 		{ "<leader>fb", function() Snacks.picker.buffers() end, desc = "[snacks.picker] Buffers" },
 		{ "<leader>fc", function() Snacks.picker.command_history() end, desc = "[snacks.picker] Command History" },
-		{ "<leader>sC", function() Snacks.picker.commands() end, desc = "[snacks.picker] Commands" },
+		{ "<leader>fC", mode = { "n", "v" }, function() Snacks.picker.commands() end, desc = "[snacks.picker] Commands" },
 		{ "<leader>fn", function() Snacks.picker.notifications() end, desc = "[snacks.picker] Notification History" },
 		{ "<leader>fm", function() Snacks.picker.man() end, desc = "[snacks.picker] Man Pages" },
 		{ "<leader>ft", function() Snacks.picker.todo_comments() end, desc = "[snacks.picker] Todo" },
