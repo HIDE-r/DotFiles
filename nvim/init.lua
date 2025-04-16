@@ -72,6 +72,8 @@ vim.opt.listchars = {
 -- vim.o.incsearch=true   -- 实时匹配
 vim.o.ignorecase=true  -- 忽略大小写
 
+vim.g.completion = "blink"
+
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -142,8 +144,12 @@ lsp_capabilities.textDocument.foldingRange = {
     lineFoldingOnly = true
 }
 
--- local capabilities = require('cmp_nvim_lsp').default_capabilities(lsp_capabilities)
-local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+if vim.g.completion == "blink" then
+    capabilities = require('blink.cmp').get_lsp_capabilities()
+elseif vim.g.completion == "nvim-cmp" then
+    capabilities = require('cmp_nvim_lsp').default_capabilities(lsp_capabilities)
+end
 
 -------------------------------------------------------- LSP Server Configuration
 require('lspconfig')['clangd'].setup {
