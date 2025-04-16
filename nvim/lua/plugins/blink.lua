@@ -1,6 +1,7 @@
 return {
 	{
 		'saghen/blink.cmp',
+		enabled = vim.g.completion == "blink",
 		-- optional: provides snippets for the snippet source
 		dependencies = { 
 			'rafamadriz/friendly-snippets', 

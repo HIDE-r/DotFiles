@@ -16,7 +16,7 @@ return {
 
 	{
 		'hrsh7th/nvim-cmp',
-		enabled = false,
+		enabled = vim.g.completion == "nvim-cmp",
 		event = "BufRead",
 		dependencies = {
 			{'hrsh7th/cmp-nvim-lsp', dependencies = 'nvim-lspconfig'},
