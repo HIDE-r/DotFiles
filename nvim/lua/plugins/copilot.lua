@@ -8,8 +8,13 @@ return {
 		event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
-				suggestion = { enabled = false },
-				panel = { enabled = false },
+				-- 通过 virtual text 猜测需要的补全
+				suggestion = {
+					enabled = false,
+			},
+				panel = {
+					enabled = false,
+				},
 			})
 		end
 	},
