@@ -73,6 +73,7 @@ vim.opt.listchars = {
 vim.o.ignorecase=true  -- 忽略大小写
 
 vim.g.completion = "blink"
+vim.g.copilot_engine="copilot.lua"
 
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

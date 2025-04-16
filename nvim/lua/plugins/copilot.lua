@@ -1,9 +1,12 @@
-local copilot_enable = true
-
 return {
 	{
+		"github/copilot.vim",
+		enabled = vim.g.copilot_engine == "copilot.vim",
+	},
+
+	{
 		"zbirenbaum/copilot.lua",
-		enabled = copilot_enable,
+		enabled = vim.g.copilot_engine == "copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
@@ -19,13 +22,13 @@ return {
 		end
 	},
 
-	-- {
-	-- 	"zbirenbaum/copilot-cmp",
-	-- 	enabled = copilot_enable,
-	-- 	dependencies = "zbirenbaum/copilot.lua",
-	-- 	after = 'zbirenbaum/copilot.lua',
-	-- 	config = function ()
-	-- 		require("copilot_cmp").setup()
-	-- 	end
-	-- },
+	{
+		"zbirenbaum/copilot-cmp",
+		enabled = vim.g.completion == "nvim-cmp" and vim.g.copilot_engine == "copilot.lua",
+		dependencies = "zbirenbaum/copilot.lua",
+		after = 'zbirenbaum/copilot.lua',
+		config = function ()
+			require("copilot_cmp").setup()
+		end
+	},
 }
