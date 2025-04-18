@@ -31,7 +31,7 @@ return {
 					vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
 				end
 			end
---[[
+
 			local lspconfig = require'lspconfig'
 			lspconfig.util.default_config = vim.tbl_extend(
 				"force",
@@ -40,9 +40,8 @@ return {
 					autostart = false,
 				}
 			)
-]]
-			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 
+			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 			vim.diagnostic.enable(false)
 			local diagnostics_active = false
 			map('n', '<leader>dt', function()

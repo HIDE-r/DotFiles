@@ -32,6 +32,7 @@ local leader_mapping = {
 				vim.bo.fileformat = "unix"
 			end
 		end, desc = "[customize] file format" },
+		{ "<leader>ll", "<cmd>LspStart<cr>", desc = "[customize] lsp start" },
 	},
 	{
 		{ "<leader>d", group = "diagnostic" },
