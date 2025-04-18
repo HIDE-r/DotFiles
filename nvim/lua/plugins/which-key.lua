@@ -21,9 +21,17 @@ local leader_mapping = {
 		{ "<leader>h", group = "git" },
 		{ "<leader>m", group = "mark" },
 		{ "<leader>t", group = "applet" },
-		{ "<leader>tl", "<cmd>set list!<cr>", desc = "list mode" },
-		{ "<leader>tn", "<cmd>set number!<cr>", desc = "line number" },
-		{ "<leader>ts", "<cmd>nohlsearch<cr>", desc = "highlight search" },
+		{ "<leader>tl", "<cmd>set list!<cr>", desc = "[customize] list mode" },
+		{ "<leader>tn", "<cmd>set number!<cr>", desc = "[customize] line number" },
+		{ "<leader>ts", "<cmd>nohlsearch<cr>", desc = "[customize] highlight search" },
+		{ "<leader>tf", function()
+			local current_ff = vim.bo.fileformat
+			if current_ff == "unix" then
+				vim.bo.fileformat = "dos"
+			else
+				vim.bo.fileformat = "unix"
+			end
+		end, desc = "[customize] file format" },
 	},
 	{
 		{ "<leader>d", group = "diagnostic" },
