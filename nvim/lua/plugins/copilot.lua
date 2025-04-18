@@ -2,6 +2,11 @@ return {
 	{
 		"github/copilot.vim",
 		enabled = vim.g.copilot_engine == "copilot.vim",
+		filetypes = {
+			["grug-far"] = false,
+			["grug-far-history"] = false,
+			["grug-far-help"] = false,
+		},
 	},
 
 	{
@@ -9,6 +14,11 @@ return {
 		enabled = vim.g.copilot_engine == "copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
+		filetypes = {
+			["grug-far"] = false,
+			["grug-far-history"] = false,
+			["grug-far-help"] = false,
+		},
 		config = function()
 			require("copilot").setup({
 				-- 通过 virtual text 猜测需要的补全
