@@ -206,7 +206,7 @@ require('lspconfig')['pyright'].setup {
 	capabilities = capabilities,
 }
 
-require('lspconfig')['cmake'].setup {
+require('lspconfig')['neocmake'].setup {
 	capabilities = capabilities,
 }
 
