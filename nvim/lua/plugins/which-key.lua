@@ -1,6 +1,7 @@
 --[[
 1. When the WhichKey popup is open, you can use the following key bindings (they are also displayed at the bottom of the screen):
 
+
 - hit one of the keys to open a group or execute a key binding
 - <esc> to cancel and close the popup
 - <bs> go up one level
@@ -32,7 +33,14 @@ local leader_mapping = {
 				vim.bo.fileformat = "unix"
 			end
 		end, desc = "[customize] file format" },
-		{ "<leader>ll", "<cmd>LspStart<cr>", desc = "[customize] lsp start" },
+		{ "<leader>ll", function ()
+			local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+			if vim.tbl_isempty(clients) then
+				vim.cmd("LspStart")
+			else
+				vim.cmd("LspStop")
+			end
+		end, desc = "[customize] lsp toggle" },
 	},
 	{
 		{ "<leader>d", group = "diagnostic" },

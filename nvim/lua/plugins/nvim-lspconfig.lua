@@ -32,6 +32,7 @@ return {
 				end
 			end
 
+			vim.lsp.enable({'clangd', 'lua_ls', 'vimls', 'bashls', 'pyright', 'neocmake', 'perlnavigator'}, false)
 			local lspconfig = require'lspconfig'
 			lspconfig.util.default_config = vim.tbl_extend(
 				"force",
