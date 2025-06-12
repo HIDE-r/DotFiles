@@ -4,7 +4,7 @@ return {
 		-- pin the plugin at specific version for stability
 		-- backup your bookmark sqlite db when there are breaking changes
 		-- tag = "v2.3.0",
-		cmd = {"BookmarksLists"},
+		cmd = {"BookmarksLists", "BookmarksMark", "BookmarksGoto", "BookmarksTree"},
 		keys = {
 			{
 				"<leader>bb",
@@ -22,7 +22,7 @@ return {
 				"<leader>bl",
 				mode = {'n'},
 				[[<cmd>BookmarksLists<CR>]],
-				desc = "[bookmark] list",
+				desc = "[bookmark] select lists",
 			},
 			{
 				"<leader>bg",
