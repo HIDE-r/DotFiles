@@ -32,6 +32,7 @@ local leader_mapping = {
 			else
 				vim.bo.fileformat = "unix"
 			end
+			vim.cmd("Gitsigns refresh")
 		end, desc = "[customize] file format" },
 	},
 	{
