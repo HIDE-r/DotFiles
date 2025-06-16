@@ -33,14 +33,6 @@ local leader_mapping = {
 				vim.bo.fileformat = "unix"
 			end
 		end, desc = "[customize] file format" },
-		{ "<leader>ll", function ()
-			local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
-			if vim.tbl_isempty(clients) then
-				vim.cmd("LspStart")
-			else
-				vim.cmd("LspStop")
-			end
-		end, desc = "[customize] lsp toggle" },
 	},
 	{
 		{ "<leader>d", group = "diagnostic" },
