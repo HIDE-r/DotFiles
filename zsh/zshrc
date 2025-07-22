@@ -131,6 +131,7 @@ zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-history-substring-search
 # 语法高亮
 zinit ice wait ${ZINIT_TURBO_OPTION}
 zinit ${ZINIT_LOAD_METHOD} zdharma-continuum/fast-syntax-highlighting
+# zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-syntax-highlighting
 
 
 # 补全
