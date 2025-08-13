@@ -331,8 +331,8 @@ zinit ice as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" m
 zinit ${ZINIT_LOAD_METHOD} tj/git-extras
 
 # 运行时软件版本管理
-zinit ice lucid src"asdf.sh"
-zinit ${ZINIT_LOAD_METHOD} asdf-vm/asdf
+# zinit ice lucid src"asdf.sh"
+# zinit ${ZINIT_LOAD_METHOD} asdf-vm/asdf
 
 # 目录环境变量
 zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
