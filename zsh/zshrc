@@ -421,8 +421,8 @@ fi
 
 # \rm to bypass the alias
 # alias rm='echo "This is not the command you are looking for. Maybe you need trash-cli !!!"; false'
-alias rm='rmtrash'
-alias rmdir='rmdirtrash'
+# alias rm='rmtrash'
+# alias rmdir='rmdirtrash'
 
 alias tmux='ZSH_TMUX_DEFAULT_SESSION_NAME=$(get_next_tmux_session_number);_zsh_tmux_plugin_run'
 
