@@ -116,7 +116,6 @@ zinit  ${ZINIT_TURBO_OPTION} ${ZINIT_LIGHT_MODE} for \
 	OMZP::tmux \
 	OMZ::lib/history.zsh \
 	OMZP::vi-mode \
-	wait	OMZP::sudo \
 	wait"1"	OMZP::colored-man-pages \
 	wait"1"	OMZP::extract \
 
@@ -290,6 +289,17 @@ _fzf_comprun() {
   esac
 }
 
+prefix_picker_widget() {
+    local prefix
+    prefix=$(cat ~/.prefix_list | fzf --height=40%) || { zle redisplay; return }
+    if [[ -n $prefix ]]; then
+        LBUFFER="$prefix $LBUFFER"
+    fi
+    zle redisplay
+}
+
+zle -N prefix_picker_widget
+bindkey '\e\e' prefix_picker_widget
 
 zinit ice lucid as"program" pick="bin/(fzf|fzf-tmux|fzf-preview.sh)" \
 	atclone="make install; ./bin/fzf --zsh > _fzf.zsh;" \
