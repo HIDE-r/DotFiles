@@ -291,7 +291,7 @@ _fzf_comprun() {
 
 prefix_picker_widget() {
     local prefix
-    prefix=$(cat ~/.prefix_list | fzf --height=40%) || { zle redisplay; return }
+    prefix=$(cat ~/.prefix_list | fzf --height=30% --reverse) || { zle redisplay; return }
     if [[ -n $prefix ]]; then
         LBUFFER="$prefix $LBUFFER"
     fi
