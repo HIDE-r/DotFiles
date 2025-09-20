@@ -153,28 +153,34 @@ elseif vim.g.completion == "nvim-cmp" then
 end
 
 -------------------------------------------------------- LSP Server Configuration
-require('lspconfig')['clangd'].setup {
 vim.lsp.enable({'clangd', 'lua_ls', 'vimls', 'bashls', 'pyright', 'neocmake', 'perlnavigator'}, false)
+
+vim.lsp.config("clangd", {
 	capabilities = capabilities,
-	semanticHighlighting=true,
 	cmd = {
 		"clangd",
 		"--offset-encoding=utf-16",
 	},
-}
+	settings = {
+		clangd = {
+			semanticHighlighting = true,
+		},
+	},
+})
 
-require('lspconfig')['lua_ls'].setup {
+
+vim.lsp.config("lua_ls", {
 	capabilities = capabilities,
 	settings = {
 		Lua = {
 			runtime = {
 				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = 'LuaJIT',
+				version = "LuaJIT",
 			},
 			diagnostics = {
 				-- enable = false,
 				-- Get the language server to recognize the `vim` global
-				globals = {'vim'},
+				globals = { "vim" },
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
@@ -187,30 +193,29 @@ require('lspconfig')['lua_ls'].setup {
 			telemetry = {
 				enable = false,
 			},
-
 			completion = {
-				callSnippet = "Replace"
-			}
+				callSnippet = "Replace",
+			},
 		},
 	},
-}
+})
 
-require('lspconfig')['vimls'].setup {
+vim.lsp.config("vimls", {
 	capabilities = capabilities,
-}
+})
 
-require('lspconfig')['bashls'].setup {
+vim.lsp.config("bashls", {
 	capabilities = capabilities,
-}
+})
 
-require('lspconfig')['pyright'].setup {
+vim.lsp.config("pyright", {
 	capabilities = capabilities,
-}
+})
 
-require('lspconfig')['neocmake'].setup {
+vim.lsp.config("neocmake", {
 	capabilities = capabilities,
-}
+})
 
-require('lspconfig')['perlnavigator'].setup {
+vim.lsp.config("perlnavigator", {
 	capabilities = capabilities,
-}
+})
