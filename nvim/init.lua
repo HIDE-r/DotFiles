@@ -154,6 +154,7 @@ end
 
 -------------------------------------------------------- LSP Server Configuration
 require('lspconfig')['clangd'].setup {
+vim.lsp.enable({'clangd', 'lua_ls', 'vimls', 'bashls', 'pyright', 'neocmake', 'perlnavigator'}, false)
 	capabilities = capabilities,
 	semanticHighlighting=true,
 	cmd = {

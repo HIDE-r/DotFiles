@@ -32,10 +32,6 @@ return {
 				end
 			end
 
-			vim.lsp.enable({'clangd', 'lua_ls', 'vimls', 'bashls', 'pyright', 'neocmake', 'perlnavigator'}, false)
-			local lspconfig = require'lspconfig'
-			lspconfig.util.default_config.autostart = false
-
 			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 			vim.diagnostic.enable(false)
 			local diagnostics_active = false
