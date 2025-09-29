@@ -1,3 +1,15 @@
 # https://starship.rs/config/#prompt
+format = """
+$all\
+$time\
+$line_break\
+$character"""
+
 [git_status]
 disabled = true
+
+[time]
+disabled = false
+# format = '[\[ $time \]]($style) '
+time_format = '%F %T'
+utc_time_offset = '+8'
