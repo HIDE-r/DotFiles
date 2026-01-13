@@ -30,7 +30,7 @@ end
 
 -- leader key
 vim.g.mapleader=" "
-vim.g.maplocalleader=','
+vim.g.maplocalleader='\\'
 
 vim.g.have_nerd_font = true
 
@@ -91,20 +91,20 @@ vim.opt.rtp:prepend(lazypath)
 
 -- wsl
 -- https://neovim.io/doc/user/provider.html#clipboard-wsl
-if is_wsl() then
-	vim.g.clipboard = {
-		name = 'WslClipboard',
-		copy = {
-			['+'] = 'clip.exe',
-			['*'] = 'clip.exe',
-		},
-		paste = {
-			['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-			['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-		},
-		cache_enabled = 0,
-	}
-end
+-- if is_wsl() then
+-- 	vim.g.clipboard = {
+-- 		name = 'WslClipboard',
+-- 		copy = {
+-- 			['+'] = 'clip.exe',
+-- 			['*'] = 'clip.exe',
+-- 		},
+-- 		paste = {
+-- 			['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+-- 			['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+-- 		},
+-- 		cache_enabled = 0,
+-- 	}
+-- end
 
 require("lazy").setup("plugins", {
 	performance = {
@@ -135,6 +135,22 @@ require("lazy").setup("plugins", {
 })
 
 vim.cmd.colorscheme('kanagawa')
+
+-- if is_wsl() then
+-- 	local clipipe = require 'clipipe'
+--
+-- 	vim.g.clipboard = {
+-- 	  name = "clipipe",
+-- 	  copy = {
+-- 	    ["+"] = function(lines) clipipe.copy(lines, '+') end,
+-- 	    ["*"] = function(lines) clipipe.copy(lines, '*') end,
+-- 	  },
+-- 	  paste = {
+-- 	    ["+"] = function() return clipipe.paste('+') end,
+-- 	    ["*"] = function() return clipipe.paste('*') end,
+-- 	  }
+-- 	}
+-- end
 
 
 -- Tell the server the capability of foldingRange,
