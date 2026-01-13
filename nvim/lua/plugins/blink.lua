@@ -1,3 +1,5 @@
+-- https://cmp.saghen.dev/configuration/keymap
+
 return {
 	{
 		'saghen/blink.cmp',
@@ -60,9 +62,13 @@ return {
 					draw = {
 						columns = {
 							{ "label", "label_description", gap = 1 },
-							{ "kind" }
+							{ "kind_icon"},
+							{ "kind" },
 						},
 					}
+				},
+				documentation = {
+					auto_show = false,
 				},
 			},
 		},
