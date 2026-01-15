@@ -1,14 +1,32 @@
 return {
 	{
 		"nvimdev/lspsaga.nvim",
-		enabled = false,
+		enabled = true,
 		event = 'LspAttach',
 		keys = {
+			-- {
+			-- 	"<leader>la",
+			-- 	"<Cmd>Lspsaga code_action<CR>",
+			-- 	mode = {'n'},
+			-- 	desc = "[lspsaga] code action",
+			-- },
 			{
-				"<leader>la",
-				"<Cmd>Lspsaga code_action<CR>",
+				"K",
+				"<Cmd>Lspsaga hover_doc<CR>",
 				mode = {'n'},
-				desc = "[lspsaga] code action",
+				desc = "[lspsaga] hover doc",
+			},
+			{
+				"]d",
+				"<Cmd>Lspsaga diagnostic_jump_next<CR>",
+				mode = {'n'},
+				desc = "[lspsaga] next diagnostic",
+			},
+			{
+				"[d",
+				"<Cmd>Lspsaga diagnostic_jump_prev<CR>",
+				mode = {'n'},
+				desc = "[lspsaga] prev diagnostic",
 			},
 			-- {
 			-- 	"<leader>ld",
@@ -28,6 +46,10 @@ return {
 			--Please make sure you install markdown and markdown_inline parser
 			{"nvim-treesitter/nvim-treesitter"}
 		},
-		opts = {},
+		opts = {
+			symbol_in_winbar = {
+				-- show_file = false,
+			}
+		},
 	},
 }

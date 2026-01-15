@@ -1,0 +1,20 @@
+{
+	"console print": {
+		"prefix": "console_printf",
+		"body": [
+			"#define console_printf(fmt, args...) do { \\",
+			"\tFILE *fp = fopen(\"/dev/console\", \"w\"); \\",
+			"\tif (fp) { \\",
+			"\t\tfprintf(fp, fmt, ##args); \\",
+			"\t\tfclose(fp); \\",
+			"\t} \\",
+			"} while (0)"
+		]
+	},
+	"Evaluate EXPRESSION, and repeat as long as it returns -1 with `errno' set to EINTR.": {
+		"prefix": "TEMP_FAILURE_RETRY",
+		"body": [
+			"TEMP_FAILURE_RETRY(${1:expression})"
+		]
+	}
+}

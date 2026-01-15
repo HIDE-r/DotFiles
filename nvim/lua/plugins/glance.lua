@@ -1,11 +1,11 @@
 return {
 	{
 		'dnlhc/glance.nvim',
-		enabled = false,
+		enabled = true,
 		cmd = "Glance",
 		keys = {
 			{
-				"<leader>ld",
+				"gd",
 				"<Cmd>Glance definitions<CR>",
 				mode = {'n'},
 				desc = "[glance] definitions",

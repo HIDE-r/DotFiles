@@ -77,7 +77,7 @@ return {
 					-- Buffer local mappings.
 					-- See `:help vim.lsp.*` for documentation on any of the below functions
 					vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = ev.buf, desc = "[LSP] goto declaration" })
-					vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = ev.buf, desc = "[LSP] goto definition" })
+					-- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = ev.buf, desc = "[LSP] goto definition" })
 					vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, { buffer = ev.buf, desc = "[LSP] goto implementation" })
 					vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, { buffer = ev.buf, desc = "[LSP] type definition" })
 					vim.keymap.set('n', 'gO', vim.lsp.buf.document_symbol, { buffer = ev.buf, desc = "[LSP] document symbol" })

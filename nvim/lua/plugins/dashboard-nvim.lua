@@ -8,7 +8,14 @@ return {
 		opts = {
 			theme = 'hyper',
 			shortcut_type = 'number',
+			-- preview = {
+			-- 	command = "cat",
+			-- 	file_path = "~/.config/nvim/neovim.cat",
+			-- 	file_width = 80,
+			-- 	file_height = 10,
+			-- },
 			config = {
+				-- header = "",
 				week_header = { enable=true },
 				packages = { enable = true },
 				project = { enable = false, limit = 8, action = 'Telescope find_files cwd=' },
