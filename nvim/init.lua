@@ -73,6 +73,7 @@ vim.opt.listchars = {
 vim.o.ignorecase=true  -- 忽略大小写
 
 vim.g.completion = "blink"
+-- vim.g.completion = "nvim-cmp"
 vim.g.copilot_engine="copilot.lua"
 
 -- bootstrap lazy.nvim
@@ -171,22 +172,23 @@ end
 -------------------------------------------------------- LSP Server Configuration
 vim.lsp.enable({'clangd', 'lua_ls', 'vimls', 'bashls', 'pyright', 'neocmake', 'perlnavigator'}, false)
 
-vim.lsp.config("clangd", {
+vim.lsp.config('*', {
 	capabilities = capabilities,
+})
+
+vim.lsp.config("clangd", {
+	on_attach = function(client, bufnr)
+		-- Ref: help vim.lsp.semantic_tokens.start
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
 	cmd = {
 		"clangd",
 		"--offset-encoding=utf-16",
-	},
-	settings = {
-		clangd = {
-			semanticHighlighting = true,
-		},
 	},
 })
 
 
 vim.lsp.config("lua_ls", {
-	capabilities = capabilities,
 	settings = {
 		Lua = {
 			runtime = {
@@ -216,22 +218,3 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
-vim.lsp.config("vimls", {
-	capabilities = capabilities,
-})
-
-vim.lsp.config("bashls", {
-	capabilities = capabilities,
-})
-
-vim.lsp.config("pyright", {
-	capabilities = capabilities,
-})
-
-vim.lsp.config("neocmake", {
-	capabilities = capabilities,
-})
-
-vim.lsp.config("perlnavigator", {
-	capabilities = capabilities,
-})
