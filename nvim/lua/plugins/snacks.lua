@@ -2,6 +2,8 @@ return {
 	'folke/snacks.nvim',
 	opts = {
 		picker = {},
+		scroll = {},
+		zen = {},
 	},
 	keys = {
 		{ "<leader>fa", function() Snacks.picker.autocmds() end, desc = "[snacks.picker] Autocmds" },
@@ -22,5 +24,6 @@ return {
 		{ "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "[snacks.picker] Grep Open Buffers" },
 		{ "<leader>sg", function() Snacks.picker.grep() end, desc = "[snacks.picker] Grep" },
 		{ "<leader>sR", function() Snacks.picker.resume() end, desc = "[snacks.picker] Resume" },
+		{ "<leader>z", function() Snacks.zen() end, desc = "[snacks.zen] zen mode" },
 	},
 }
