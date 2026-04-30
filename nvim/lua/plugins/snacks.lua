@@ -2,7 +2,7 @@ return {
 	'folke/snacks.nvim',
 	opts = {
 		picker = {},
-		scroll = {},
+		-- scroll = {},
 		zen = {},
 	},
 	keys = {

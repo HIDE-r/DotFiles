@@ -489,6 +489,15 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
+# # 清理 zinit 残留的悬空补全链接，避免 compinit 报错并拖慢启动。
+# if [[ -d "${HOME}/.local/share/zinit/completions" ]]; then
+#   typeset _zinit_completion
+#   for _zinit_completion in "${HOME}"/.local/share/zinit/completions/*(N@); do
+#     [[ -e "${_zinit_completion}" ]] || command rm -f -- "${_zinit_completion}"
+#   done
+#   unset _zinit_completion
+# fi
+
 # cd 的补全目录
 autoload -Uz compinit
 compinit

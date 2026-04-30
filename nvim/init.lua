@@ -67,6 +67,7 @@ vim.opt.listchars = {
 	precedes = '⟨',
 	nbsp = '␣',
 }
+vim.opt.shortmess:append("I")
 
 -- vim.o.hlsearch=true    -- 高亮搜索
 -- vim.o.incsearch=true   -- 实时匹配
