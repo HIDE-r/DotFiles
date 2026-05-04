@@ -1,7 +1,7 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
-		-- enabled = false,
+		enabled = false,
 		lazy = true,
 		config = function()
 			local dap = require('dap')
@@ -57,23 +57,7 @@ return {
 
 			dap.configurations.c = dap.configurations.cpp
 			dap.configurations.rust = dap.configurations.cpp
-		end
-	},
-	{
-		'theHamsta/nvim-dap-virtual-text',
-		enabled = false,
-		dependencies = {
-			"mfussenegger/nvim-dap",
-			{"nvim-treesitter/nvim-treesitter", build = ':TSUpdate'},
-		},
-		opts = {
-			-- position of virtual text, see `:h nvim_buf_set_extmark()`, default tries to inline the virtual text. Use 'eol' to set to end of line
-			virt_text_pos = 'eol',
-		},
-	},
-	{
-		"rcarriga/nvim-dap-ui",
-		dependencies = { "mfussenegger/nvim-dap", 'nvim-neotest/nvim-nio' },
+		end,
 		keys = {
 			{
 				"<localleader>r",
@@ -94,10 +78,10 @@ return {
 				desc = "[dap] next",
 			},
 			{
-				"<localleader>b",
-				function() require'dap'.toggle_breakpoint() end,
+				"<localleader>f",
+				function() require'dap'.step_out() end,
  				mode = {'n'},
-				desc = "[dap] breakpoint",
+				desc = "[dap] finish",
 			},
 			{
 				"<localleader>b",
@@ -111,6 +95,44 @@ return {
  				mode = {'n'},
 				desc = "[dap] REPL",
 			},
+		},
+	},
+	{
+		'theHamsta/nvim-dap-virtual-text',
+		enabled = false,
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			{"nvim-treesitter/nvim-treesitter", build = ':TSUpdate'},
+		},
+		opts = {
+			-- position of virtual text, see `:h nvim_buf_set_extmark()`, default tries to inline the virtual text. Use 'eol' to set to end of line
+			virt_text_pos = 'eol',
+		},
+	},
+	{
+		"igorlfs/nvim-dap-view",
+		enabled = false,
+		dependencies = { "mfussenegger/nvim-dap" },
+		-- let the plugin lazy load itself
+		lazy = false,
+		version = "1.*",
+		---@module 'dap-view'
+		---@type dapview.Config
+		opts = {},
+		keys = {
+			{
+				"<localleader>h",
+				function() require("dap-view").hover() end,
+ 				mode = {'n'},
+				desc = "[dap-view] hover",
+			},
+		},
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		enabled = false,
+		dependencies = { "mfussenegger/nvim-dap", 'nvim-neotest/nvim-nio' },
+		keys = {
 			{
 				"<localleader>q",
 				function()
