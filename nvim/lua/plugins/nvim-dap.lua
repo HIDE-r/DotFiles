@@ -1,10 +1,11 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
-		enabled = false,
+		-- enabled = false,
 		lazy = true,
 		config = function()
 			local dap = require('dap')
+			local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
 			local icons = {
 				Stopped             = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
 				Breakpoint          = " ",
@@ -21,12 +22,14 @@ return {
 				)
 			end
 
+			-- 调试器配置
 			dap.adapters.cppdbg = {
 				id = 'cppdbg',
 				type = 'executable',
-				command = '/home/collin/.local/share/nvim/mason/bin/OpenDebugAD7',
+				command = mason_bin .. "/OpenDebugAD7",
 			}
 
+			-- 对应编程语言配置
 			dap.configurations.cpp = {
 				{
 					name = "Launch file",
@@ -44,7 +47,7 @@ return {
 					request = 'launch',
 					MIMode = 'gdb',
 					miDebuggerServerAddress = 'localhost:1234',
-					miDebuggerPath = '/usr/bin/gdb',
+					miDebuggerPath = 'gdb',
 					cwd = '${workspaceFolder}',
 					program = function()
 						return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
