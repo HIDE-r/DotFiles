@@ -31,6 +31,7 @@ local conditions = {
 -- Config
 local config = {
 	options = {
+		globalstatus = true,
 		-- Disable sections and component separators
 		component_separators = '',
 		section_separators = '',
@@ -82,10 +83,7 @@ ins_left {
 }
 
 ins_left {
-	-- mode component
-	function()
-		return ''
-	end,
+	'mode',
 	color = function()
 		-- auto change color according to neovims mode
 		local mode_color = {
@@ -112,14 +110,47 @@ ins_left {
 		}
 		return { fg = mode_color[vim.fn.mode()] }
 	end,
-	padding = { right = 1 },
 }
 
-ins_left {
-	-- filesize component
-	'filesize',
-	cond = conditions.buffer_not_empty,
-}
+-- ins_left {
+-- 	-- mode component
+-- 	function()
+-- 		return ''
+-- 	end,
+-- 	color = function()
+-- 		-- auto change color according to neovims mode
+-- 		local mode_color = {
+-- 			n = colors.red,
+-- 			i = colors.green,
+-- 			v = colors.blue,
+-- 			[''] = colors.blue,
+-- 			V = colors.blue,
+-- 			c = colors.magenta,
+-- 			no = colors.red,
+-- 			s = colors.orange,
+-- 			S = colors.orange,
+-- 			[''] = colors.orange,
+-- 			ic = colors.yellow,
+-- 			R = colors.violet,
+-- 			Rv = colors.violet,
+-- 			cv = colors.red,
+-- 			ce = colors.red,
+-- 			r = colors.cyan,
+-- 			rm = colors.cyan,
+-- 			['r?'] = colors.cyan,
+-- 			['!'] = colors.red,
+-- 			t = colors.red,
+-- 		}
+-- 		return { fg = mode_color[vim.fn.mode()] }
+-- 	end,
+-- 	padding = { right = 1 },
+-- }
+
+-- ins_left {
+-- 	-- filesize component
+-- 	'filesize',
+-- 	cond = conditions.buffer_not_empty,
+-- }
 
 ins_left {
 	'filename',
@@ -127,9 +158,9 @@ ins_left {
 	color = { fg = colors.magenta, gui = 'bold' },
 }
 
-ins_left { 'location' }
+-- ins_left { 'location' }
 
-ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+-- ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
 
 -- ins_left {
 -- 	function()
