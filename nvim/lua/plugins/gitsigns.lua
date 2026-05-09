@@ -64,9 +64,9 @@ return {
 				end, {expr=true, desc = "[gitsigns] prev hunk"})
 
 				-- Actions
-				-- map('n', '<leader>hr', ':Gitsigns reset_hunk<CR>', { desc = "[gitsigns] reset hunk" })
+				map('n', '<leader>hr', ':Gitsigns reset_hunk<CR>', { desc = "[gitsigns] reset hunk" })
 				map({'n', 'v'}, '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, { desc = "[gitsigns] stage hunk" })
-				map({'n', 'v'}, '<leader>hr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, { desc = "[gitsigns] reset hunk" })
+				map('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, { desc = "[gitsigns] reset hunk" })
 
 				map('n', '<leader>hS', gs.stage_buffer, { desc = "[gitsigns] stage buffer" })
 				map('n', '<leader>hR', gs.reset_buffer, { desc = "[gitsigns] reset buffer" })
