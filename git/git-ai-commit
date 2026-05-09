@@ -43,7 +43,7 @@ fi
 2. 必要时用 bullet list 说明
 3. 不要输出 Markdown 代码块
 4. 不要解释，只输出 commit message
-5. conventional commit 风格
+5. 尽量使用与其他commit相同的风格, 否则使用 conventional commit 风格
 6. 标题格式类似：feat(scope): xxx / fix(scope): xxx / refactor(scope): xxx
 EOF
 
