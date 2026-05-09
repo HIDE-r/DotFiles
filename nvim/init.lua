@@ -12,10 +12,7 @@ end
 if vim.g.neovide then
 	if vim.g.dotfiles_is_wsl then
 		vim.o.guifont = "Comic Code:h10"
-		vim.g.neovide_title_background_color = string.format(
-			"%x",
-			vim.api.nvim_get_hl(0, {id=vim.api.nvim_get_hl_id_by_name("Normal")}).bg
-		)
+		vim.g.neovide_title_background_color = "#1F1F28"
 	else
 		vim.o.guifont = "Comic Code:h12"
 		-- vim.o.guifont = "Operator Mono Lig:h14"
@@ -136,7 +133,7 @@ require("lazy").setup("plugins", {
 	},
 })
 
-vim.cmd.colorscheme('kanagawa')
+vim.cmd.colorscheme('kanagawa-wave')
 
 -- if is_wsl() then
 -- 	local clipipe = require 'clipipe'
