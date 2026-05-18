@@ -23,6 +23,16 @@ if vim.g.neovide then
 	vim.g.neovide_hide_mouse_when_typing = true
 
 	vim.api.nvim_set_keymap('n', '<F11>', ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
+
+	-- 修复 neovide 启动后颜色不正确, 进入 UI 后再设置一次颜色方案
+	vim.api.nvim_create_autocmd("UIEnter", {
+		once = true,
+		callback = function()
+			vim.schedule(function()
+				vim.cmd.colorscheme("kanagawa-wave")
+			end)
+		end,
+	})
 end
 
 -- leader key
