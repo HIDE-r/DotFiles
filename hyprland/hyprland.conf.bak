@@ -171,6 +171,7 @@ windowrule {
 	suppress_event = maximize
 }
 
+
 windowrule {
 	name = hypridle
 	match:class = .*
@@ -321,7 +322,7 @@ bind = $mainMod, P, pin, #pins a window , floating only
 bind = $mainMod SHIFT, L, exec, hyprlock
 # bind = $mainMod, B, exec, killall -SIGUSR1 waybar
 bind = $mainMod, B, exec, hyprpanel toggleWindow bar-0
-bind = $mainMod, I, exec, dunstctl history-pop
+# bind = $mainMod, I, exec, dunstctl history-pop
 
 # Passthrough key to remote desktop
 bind = CTRL , Alt_R, submap, passthrough
@@ -462,7 +463,6 @@ exec-once=wezterm start
 exec-once=keycombiner --hidden
 exec-once=~/.local/bin/sync_fcitx5.sh
 exec-once=~/.local/bin/server_notify -l
-exec-once=mihomo-party &
 exec-once=hyprswitch init --show-title &
 # exec-once=/home/collin/.local/bin/clipsync.py
 exec-once=hypridle
