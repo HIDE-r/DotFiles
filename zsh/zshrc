@@ -455,6 +455,8 @@ eval "$(pyenv init - zsh)"
 
 export PATH=/home/collin/.local/bin:${PATH}:/home/collin/Work/Scripts
 
+export HERMES_TUI=1
+
 ### 按键绑定
 typeset -g -A key
 
