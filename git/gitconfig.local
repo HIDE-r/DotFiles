@@ -17,7 +17,6 @@
 [core]
 	quotepath = false
 	editor = nvim
-	hooksPath = ~/.config/git/hooks
 [init]
 	defaultBranch = main
 [pull]
