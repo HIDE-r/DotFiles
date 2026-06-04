@@ -401,7 +401,12 @@ if installed bat;then
 fi
 
 if installed rg;then
-    alias rg='rg -g '!tags' -g '!cscope.out' -g '!compile_commands.json''
+	alias rg='rg --no-heading -g '!tags' -g '!cscope.out' -g '!compile_commands.json''
+	alias rg_color='rg --color=always -n --no-heading -g '!tags' -g '!cscope.out' -g '!compile_commands.json''
+fi
+
+if installed fzf;then
+	alias fzf_vi="fzf --ansi --delimiter ':' --bind 'enter:become(nvim +{2} {1})'"
 fi
 
 if installed viddy;then
