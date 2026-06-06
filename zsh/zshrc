@@ -106,7 +106,7 @@ alias unsetss='unset all_proxy'
 cat /proc/$PPID/comm | grep wezterm >/dev/null 2>&1 && ZSH_TMUX_AUTOSTART=true
 
 ZSH_TMUX_AUTOCONNECT=false
-# ZSH_TMUX_DEFAULT_SESSION_NAME=$(get_next_tmux_session_number)
+ZSH_TMUX_DEFAULT_SESSION_NAME=$(get_next_tmux_session_number)
 ZSH_TMUX_FIXTERM=false
 #zinit snippet OMZ::lib/completion.zsh
 #zinit snippet OMZ::lib/key-bindings.zsh
