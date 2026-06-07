@@ -453,8 +453,10 @@ hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
 
 -- Cursor Variables
 hl.env("GDK_SCALE", "1")
-hl.env("XCURSOR_SIZE", "24")
-hl.env("XCURSOR_THEME", "Vimix-cursors")
+hl.env("HYPRCURSOR_THEME", "Nordzy-hyprcursors")
+hl.env("HYPRCURSOR_SIZE", "26")
+hl.env("XCURSOR_THEME", "Nordzy-cursors")
+hl.env("XCURSOR_SIZE", "26")
 
 -------------------
 ---- AUTOSTART ----
