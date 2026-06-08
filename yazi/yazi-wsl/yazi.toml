@@ -1,0 +1,4 @@
+[open]
+rules = [
+	{ url = "*", use = [ "edit" ] },
+]

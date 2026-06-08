@@ -189,9 +189,13 @@ zinit ice as"program" from"gh-r" bpick="*x86_64*linux*zip" pick="*/yazi"
 zinit ${ZINIT_LOAD_METHOD} sxyazi/yazi
 fi
 
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
+	if [ "${is_wsl}" = "1" ]; then
+		YAZI_CONFIG_WSL=~/.config/yazi-wsl
+	fi
+	YAZI_CONFIG_HOME=$YAZI_CONFIG_WSL yazi "$@" --cwd-file="$tmp"
 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
 		builtin cd -- "$cwd"
 	fi
