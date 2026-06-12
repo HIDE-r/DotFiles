@@ -454,7 +454,8 @@ export MANPAGER="nvim +Man\!"
 export MENUCONFIG_COLOR=mono
 
 # ssh agent
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+# export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
