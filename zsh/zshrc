@@ -38,6 +38,12 @@ if ! installed unzip; then
 	return 1
 fi
 
+if ! installed pyenv; then
+	print -u2 -- "Error: direnv requires 'pyenv' to install plugins."
+	print -u2 -- "Install pyenv and restart zsh."
+	return 1
+fi
+
 #HISTFILE=~/.histfile
 #HISTSIZE=10000
 #SAVEHIST=10000
@@ -362,6 +368,9 @@ zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
     atclone'chmod +x ./direnv; ./direnv hook zsh > zhook.zsh' atpull'%atclone' \
     pick"direnv" src="zhook.zsh"
 zinit ${ZINIT_LOAD_METHOD} direnv/direnv
+
+zinit ice lucid as"program" from"gh-r" mv"*linux-x86_64 -> git-crypt" pick="git-crypt"
+zinit ${ZINIT_LOAD_METHOD} AGWA/git-crypt
 
 
 # FIXME:https://github.com/Aloxaf/fzf-tab/issues/424#issuecomment-2073756724
