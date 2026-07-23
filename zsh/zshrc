@@ -32,6 +32,12 @@ function get_next_tmux_session_number() {
     # awk 'NR==1 {expect=$1+1; next} {if ($1 != expect) {exit} expect=expect+1} END {print expect}'
 }
 
+if ! installed unzip; then
+	print -u2 -- "Error: zinit requires 'unzip' to install plugins distributed as ZIP archives."
+	print -u2 -- "Install unzip and restart zsh."
+	return 1
+fi
+
 #HISTFILE=~/.histfile
 #HISTSIZE=10000
 #SAVEHIST=10000
@@ -183,8 +189,8 @@ fi
 
 # yazi
 if ! installed yazi; then
-zinit ice as"program" from"gh-r" bpick="*x86_64*linux*zip" pick="*/yazi"
-zinit ${ZINIT_LOAD_METHOD} sxyazi/yazi
+	zinit ice as"program" from"gh-r" bpick="*x86_64*linux*zip" pick="*/yazi"
+	zinit ${ZINIT_LOAD_METHOD} sxyazi/yazi
 fi
 
 
@@ -303,11 +309,11 @@ prefix_picker_widget() {
 zle -N prefix_picker_widget
 bindkey '\e\e' prefix_picker_widget
 
-zinit ice lucid as"program" pick="bin/(fzf|fzf-tmux|fzf-preview.sh)" \
-	atclone="make install; ./bin/fzf --zsh > _fzf.zsh;" \
+# 使用 GitHub Release 的预编译二进制，避免源码构建依赖 Go。
+zinit ice lucid as"program" from"gh-r" bpick="*linux_amd64.tar.gz" pick="fzf" \
+	atclone="./fzf --zsh > _fzf.zsh" \
 	atpull="%atclone" \
 	src="_fzf.zsh"
-	# multisrc="shell/{completion,key-bindings}.zsh"
 zinit ${ZINIT_LOAD_METHOD} junegunn/fzf
 
 
@@ -334,7 +340,7 @@ zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-autosuggestions
 
 # NOTE: This will overwrite fzf <c-r> key-binding. This is what I want!
 # https://docs.atuin.sh/configuration/key-binding/#disable-up-arrow
-zinit ice lucid as"program" from"gh-r" mv"*/atuin -> atuin" bpick="*x86_64*linux*tar.gz" pick="*/atuin" \
+zinit ice lucid as"program" from"gh-r" mv"*/atuin -> atuin" bpick="atuin-x86_64-unknown-linux-gnu.tar.gz" pick="*/atuin" \
 	atclone"./atuin init zsh --disable-up-arrow > init.zsh" \
 	atpull"%atclone" src"init.zsh"
 zinit ${ZINIT_LOAD_METHOD} atuinsh/atuin
@@ -350,7 +356,7 @@ zinit ${ZINIT_LOAD_METHOD} tj/git-extras
 
 # 目录环境变量
 zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
-    atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' \
+    atclone'chmod +x ./direnv; ./direnv hook zsh > zhook.zsh' atpull'%atclone' \
     pick"direnv" src="zhook.zsh"
 zinit ${ZINIT_LOAD_METHOD} direnv/direnv
 
