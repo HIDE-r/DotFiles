@@ -57,6 +57,9 @@ unsetopt beep
 
 declare -A ZINIT
 ZINIT[NO_ALIASES]=1
+ZINIT[HOME_DIR]="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"
+ZINIT[ZPFX]="${ZINIT[HOME_DIR]}/polaris"
+ZPFX="${ZINIT[ZPFX]}"
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/collin/.zshrc'
