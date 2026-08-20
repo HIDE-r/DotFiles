@@ -175,8 +175,6 @@ elseif vim.g.completion == "nvim-cmp" then
 end
 
 -------------------------------------------------------- LSP Server Configuration
-vim.lsp.enable({'clangd', 'lua_ls', 'vimls', 'bashls', 'pyright', 'neocmake', 'perlnavigator'}, false)
-
 vim.lsp.config('*', {
 	capabilities = capabilities,
 })
