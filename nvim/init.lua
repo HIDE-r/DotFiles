@@ -3,11 +3,8 @@ local is_wsl = function()
     return not not string.find(output[1] or '', 'WSL')
 end
 
-if is_wsl() then
-	vim.g.dotfiles_is_wsl = true
-else
-	vim.g.dotfiles_is_wsl = false
-end
+local running_in_wsl = is_wsl()
+vim.g.dotfiles_is_wsl = running_in_wsl
 
 if vim.g.neovide then
 	if vim.g.dotfiles_is_wsl then
@@ -100,7 +97,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- wsl
 -- https://neovim.io/doc/user/provider.html#clipboard-wsl
-if is_wsl() then
+if running_in_wsl then
 	vim.g.clipboard = {
 		name = 'WslClipboard',
 		copy = {
@@ -225,4 +222,3 @@ vim.lsp.config("lua_ls", {
 		},
 	},
 })
-
