@@ -55,6 +55,9 @@ return {
 						end
 					}
 				},
+				per_filetype = {
+					codecompanion = { "codecompanion" },
+				},
 			},
 			completion = {
 				menu = {

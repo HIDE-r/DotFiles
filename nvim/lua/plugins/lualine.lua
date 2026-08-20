@@ -241,6 +241,10 @@ ins_left {
 }
 
 -- Add components to right sections
+ins_right(
+	require("codecompanion._extensions.spinner.styles.lualine").get_lualine_component()
+)
+
 ins_right {
 	'o:encoding', -- option component same as &encoding in viml
 	fmt = string.upper, -- I'm not sure why it's upper case either ;)
