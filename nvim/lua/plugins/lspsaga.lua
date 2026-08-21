@@ -16,18 +16,18 @@ return {
 				mode = {'n'},
 				desc = "[lspsaga] hover doc",
 			},
-			{
-				"]d",
-				"<Cmd>Lspsaga diagnostic_jump_next<CR>",
-				mode = {'n'},
-				desc = "[lspsaga] next diagnostic",
-			},
-			{
-				"[d",
-				"<Cmd>Lspsaga diagnostic_jump_prev<CR>",
-				mode = {'n'},
-				desc = "[lspsaga] prev diagnostic",
-			},
+			-- {
+			-- 	"]d",
+			-- 	"<Cmd>Lspsaga diagnostic_jump_next<CR>",
+			-- 	mode = {'n'},
+			-- 	desc = "[lspsaga] next diagnostic",
+			-- },
+			-- {
+			-- 	"[d",
+			-- 	"<Cmd>Lspsaga diagnostic_jump_prev<CR>",
+			-- 	mode = {'n'},
+			-- 	desc = "[lspsaga] prev diagnostic",
+			-- },
 			-- {
 			-- 	"<leader>ld",
 			-- 	"<Cmd>Lspsaga peek_definition<CR>",

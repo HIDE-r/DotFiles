@@ -39,13 +39,18 @@ return {
 				end
 			end, {desc = "[LSP] toggle diagnostic"})
 
+			local function jump_diagnostic(count)
+				return function()
+					vim.diagnostic.jump({ count = count, float = true })
+				end
+			end
 
 			-- Mappings.
 			map('n', '<leader>dd', vim.diagnostic.open_float, { desc = "[LSP] diagnostic detail on float" })
-			map('n', '[d', vim.diagnostic.goto_prev, { desc = "[LSP] prev diagnostic" })
-			map('n', ']d', vim.diagnostic.goto_next, { desc = "[LSP] next diagnostic" })
-			map('n', '<leader>dp', vim.diagnostic.goto_prev, { desc = "[LSP] prev diagnostic" })
-			map('n', '<leader>dn', vim.diagnostic.goto_next, { desc = "[LSP] next diagnostic" })
+			map('n', '[d', jump_diagnostic(-1), { desc = "[LSP] prev diagnostic" })
+			map('n', ']d', jump_diagnostic(1), { desc = "[LSP] next diagnostic" })
+			map('n', '<leader>dp', jump_diagnostic(-1), { desc = "[LSP] prev diagnostic" })
+			map('n', '<leader>dn', jump_diagnostic(1), { desc = "[LSP] next diagnostic" })
 			map('n', '<leader>dl', vim.diagnostic.setloclist, { desc = "[LSP] diagnostic list" })
 			map('n', '<leader>ds', vim.diagnostic.show, { desc = "[LSP] show diagnostic" })
 			map('n', '<leader>dh', vim.diagnostic.hide, { desc = "[LSP] hide diagnostic"})

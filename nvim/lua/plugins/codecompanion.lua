@@ -30,6 +30,14 @@ end
 return {
 	{
 		"olimorris/codecompanion.nvim",
+		cmd = {
+			"CodeCompanion",
+			"CodeCompanionActions",
+			"CodeCompanionChat",
+			"CodeCompanionCLI",
+			"CodeCompanionCmd",
+			"CodeCompanionCodeReview",
+		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
@@ -37,9 +45,9 @@ return {
 		},
 		opts = {
 			-- NOTE: The log_level is in `opts.opts`
-			opts = {
-				log_level = "DEBUG", -- or "TRACE"
-			},
+			-- opts = {
+			-- 	log_level = "DEBUG", -- or "TRACE"
+			-- },
 			adapters = {
 				http = {
 					-- The stock OpenRouter adapter waits only three seconds for its

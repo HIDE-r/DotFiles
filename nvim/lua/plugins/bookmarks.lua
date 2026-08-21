@@ -39,7 +39,7 @@ return {
 			{
 				"<leader>bp",
 				mode = {'n'},
-				[[<cmd><BookmarksGotoPrev<CR>]],
+				[[<cmd>BookmarksGotoPrev<CR>]],
 				desc = "[bookmark] previous",
 			},
 		},

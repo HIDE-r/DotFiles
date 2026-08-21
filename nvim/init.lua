@@ -83,7 +83,7 @@ vim.g.copilot_engine="copilot.lua"
 
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -142,35 +142,16 @@ require("lazy").setup("plugins", {
 
 vim.cmd.colorscheme('kanagawa-wave')
 
--- if is_wsl() then
--- 	local clipipe = require 'clipipe'
---
--- 	vim.g.clipboard = {
--- 	  name = "clipipe",
--- 	  copy = {
--- 	    ["+"] = function(lines) clipipe.copy(lines, '+') end,
--- 	    ["*"] = function(lines) clipipe.copy(lines, '*') end,
--- 	  },
--- 	  paste = {
--- 	    ["+"] = function() return clipipe.paste('+') end,
--- 	    ["*"] = function() return clipipe.paste('*') end,
--- 	  }
--- 	}
--- end
-
-
--- Tell the server the capability of foldingRange,
--- Neovim hasn't added foldingRange to default capabilities, users must add it manually
-local lsp_capabilities=vim.lsp.protocol.make_client_capabilities()
-lsp_capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
-}
-
-
 if vim.g.completion == "blink" then
     capabilities = require('blink.cmp').get_lsp_capabilities()
 elseif vim.g.completion == "nvim-cmp" then
+    -- Tell the server the capability of foldingRange,
+    -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+    local lsp_capabilities=vim.lsp.protocol.make_client_capabilities()
+    lsp_capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true
+    }
     capabilities = require('cmp_nvim_lsp').default_capabilities(lsp_capabilities)
 end
 

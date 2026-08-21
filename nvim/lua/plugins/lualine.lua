@@ -197,53 +197,49 @@ ins_left {
 
 
 ins_left {
-	-- Lsp server name .
+	-- LSP server name and Copilot status.
 	function()
-		local msg = 'No Active Lsp'
-		local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-		local clients = vim.lsp.get_clients()
+		local lsp_name
+		local copilot_active = false
 
-		if next(clients) == nil then
-			return msg
-		end
-
-		for _, client in ipairs(clients) do
-			local filetypes = client.config.filetypes
-			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-				return client.name
+		for _, client in ipairs(vim.lsp.get_clients { bufnr = 0 }) do
+			if client.name == "copilot" then
+				copilot_active = true
+			elseif not lsp_name then
+				lsp_name = client.name
 			end
 		end
 
-		return msg
+		local status = lsp_name and (' LSP: ' .. lsp_name) or ''
+		if copilot_active then
+			local copilot_status = ' Copilot'
+			status = status == '' and copilot_status or (status .. ' | ' .. copilot_status)
+		end
+		return status
 	end,
-	icon = ' LSP:',
 	color = { fg = '#ffffff', gui = 'bold' },
 }
 
-ins_left {
-	function()
-		local copilot_active = false
-		local buf_clients = vim.lsp.get_clients { bufnr = 0 }
-
-		for _, client in pairs(buf_clients) do
-			if client.name == "copilot" then
-				copilot_active = true
-			end
-		end
-
-		if copilot_active then
-			return ""
-		end
-
-		return ""
-	end,
-	color = { fg = colors.green, gui = "bold" },
-}
-
 -- Add components to right sections
-ins_right(
-	require("codecompanion._extensions.spinner.styles.lualine").get_lualine_component()
-)
+local codecompanion_spinner_component
+local function get_codecompanion_spinner_component()
+	if not codecompanion_spinner_component and package.loaded.codecompanion then
+		codecompanion_spinner_component =
+			require("codecompanion._extensions.spinner.styles.lualine").get_lualine_component()
+	end
+	return codecompanion_spinner_component
+end
+
+ins_right {
+	function()
+		local component = get_codecompanion_spinner_component()
+		return component and component[1]() or ""
+	end,
+	cond = function()
+		local component = get_codecompanion_spinner_component()
+		return component ~= nil and component.cond()
+	end,
+}
 
 ins_right {
 	'o:encoding', -- option component same as &encoding in viml
