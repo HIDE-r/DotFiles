@@ -107,11 +107,13 @@ alias unsetss='unset all_proxy'
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
+# z-a-bin-gem-node 将选中的程序集中链接到 $ZPFX/bin，避免把整个插件目录加入 PATH。
+zinit light-mode for \
+    zdharma-continuum/z-a-bin-gem-node
 #zinit light-mode for \
 #    zdharma-continuum/z-a-rust \
 #    zdharma-continuum/z-a-as-monitor \
-#    zdharma-continuum/z-a-patch-dl \
-#    zdharma-continuum/z-a-bin-gem-node
+#    zdharma-continuum/z-a-patch-dl
 
 # Note: 新的shell中需要先回车一下同步最新的history
 # zinit snippet https://${ZINIT_RAW_GITHUB}/kutsan/zsh-system-clipboard/master/zsh-system-clipboard.zsh
@@ -152,30 +154,30 @@ zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-completions
 
 # eza
 if ! installed eza; then
-zinit ice as"program" from"gh-r" pick="eza"
+zinit ice as"null" from"gh-r" sbin"eza"
 zinit ${ZINIT_LOAD_METHOD} eza-community/eza
 fi
 
 # bat
 if ! installed bat; then
-zinit ice as"program" from"gh-r" pick="*/bat"
+zinit ice as"null" from"gh-r" sbin"*/bat"
 zinit ${ZINIT_LOAD_METHOD} sharkdp/bat
 fi
 
 # fd
 if ! installed fd; then
-zinit ice as"program" from"gh-r" pick="*/fd"
+zinit ice as"null" from"gh-r" sbin"*/fd"
 zinit ${ZINIT_LOAD_METHOD} sharkdp/fd
 fi
 
 # ripgrep
 if ! installed rg; then
-zinit ice as"program" from"gh-r" pick="*/rg"
+zinit ice as"null" from"gh-r" sbin"*/rg"
 zinit ${ZINIT_LOAD_METHOD} BurntSushi/ripgrep
 fi
 
 # if ! installed lf; then
-# zinit ice as"program" from"gh-r" pick="lf"
+# zinit ice as"null" from"gh-r" sbin"lf"
 # zinit ${ZINIT_LOAD_METHOD} gokcehan/lf
 # fi
 #
@@ -198,7 +200,7 @@ fi
 
 # yazi
 if ! installed yazi; then
-	zinit ice as"program" from"gh-r" bpick="*x86_64*linux*zip" pick="*/yazi"
+	zinit ice as"null" from"gh-r" bpick="*x86_64*linux*zip" sbin"*/yazi"
 	zinit ${ZINIT_LOAD_METHOD} sxyazi/yazi
 fi
 
@@ -218,11 +220,11 @@ function y() {
 bindkey -s '^o' 'y\n'
 
 # navi
-#zinit ice as"program" from"gh-r" pick="navi" \
+#zinit ice as"null" from"gh-r" sbin"navi" \
 #	atclone="./navi widget zsh > widget.zsh" \
 #	atpull="%atclone" \
 #	src="widget.zsh"
-zinit ice as"program" from"gh-r" bpick="*x86_64*linux*" pick="navi" 
+zinit ice as"null" from"gh-r" bpick="*x86_64*linux*" sbin"navi"
 zinit ${ZINIT_LOAD_METHOD} denisidoro/navi
 
 _navi_call() {
@@ -319,7 +321,7 @@ zle -N prefix_picker_widget
 bindkey '\e\e' prefix_picker_widget
 
 # 使用 GitHub Release 的预编译二进制，避免源码构建依赖 Go。
-zinit ice lucid as"program" from"gh-r" bpick="*linux_amd64.tar.gz" pick="fzf" \
+zinit ice lucid as"null" from"gh-r" bpick="*linux_amd64.tar.gz" sbin"fzf" \
 	atclone="./fzf --zsh > _fzf.zsh" \
 	atpull="%atclone" \
 	src="_fzf.zsh"
@@ -330,7 +332,7 @@ zinit ${ZINIT_LOAD_METHOD} junegunn/fzf
 
 # z 跳转
 export _ZO_FZF_OPTS='--exit-0 --height=40% --inline-info --no-sort --reverse --select-1 --preview="eza -la {2..}"'
-zinit ice as"program" from"gh-r" \
+zinit ice as"null" from"gh-r" sbin"zoxide" \
 	atclone"./zoxide init zsh > init.zsh" \
 	atpull"%atclone" src"init.zsh"
 zinit ${ZINIT_LOAD_METHOD} ajeetdsouza/zoxide
@@ -349,27 +351,27 @@ zinit ${ZINIT_LOAD_METHOD} zsh-users/zsh-autosuggestions
 
 # NOTE: This will overwrite fzf <c-r> key-binding. This is what I want!
 # https://docs.atuin.sh/configuration/key-binding/#disable-up-arrow
-zinit ice lucid as"program" from"gh-r" mv"*/atuin -> atuin" bpick="atuin-x86_64-unknown-linux-gnu.tar.gz" pick="*/atuin" \
+zinit ice lucid as"null" from"gh-r" mv"*/atuin -> atuin" bpick="atuin-x86_64-unknown-linux-gnu.tar.gz" sbin"atuin" \
 	atclone"./atuin init zsh --disable-up-arrow > init.zsh" \
 	atpull"%atclone" src"init.zsh"
 zinit ${ZINIT_LOAD_METHOD} atuinsh/atuin
 
-zinit ice as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" make"PREFIX=$ZPFX"
+zinit ice as"null" src"etc/git-extras-completion.zsh" make"PREFIX=$ZPFX"
 zinit ${ZINIT_LOAD_METHOD} tj/git-extras
 
 # 运行时软件版本管理
-# zinit ice lucid as"program" pick"asdf"\
+# zinit ice lucid as"null" sbin"asdf"\
 # 	atclone"make" \
 # 	atpull"make"
 # zinit ${ZINIT_LOAD_METHOD} asdf-vm/asdf
 
 # 目录环境变量
-zinit ice lucid from"gh-r" as"program" mv"direnv* -> direnv" \
+zinit ice lucid from"gh-r" as"null" mv"direnv* -> direnv" sbin"direnv" \
     atclone'chmod +x ./direnv; ./direnv hook zsh > zhook.zsh' atpull'%atclone' \
-    pick"direnv" src="zhook.zsh"
+    src="zhook.zsh"
 zinit ${ZINIT_LOAD_METHOD} direnv/direnv
 
-zinit ice lucid as"program" from"gh-r" mv"*linux-x86_64 -> git-crypt" pick="git-crypt"
+zinit ice lucid as"null" from"gh-r" mv"*linux-x86_64 -> git-crypt" sbin"git-crypt"
 zinit ${ZINIT_LOAD_METHOD} AGWA/git-crypt
 
 
@@ -504,7 +506,7 @@ powerlevel10k
 
 ## starship
 #:<< starship
-zinit ice as"command" from"gh-r" \
+zinit ice as"null" from"gh-r" sbin"starship" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
 zinit ${ZINIT_LOAD_METHOD} starship/starship
