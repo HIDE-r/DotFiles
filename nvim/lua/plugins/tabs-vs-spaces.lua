@@ -1,6 +1,7 @@
 return {
 	{
 		"tenxsoydev/tabs-vs-spaces.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			highlight = {},
 			-- cmd = {

@@ -142,17 +142,11 @@ require("lazy").setup("plugins", {
 
 vim.cmd.colorscheme('kanagawa-wave')
 
+local capabilities
 if vim.g.completion == "blink" then
-    capabilities = require('blink.cmp').get_lsp_capabilities()
+	capabilities = require('blink.cmp').get_lsp_capabilities()
 elseif vim.g.completion == "nvim-cmp" then
-    -- Tell the server the capability of foldingRange,
-    -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
-    local lsp_capabilities=vim.lsp.protocol.make_client_capabilities()
-    lsp_capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true
-    }
-    capabilities = require('cmp_nvim_lsp').default_capabilities(lsp_capabilities)
+	capabilities = require('cmp_nvim_lsp').default_capabilities()
 end
 
 -------------------------------------------------------- LSP Server Configuration
@@ -160,8 +154,14 @@ vim.lsp.config('*', {
 	capabilities = capabilities,
 })
 
-vim.lsp.config("clangd", {
-	on_attach = function(client, bufnr)
+local lsp_servers = {}
+local function lsp_config(name, config)
+	lsp_servers[name] = true
+	vim.lsp.config(name, config)
+end
+
+lsp_config("clangd", {
+	on_attach = function(client)
 		-- Ref: help vim.lsp.semantic_tokens.start
 		client.server_capabilities.semanticTokensProvider = nil
 	end,
@@ -172,7 +172,7 @@ vim.lsp.config("clangd", {
 })
 
 
-vim.lsp.config("lua_ls", {
+lsp_config("lua_ls", {
 	settings = {
 		Lua = {
 			runtime = {
@@ -201,3 +201,44 @@ vim.lsp.config("lua_ls", {
 		},
 	},
 })
+
+local function lsp_toggle()
+	local filetype = vim.bo.filetype
+	local matching = vim
+		.iter(vim.tbl_keys(lsp_servers))
+		:filter(function(name)
+			local config = vim.lsp.config[name]
+			return config.filetypes and vim.list_contains(config.filetypes, filetype)
+		end)
+		:totable()
+
+	if #matching == 0 then
+		vim.notify("No configured LSP for filetype: " .. filetype, vim.log.levels.WARN)
+		return
+	end
+
+	local enabled = vim.iter(matching):filter(vim.lsp.is_enabled):totable()
+	if #enabled > 0 then
+		vim.lsp.enable(enabled, false)
+		vim.notify("LSP disabled: " .. table.concat(enabled, ", "))
+		return
+	end
+
+	local function enable(name)
+		if name then
+			vim.lsp.enable(name)
+			vim.notify("LSP enabled: " .. name)
+		end
+	end
+
+	if #matching == 1 then
+		enable(matching[1])
+	else
+		vim.ui.select(matching, { prompt = "Enable LSP:" }, enable)
+	end
+end
+
+vim.api.nvim_create_user_command("LspToggle", lsp_toggle, {
+	desc = "Toggle the configured LSP for the current filetype",
+})
+vim.keymap.set("n", "<leader>ll", lsp_toggle, { desc = "[LSP] toggle for current filetype" })

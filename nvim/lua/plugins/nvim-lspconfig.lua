@@ -29,14 +29,8 @@ return {
 
 			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 			vim.diagnostic.enable(false)
-			local diagnostics_active = false
 			map('n', '<leader>dt', function()
-				diagnostics_active = not diagnostics_active
-				if diagnostics_active then
-					vim.diagnostic.enable(true)
-				else
-					vim.diagnostic.enable(false)
-				end
+				vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 			end, {desc = "[LSP] toggle diagnostic"})
 
 			local function jump_diagnostic(count)
