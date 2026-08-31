@@ -74,6 +74,12 @@ zstyle :compinstall filename '/home/collin/.zshrc'
 ZINIT_HOME="${HOME}/.zinit/"
 source "${ZINIT_HOME}/zinit.zsh"
 
+# Keep only Zinit's shared shim directory in PATH.  Older shells may pass
+# plugin-specific directories to child shells; remove those inherited entries
+# and keep PATH unique from this point on.
+path=( "${ZINIT[ZPFX]}/bin" ${path:#${ZINIT[PLUGINS_DIR]}/*} )
+typeset -gU path PATH
+
 # load - with reporting/investigating.
 # light - without reporting/investigating.
 ZINIT_LOAD_METHOD="load"
