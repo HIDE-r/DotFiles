@@ -25,6 +25,7 @@ local leader_mapping = {
 		{ "<leader>tl", "<cmd>set list!<cr>", desc = "[customize] list mode" },
 		{ "<leader>tn", "<cmd>set number!<cr>", desc = "[customize] line number" },
 		{ "<leader>ts", "<cmd>nohlsearch<cr>", desc = "[customize] highlight search" },
+		{ "<leader>tg", "<cmd>vimgrep //gj % | copen<cr>", desc = "[customize] search by copen" },
 		{ "<leader>tf", function()
 			local current_ff = vim.bo.fileformat
 			if current_ff == "unix" then
