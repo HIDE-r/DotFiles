@@ -433,7 +433,62 @@ if installed rg;then
 fi
 
 if installed fzf;then
-	alias fzf_vi="fzf --ansi --delimiter ':' --bind 'enter:become(nvim +{2} {1})'"
+	# Enter opens the selected match and returns to fzf after Neovim exits.
+	# Ctrl-O replaces fzf with Neovim when returning to the result list is not needed.
+	alias fzf_vi="fzf --ansi --delimiter ':' --bind 'enter:execute(nvim +{2} {1})' --bind 'ctrl-o:become(nvim +{2} {1})'"
+
+	# Search with ripgrep and load all matches into Neovim's quickfix list.
+	# Supports both direct use and prefix-picker use:
+	#   vi_copen device_probe
+	#   vi_copen rg device_probe
+	vi_copen() {
+		local qf qf_colored rg_status nvim_action fzf_status
+		[[ "$1" == "rg" ]] && shift
+		if (( $# == 0 )); then
+			print -u2 -- "Usage: vi_copen [rg] PATTERN [PATH ...]"
+			return 2
+		fi
+
+		qf=$(mktemp -t rg-qf.XXXXXX) || return 1
+		qf_colored=$(mktemp -t rg-qf-colored.XXXXXX) || {
+			command rm -f -- "$qf"
+			return 1
+		}
+
+		command rg \
+			--vimgrep \
+			--color=always \
+			-g '!tags' \
+			-g '!cscope.out' \
+			-g '!compile_commands.json' \
+			"$@" > "$qf_colored"
+		rg_status=$?
+
+		if (( rg_status > 1 )); then
+			command rm -f -- "$qf" "$qf_colored"
+			return $rg_status
+		elif [[ ! -s "$qf_colored" ]]; then
+			print -u2 -- "No matches found"
+			command rm -f -- "$qf" "$qf_colored"
+			return 1
+		fi
+		command sed -E $'s/\033\\[[0-9;]*m//g' "$qf_colored" > "$qf"
+
+		# {1} is the hidden quickfix entry number added by awk. Enter opens
+		# Neovim and returns to the same fzf session; Ctrl-O enters permanently.
+		nvim_action="nvim -c 'silent cgetfile $qf' -c silent\\ cc\\ {1} -c 'autocmd VimEnter * ++once copen' -c 'autocmd VimEnter * ++once wincmd p'"
+		awk '{ printf "%d\t%s\n", NR, $0 }' "$qf_colored" |
+			fzf --ansi \
+				--delimiter=$'\t' \
+				--with-nth=2.. \
+				--prompt='quickfix> ' \
+				--bind "enter:execute($nvim_action)" \
+				--bind "ctrl-o:become($nvim_action)"
+		fzf_status=$?
+
+		command rm -f -- "$qf" "$qf_colored"
+		return $fzf_status
+	}
 fi
 
 if installed viddy;then
