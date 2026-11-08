@@ -523,6 +523,11 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
+bindkey -M viins '^U'  backward-kill-line
+bindkey -M viins '^[d' kill-word
+bindkey -M viins '^Y'  yank
+bindkey -M viins '^[.' insert-last-word
+
 # # 清理 zinit 残留的悬空补全链接，避免 compinit 报错并拖慢启动。
 # if [[ -d "${HOME}/.local/share/zinit/completions" ]]; then
 #   typeset _zinit_completion
