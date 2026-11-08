@@ -96,20 +96,12 @@ ZINIT_TURBO_OPTION="lucid"
 
 ### Proxy Setting
 #
-if running brook; then
-  proxy="127.0.0.1:1080";
-  sock_proxy="$proxy"
-fi
 if running mihomo; then
     proxy="127.0.0.1:7890"
     sock_proxy="127.0.0.1:7891"
 fi
-if running clash-linux; then
-    proxy="127.0.0.1:7890"
-    sock_proxy="127.0.0.1:7890"
-fi
 alias setss='export https_proxy="http://${proxy}";export http_proxy="http://${proxy}";export all_proxy="socks5://${sock_proxy}";'
-alias unsetss='unset all_proxy'
+alias unsetss='unset http_proxy https_proxy all_proxy HTTP_PROXY HTTPS_PROXY ALL_PROXY'
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
